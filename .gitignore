@@ -56,3 +56,4 @@ fastlane/test_output
 #Word
 *.docx
 *.doc
+*.zip
