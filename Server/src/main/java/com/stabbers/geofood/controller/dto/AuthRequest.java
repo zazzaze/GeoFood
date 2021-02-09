@@ -1,4 +1,4 @@
-package com.stabbers.geofood.controller;
+package com.stabbers.geofood.controller.dto;
 
 import lombok.Data;
 

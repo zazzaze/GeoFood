@@ -1,6 +1,9 @@
 package com.stabbers.geofood.controller;
 
 import com.stabbers.geofood.config.jwt.JwtProvider;
+import com.stabbers.geofood.controller.dto.AuthRequest;
+import com.stabbers.geofood.controller.dto.AuthResponse;
+import com.stabbers.geofood.controller.dto.RegistrationRequest;
 import com.stabbers.geofood.entity.UserEntity;
 import com.stabbers.geofood.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
