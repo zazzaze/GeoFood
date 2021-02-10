@@ -4,9 +4,11 @@ import com.stabbers.geofood.config.jwt.JwtProvider;
 import com.stabbers.geofood.controller.dto.AuthRequest;
 import com.stabbers.geofood.controller.dto.AuthResponse;
 import com.stabbers.geofood.controller.dto.RegistrationRequest;
+import com.stabbers.geofood.controller.dto.RegistrationResponce;
 import com.stabbers.geofood.entity.UserEntity;
 import com.stabbers.geofood.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,12 +23,12 @@ public class AuthController {
     private JwtProvider jwtProvider;
 
     @PostMapping("/register")
-    public String registerUser(@RequestBody @Valid RegistrationRequest registrationRequest) {
+    public RegistrationResponce registerUser(@RequestBody @Valid RegistrationRequest registrationRequest) {
         UserEntity u = new UserEntity();
         u.setPassword(registrationRequest.getPassword());
         u.setLogin(registrationRequest.getLogin());
         userService.saveUser(u);
-        return "OK";
+        return new RegistrationResponce(HttpStatus.OK);
     }
 
     @PostMapping("/auth")
