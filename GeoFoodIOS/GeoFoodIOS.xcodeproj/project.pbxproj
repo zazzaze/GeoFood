@@ -1,0 +1,425 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		7412DCA125D7050D001109B0 /* ServerClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7412DCA025D7050D001109B0 /* ServerClient.swift */; };
+		7445E5AC25D94E9C00B4F3A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7445E5AB25D94E9B00B4F3A1 /* ContentView.swift */; };
+		746FEF5D25D7F04100813ABA /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746FEF5C25D7F04100813ABA /* RegistrationView.swift */; };
+		746FEF6025D80E2200813ABA /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746FEF5F25D80E2200813ABA /* LoaderView.swift */; };
+		746FEF6525D817E100813ABA /* RegistrationForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746FEF6425D817E100813ABA /* RegistrationForm.swift */; };
+		746FEF6925D818CE00813ABA /* TextFieldCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746FEF6825D818CE00813ABA /* TextFieldCondition.swift */; };
+		7494D50E25B1BFC000D27A43 /* GeoFoodIOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7494D50D25B1BFC000D27A43 /* GeoFoodIOSApp.swift */; };
+		7494D51025B1BFC000D27A43 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7494D50F25B1BFC000D27A43 /* LoginView.swift */; };
+		7494D51225B1BFC800D27A43 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7494D51125B1BFC800D27A43 /* Assets.xcassets */; };
+		7494D51525B1BFC800D27A43 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7494D51425B1BFC800D27A43 /* Preview Assets.xcassets */; };
+		7494D52025B1C74800D27A43 /* BlurView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7494D51F25B1C74800D27A43 /* BlurView.swift */; };
+		7494D52325B1DD7B00D27A43 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7494D52225B1DD7B00D27A43 /* MainView.swift */; };
+		7494D52725B2FD3B00D27A43 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7494D52625B2FD3B00D27A43 /* MapView.swift */; };
+		7494D52B25B309F600D27A43 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7494D52A25B309F600D27A43 /* LocationManager.swift */; };
+		7494D52F25B30C2500D27A43 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7494D52E25B30C2500D27A43 /* Coordinator.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		7412DCA025D7050D001109B0 /* ServerClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerClient.swift; sourceTree = "<group>"; };
+		7445E5AB25D94E9B00B4F3A1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		746FEF5C25D7F04100813ABA /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
+		746FEF5F25D80E2200813ABA /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
+		746FEF6425D817E100813ABA /* RegistrationForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationForm.swift; sourceTree = "<group>"; };
+		746FEF6825D818CE00813ABA /* TextFieldCondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCondition.swift; sourceTree = "<group>"; };
+		7494D50A25B1BFC000D27A43 /* GeoFoodIOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GeoFoodIOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7494D50D25B1BFC000D27A43 /* GeoFoodIOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoFoodIOSApp.swift; sourceTree = "<group>"; };
+		7494D50F25B1BFC000D27A43 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		7494D51125B1BFC800D27A43 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7494D51425B1BFC800D27A43 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7494D51625B1BFC800D27A43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7494D51F25B1C74800D27A43 /* BlurView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurView.swift; sourceTree = "<group>"; };
+		7494D52225B1DD7B00D27A43 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		7494D52625B2FD3B00D27A43 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		7494D52A25B309F600D27A43 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		7494D52E25B30C2500D27A43 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7494D50725B1BFC000D27A43 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		7412DC9F25D704F5001109B0 /* Client */ = {
+			isa = PBXGroup;
+			children = (
+				7412DCA025D7050D001109B0 /* ServerClient.swift */,
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		746FEF6725D8189E00813ABA /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				746FEF6425D817E100813ABA /* RegistrationForm.swift */,
+				746FEF5C25D7F04100813ABA /* RegistrationView.swift */,
+				746FEF6825D818CE00813ABA /* TextFieldCondition.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		7494D50125B1BFC000D27A43 = {
+			isa = PBXGroup;
+			children = (
+				7494D50C25B1BFC000D27A43 /* GeoFoodIOS */,
+				7494D50B25B1BFC000D27A43 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7494D50B25B1BFC000D27A43 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7494D50A25B1BFC000D27A43 /* GeoFoodIOS.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7494D50C25B1BFC000D27A43 /* GeoFoodIOS */ = {
+			isa = PBXGroup;
+			children = (
+				74A4D88725D9B3990071393A /* Resources */,
+				7412DC9F25D704F5001109B0 /* Client */,
+				7494D52D25B30C1900D27A43 /* Coordinators */,
+				7494D52925B309DF00D27A43 /* Managers */,
+				7494D51D25B1C13400D27A43 /* Views */,
+				7494D51325B1BFC800D27A43 /* Preview Content */,
+			);
+			path = GeoFoodIOS;
+			sourceTree = "<group>";
+		};
+		7494D51325B1BFC800D27A43 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				7494D51425B1BFC800D27A43 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7494D51D25B1C13400D27A43 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				746FEF6725D8189E00813ABA /* Registration */,
+				7494D50F25B1BFC000D27A43 /* LoginView.swift */,
+				7494D51F25B1C74800D27A43 /* BlurView.swift */,
+				7494D52225B1DD7B00D27A43 /* MainView.swift */,
+				7494D52625B2FD3B00D27A43 /* MapView.swift */,
+				746FEF5F25D80E2200813ABA /* LoaderView.swift */,
+				7445E5AB25D94E9B00B4F3A1 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7494D52925B309DF00D27A43 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				7494D52A25B309F600D27A43 /* LocationManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		7494D52D25B30C1900D27A43 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				7494D52E25B30C2500D27A43 /* Coordinator.swift */,
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		74A4D88725D9B3990071393A /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7494D51625B1BFC800D27A43 /* Info.plist */,
+				7494D51125B1BFC800D27A43 /* Assets.xcassets */,
+				7494D50D25B1BFC000D27A43 /* GeoFoodIOSApp.swift */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7494D50925B1BFC000D27A43 /* GeoFoodIOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7494D51925B1BFC800D27A43 /* Build configuration list for PBXNativeTarget "GeoFoodIOS" */;
+			buildPhases = (
+				7494D50625B1BFC000D27A43 /* Sources */,
+				7494D50725B1BFC000D27A43 /* Frameworks */,
+				7494D50825B1BFC000D27A43 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GeoFoodIOS;
+			productName = GeoFoodIOS;
+			productReference = 7494D50A25B1BFC000D27A43 /* GeoFoodIOS.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7494D50225B1BFC000D27A43 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1230;
+				LastUpgradeCheck = 1230;
+				TargetAttributes = {
+					7494D50925B1BFC000D27A43 = {
+						CreatedOnToolsVersion = 12.3;
+					};
+				};
+			};
+			buildConfigurationList = 7494D50525B1BFC000D27A43 /* Build configuration list for PBXProject "GeoFoodIOS" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7494D50125B1BFC000D27A43;
+			productRefGroup = 7494D50B25B1BFC000D27A43 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7494D50925B1BFC000D27A43 /* GeoFoodIOS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7494D50825B1BFC000D27A43 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7494D51525B1BFC800D27A43 /* Preview Assets.xcassets in Resources */,
+				7494D51225B1BFC800D27A43 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7494D50625B1BFC000D27A43 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7494D51025B1BFC000D27A43 /* LoginView.swift in Sources */,
+				7494D52325B1DD7B00D27A43 /* MainView.swift in Sources */,
+				7494D52B25B309F600D27A43 /* LocationManager.swift in Sources */,
+				746FEF5D25D7F04100813ABA /* RegistrationView.swift in Sources */,
+				7412DCA125D7050D001109B0 /* ServerClient.swift in Sources */,
+				7494D52725B2FD3B00D27A43 /* MapView.swift in Sources */,
+				746FEF6525D817E100813ABA /* RegistrationForm.swift in Sources */,
+				746FEF6925D818CE00813ABA /* TextFieldCondition.swift in Sources */,
+				7494D50E25B1BFC000D27A43 /* GeoFoodIOSApp.swift in Sources */,
+				746FEF6025D80E2200813ABA /* LoaderView.swift in Sources */,
+				7445E5AC25D94E9C00B4F3A1 /* ContentView.swift in Sources */,
+				7494D52025B1C74800D27A43 /* BlurView.swift in Sources */,
+				7494D52F25B30C2500D27A43 /* Coordinator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		7494D51725B1BFC800D27A43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7494D51825B1BFC800D27A43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7494D51A25B1BFC800D27A43 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"GeoFoodIOS/Preview Content\"";
+				DEVELOPMENT_TEAM = 3VF2NCMJXG;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = GeoFoodIOS/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zazzaze.GeoFoodIOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7494D51B25B1BFC800D27A43 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"GeoFoodIOS/Preview Content\"";
+				DEVELOPMENT_TEAM = 3VF2NCMJXG;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = GeoFoodIOS/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.zazzaze.GeoFoodIOS;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7494D50525B1BFC000D27A43 /* Build configuration list for PBXProject "GeoFoodIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7494D51725B1BFC800D27A43 /* Debug */,
+				7494D51825B1BFC800D27A43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7494D51925B1BFC800D27A43 /* Build configuration list for PBXNativeTarget "GeoFoodIOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7494D51A25B1BFC800D27A43 /* Debug */,
+				7494D51B25B1BFC800D27A43 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7494D50225B1BFC000D27A43 /* Project object */;
+}
