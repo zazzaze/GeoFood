@@ -1,0 +1,6 @@
+module Pods_GeoFood {
+  umbrella header "Pods-GeoFood-umbrella.h"
+
+  export *
+  module * { export * }
+}
