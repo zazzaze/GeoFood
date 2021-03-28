@@ -1,12 +1,15 @@
 package com.stabbers.geofood.service;
 
-import com.stabbers.geofood.entity.RoleEntity;
+import com.stabbers.geofood.entity.AdminEntity;
+import com.stabbers.geofood.entity.ShopEntity;
 import com.stabbers.geofood.entity.UserEntity;
-import com.stabbers.geofood.repository.RoleEntityRepository;
-import com.stabbers.geofood.repository.UserEntityRepository;
+import com.stabbers.geofood.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -16,17 +19,13 @@ public class UserService {
 //    }
 
     @Autowired
-    private UserEntityRepository userEntityRepository;
-    @Autowired
-    private RoleEntityRepository roleEntityRepository;
+    private UserRepository userEntityRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public UserEntity saveUser(UserEntity userEntity) {
-        RoleEntity userRole = roleEntityRepository.findByName("ROLE_USER");
-        userEntity.setRoleEntity(userRole);
-        userEntity.setPassword(passwordEncoder.encode(userEntity.getPassword()));
-        return userEntityRepository.save(userEntity);
+    public UserEntity saveUser(UserEntity newUser) {
+        newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
+        return userEntityRepository.save(newUser);
     }
 
     public UserEntity findByLogin(String login) {
@@ -34,12 +33,22 @@ public class UserService {
     }
 
     public UserEntity findByLoginAndPassword(String login, String password) {
-        UserEntity userEntity = findByLogin(login);
-        if (userEntity != null) {
-            if (passwordEncoder.matches(password, userEntity.getPassword())) {
-                return userEntity;
+        UserEntity user = findByLogin(login);
+        if (user != null) {
+            if (passwordEncoder.matches(password, user.getPassword())) {
+                return user;
             }
         }
         return null;
     }
+
+    public UserEntity addNewShop(UserEntity user, ShopEntity shop) {
+        user.addShop(shop);
+        return user;
+    }
+
+    public List<ShopEntity> getAllShops(UserEntity user, ShopEntity shop){
+        return user.getShops();
+    }
+
 }

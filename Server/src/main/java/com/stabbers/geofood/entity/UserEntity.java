@@ -1,9 +1,15 @@
 package com.stabbers.geofood.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
@@ -14,14 +20,17 @@ public class UserEntity {
     @Column(name = "id", updatable = false, nullable = false)
     private Integer id;
 
-    @Column
+    @Column(unique = true)
     private String login;
 
     @Column
     private String password;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private RoleEntity roleEntity;
+    @JsonManagedReference
+    @OneToMany(targetEntity = ShopEntity.class, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ShopEntity> shops = new ArrayList<>();
 
+    public void addShop(ShopEntity newShop){
+        shops.add(newShop);
+    }
 }
