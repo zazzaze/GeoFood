@@ -26,8 +26,12 @@ public class UserEntity {
     @Column
     private String password;
 
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private RoleEntity role;
+
     @JsonManagedReference
-    @OneToMany(targetEntity = ShopEntity.class, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(targetEntity = ShopEntity.class, mappedBy = "admin", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ShopEntity> shops = new ArrayList<>();
 
     public void addShop(ShopEntity newShop){

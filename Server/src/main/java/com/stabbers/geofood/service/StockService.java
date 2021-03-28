@@ -8,21 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class StockService {
-//    @Bean
-//    PasswordEncoder getEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
 
     @Autowired
     private StockRepository stockRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
 
-    public StockEntity saveShop(StockEntity stock) {
-        //shopEntity.setPassword(passwordEncoder.encode(shopEntity.getPassword()));
-        // TODO: 27.03.2021 Обработать пароль
+    public StockEntity saveStock(StockEntity stock) {
         return stockRepository.save(stock);
     }
 
@@ -30,6 +24,8 @@ public class StockService {
         return stockRepository.findByName(name);
     }
 
-
+    public List<StockEntity> getAllStocks() {
+        return stockRepository.findAll();
+    }
 
 }

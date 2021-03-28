@@ -1,4 +1,4 @@
-package com.stabbers.geofood.controller.dto;
+package com.stabbers.geofood.controller.dto.register;
 
 import lombok.Data;
 
@@ -12,4 +12,6 @@ public class RegistrationRequest {
 
     @NotEmpty
     private String password;
+
+    private String role;
 }

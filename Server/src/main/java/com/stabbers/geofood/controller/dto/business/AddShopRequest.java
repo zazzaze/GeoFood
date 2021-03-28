@@ -1,4 +1,4 @@
-package com.stabbers.geofood.controller.dto;
+package com.stabbers.geofood.controller.dto.business;
 
 import lombok.Data;
 
@@ -11,8 +11,8 @@ public class AddShopRequest {
     private String name;
 
     @NotEmpty
-    private String longitude;
+    private double longitude;
 
     @NotEmpty
-    private String latitude;
+    private double latitude;
 }

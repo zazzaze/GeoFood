@@ -1,11 +1,8 @@
 package com.stabbers.geofood.service;
 
-import com.stabbers.geofood.entity.AdminEntity;
 import com.stabbers.geofood.entity.ShopEntity;
 import com.stabbers.geofood.entity.StockEntity;
-import com.stabbers.geofood.entity.UserEntity;
 import com.stabbers.geofood.repository.ShopRepository;
-import com.stabbers.geofood.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -25,13 +22,20 @@ public class ShopService {
     private PasswordEncoder passwordEncoder;
 
     public ShopEntity saveShop(ShopEntity shop) {
-        //shopEntity.setPassword(passwordEncoder.encode(shopEntity.getPassword()));
-        // TODO: 27.03.2021 Обработать пароль
+        shop.setShopLogoFileName(shop.getName() + ".png");
         return shopRepository.save(shop);
     }
 
-    public ShopEntity findByName(String name) {
-        return shopRepository.findByName(name);
+    public List<ShopEntity> getAllShops() {
+        return shopRepository.findAll();
     }
+
+    public ShopEntity findById(int id){
+        return  shopRepository.findById(id).orElse(new ShopEntity());
+    }
+
+//    public ShopEntity findByName(String name) {
+//        return shopRepository.findByName(name);
+//    }
 
 }

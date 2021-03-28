@@ -1,4 +1,4 @@
-package com.stabbers.geofood.controller.dto;
+package com.stabbers.geofood.controller.dto.register;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

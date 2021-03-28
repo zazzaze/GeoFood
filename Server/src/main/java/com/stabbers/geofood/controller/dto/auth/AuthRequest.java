@@ -1,4 +1,4 @@
-package com.stabbers.geofood.controller.dto;
+package com.stabbers.geofood.controller.dto.auth;
 
 import lombok.Data;
 

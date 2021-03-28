@@ -1,29 +1,35 @@
 package com.stabbers.geofood.service;
 
-import com.stabbers.geofood.entity.AdminEntity;
+import com.stabbers.geofood.entity.RoleEntity;
 import com.stabbers.geofood.entity.ShopEntity;
 import com.stabbers.geofood.entity.UserEntity;
+import com.stabbers.geofood.repository.RoleRepository;
 import com.stabbers.geofood.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class UserService {
-//    @Bean
-//    PasswordEncoder getEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
-
     @Autowired
     private UserRepository userEntityRepository;
+    @Autowired
+    private RoleRepository roleRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
     public UserEntity saveUser(UserEntity newUser) {
+        RoleEntity userRole = roleRepository.findByName("ROLE_USER");
+        newUser.setRole(userRole);
+        newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
+        return userEntityRepository.save(newUser);
+    }
+
+    public UserEntity saveAdmin(UserEntity newUser) {
+        RoleEntity userRole = roleRepository.findByName("ROLE_ADMIN");
+        newUser.setRole(userRole);
         newUser.setPassword(passwordEncoder.encode(newUser.getPassword()));
         return userEntityRepository.save(newUser);
     }
@@ -41,14 +47,4 @@ public class UserService {
         }
         return null;
     }
-
-    public UserEntity addNewShop(UserEntity user, ShopEntity shop) {
-        user.addShop(shop);
-        return user;
-    }
-
-    public List<ShopEntity> getAllShops(UserEntity user, ShopEntity shop){
-        return user.getShops();
-    }
-
 }

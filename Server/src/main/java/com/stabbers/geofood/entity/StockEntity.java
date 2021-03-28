@@ -1,5 +1,6 @@
 package com.stabbers.geofood.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Data;
 import org.hibernate.validator.constraints.UniqueElements;
 
@@ -7,7 +8,7 @@ import javax.persistence.*;
 
 @Data
 @Entity
-@Table(name = "shop")
+@Table(name = "stock")
 public class StockEntity {
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -26,7 +27,11 @@ public class StockEntity {
     @Column
     private double newPrice;
 
-//    @ManyToOne (optional=false, cascade=CascadeType.ALL)
-//    @JoinColumn (name="shop_id")
-//    private ShopEntity shop;
+    @Column
+    private String stockImageFileName;
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn (name="shop_id")
+    private ShopEntity shop;
 }
