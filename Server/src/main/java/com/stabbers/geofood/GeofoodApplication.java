@@ -92,7 +92,7 @@ public class GeofoodApplication {
 		stock3.setOldPrice(60);
 		stock3.setNewPrice(40);
 		stock1.setDescription(lorem);
-		stock3.setStockImageFileName(shopCofix.getShopLogoFileName());
+		stock3.setStockImageFileName("Cofe.png");
 		stock3.setShop(shopCofix);
 		shopCofix.addStock(stock3);
 
@@ -101,7 +101,7 @@ public class GeofoodApplication {
 		stock4.setOldPrice(80);
 		stock4.setNewPrice(60);
 		stock1.setDescription(lorem);
-		stock4.setStockImageFileName(shopCofix.getShopLogoFileName());
+		stock4.setStockImageFileName("Cofe.png");
 		stock4.setShop(shopCofix);
 		shopCofix.addStock(stock4);
 
@@ -152,7 +152,7 @@ public class GeofoodApplication {
 		stock.setDescription(lorem);
 		stock.setOldPrice(60);
 		stock.setNewPrice(40);
-		stock.setStockImageFileName(shop.getShopLogoFileName());
+		stock.setStockImageFileName("Cofe.png");
 		stock.setShop(shop);
 		shop.addStock(stock);
 		stockService.saveStock(stock);
