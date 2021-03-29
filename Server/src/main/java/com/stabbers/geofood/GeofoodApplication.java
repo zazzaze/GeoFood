@@ -25,10 +25,6 @@ public class GeofoodApplication {
 		SpringApplication.run(GeofoodApplication.class, args);
 	}
 
-//	private static UserService userService = new UserService();
-//	private static ShopService shopService = new ShopService();
-//	private static StockService stockService = new StockService();
-
 	@EventListener(ApplicationReadyEvent.class)
 	private void test(){
 		// USERS.
@@ -45,16 +41,16 @@ public class GeofoodApplication {
 		// SHOPS.
 		ShopEntity shopMac = new ShopEntity();
 		shopMac.setName("Mac");
-		shopMac.setLatitude(10);
-		shopMac.setLongitude(10);
+		shopMac.setLatitude(55.760735);
+		shopMac.setLongitude(37.631996);
 		shopMac.setAdmin(admin);
 		admin.addShop(shopMac);
 		shopService.saveShop(shopMac);
 
 		ShopEntity shopCofix = new ShopEntity();
 		shopCofix.setName("Cofix");
-		shopCofix.setLatitude(100);
-		shopCofix.setLongitude(100);
+		shopCofix.setLatitude(55.760396);
+		shopCofix.setLongitude(37.631663);
 		shopCofix.setAdmin(admin);
 		admin.addShop(shopCofix);
 		shopService.saveShop(shopCofix);
@@ -62,8 +58,8 @@ public class GeofoodApplication {
 		// STOCKS.
 		StockEntity stock1 = new StockEntity();
 		stock1.setName("BigMac");
-		stock1.setOldPrice(130);
-		stock1.setNewPrice(99);
+		stock1.setOldPrice(80);
+		stock1.setNewPrice(60);
 		stock1.setShop(shopMac);
 		shopMac.addStock(stock1);
 
