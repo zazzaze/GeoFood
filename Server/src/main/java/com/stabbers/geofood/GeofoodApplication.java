@@ -132,12 +132,23 @@ public class GeofoodApplication {
 		shop.setAdmin(admin);
 		admin.addShop(shop);
 		shopService.saveShop(shop);
-		generateStock(shop, ind);
+		generateStock2(shop, ind);
 	}
 
 	private void generateStock(ShopEntity shop, int ind){
 		StockEntity stock = new StockEntity();
 		stock.setName("BigMac " + ind);
+		stock.setDescription(lorem);
+		stock.setOldPrice(150);
+		stock.setNewPrice(110);
+		stock.setStockImageFileName(shop.getShopLogoFileName());
+		stock.setShop(shop);
+		shop.addStock(stock);
+		stockService.saveStock(stock);
+	}
+	private void generateStock2(ShopEntity shop, int ind){
+		StockEntity stock = new StockEntity();
+		stock.setName("Cappucino " + ind);
 		stock.setDescription(lorem);
 		stock.setOldPrice(60);
 		stock.setNewPrice(40);
