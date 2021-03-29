@@ -159,7 +159,7 @@ public class BusinessController {
     }
 
     // GET ALL SHOP STOCKS
-    @GetMapping("/user/stocks")
+    @PostMapping("/user/stocks")
     public List<StockEntity> getStocks(@RequestHeader("Authorization") String bearer,
                                           @RequestBody GetStocksRequest request) {
         String token = Utils.getTokenFromHeader(bearer);
