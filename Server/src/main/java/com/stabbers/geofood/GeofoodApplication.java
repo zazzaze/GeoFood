@@ -65,6 +65,7 @@ public class GeofoodApplication {
 
 		for(int i = 0; i < 10; ++i){
 			generateShop(admin, i);
+			generateShop2(admin, i);
 		}
 
 		// STOCKS.
@@ -114,8 +115,20 @@ public class GeofoodApplication {
 		ShopEntity shop = new ShopEntity();
 		shop.setName("Mac " + ind);
 		shop.setShopLogoFileName("Mac.png");
-		shop.setLatitude(55.7607 + rnd.nextInt(9) * 0.00001);
-		shop.setLongitude(37.6319 + + rnd.nextInt(9) * 0.00001);
+		shop.setLatitude(55.760 + rnd.nextInt(99) * 0.00001);
+		shop.setLongitude(37.631 + + rnd.nextInt(99) * 0.00001);
+		shop.setAdmin(admin);
+		admin.addShop(shop);
+		shopService.saveShop(shop);
+		generateStock(shop, ind);
+	}
+
+	private void generateShop2(UserEntity admin, int ind){
+		ShopEntity shop = new ShopEntity();
+		shop.setName("Cofix " + ind);
+		shop.setShopLogoFileName("Cofix.png");
+		shop.setLatitude(55.760 + rnd.nextInt(99) * 0.00001);
+		shop.setLongitude(37.631 + + rnd.nextInt(99) * 0.00001);
 		shop.setAdmin(admin);
 		admin.addShop(shop);
 		shopService.saveShop(shop);
