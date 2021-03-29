@@ -74,7 +74,7 @@ public class GeofoodApplication {
 		stock1.setOldPrice(80);
 		stock1.setNewPrice(60);
 		stock1.setDescription(lorem);
-		stock1.setStockImageFileName(shopMac.getShopLogoFileName());
+		stock1.setStockImageFileName("BigMac.png");
 		stock1.setShop(shopMac);
 		shopMac.addStock(stock1);
 
@@ -141,7 +141,7 @@ public class GeofoodApplication {
 		stock.setDescription(lorem);
 		stock.setOldPrice(150);
 		stock.setNewPrice(110);
-		stock.setStockImageFileName(shop.getShopLogoFileName());
+		stock.setStockImageFileName("BigMac.png");
 		stock.setShop(shop);
 		shop.addStock(stock);
 		stockService.saveStock(stock);
