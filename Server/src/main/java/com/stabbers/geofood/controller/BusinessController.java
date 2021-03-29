@@ -133,7 +133,7 @@ public class BusinessController {
 
     // GET NEAR SHOPS.
     @JsonView(Views.forList.class)
-    @GetMapping("/user/shops")
+    @PostMapping("/user/shops")
     public List<ShopEntity> getNearShops(@RequestHeader("Authorization") String bearer,
                                                               @RequestBody GetNearShopsRequest request) {
         String token = Utils.getTokenFromHeader(bearer);
