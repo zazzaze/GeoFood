@@ -34,12 +34,12 @@ public class GeofoodApplication {
 		// USERS.
 		UserEntity user = new UserEntity();
 		user.setLogin("achekUser");
-		user.setPassword("123");
+		user.setPassword("1234567890");
 		userService.saveUser(user);
 
 		UserEntity admin = new UserEntity();
 		admin.setLogin("achekAdmin");
-		admin.setPassword("12345");
+		admin.setPassword("1234567890");
 		userService.saveAdmin(admin);
 
 		// SHOPS.
