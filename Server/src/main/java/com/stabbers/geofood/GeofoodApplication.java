@@ -12,6 +12,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 
+import java.util.Random;
+
 @SpringBootApplication
 public class GeofoodApplication {
 	@Autowired
@@ -21,49 +23,58 @@ public class GeofoodApplication {
 	@Autowired
 	private StockService stockService;
 
+	final Random rnd = new Random();
+	final String lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra ipsum fringilla felis elementum, eget tincidunt enim sagittis. Sed pharetra commodo rhoncus.";
+
 	public static void main(String[] args) {
 		SpringApplication.run(GeofoodApplication.class, args);
 	}
-
-//	private static UserService userService = new UserService();
-//	private static ShopService shopService = new ShopService();
-//	private static StockService stockService = new StockService();
 
 	@EventListener(ApplicationReadyEvent.class)
 	private void test(){
 		// USERS.
 		UserEntity user = new UserEntity();
 		user.setLogin("achekUser");
-		user.setPassword("123");
+		user.setPassword("1234567890");
 		userService.saveUser(user);
 
 		UserEntity admin = new UserEntity();
 		admin.setLogin("achekAdmin");
-		admin.setPassword("12345");
+		admin.setPassword("1234567890");
 		userService.saveAdmin(admin);
 
 		// SHOPS.
 		ShopEntity shopMac = new ShopEntity();
 		shopMac.setName("Mac");
-		shopMac.setLatitude(10);
-		shopMac.setLongitude(10);
+		shopMac.setLatitude(55.760735);
+		shopMac.setLongitude(37.631996);
 		shopMac.setAdmin(admin);
+		shopMac.setShopLogoFileName("Mac.png");
 		admin.addShop(shopMac);
 		shopService.saveShop(shopMac);
 
 		ShopEntity shopCofix = new ShopEntity();
 		shopCofix.setName("Cofix");
-		shopCofix.setLatitude(100);
-		shopCofix.setLongitude(100);
+		shopCofix.setLatitude(55.760396);
+		shopCofix.setLongitude(37.631663);
+		shopCofix.setShopLogoFileName("Mac.png");
 		shopCofix.setAdmin(admin);
 		admin.addShop(shopCofix);
 		shopService.saveShop(shopCofix);
 
+
+		for(int i = 0; i < 10; ++i){
+			generateShop(admin, i);
+			generateShop2(admin, i);
+		}
+
 		// STOCKS.
 		StockEntity stock1 = new StockEntity();
 		stock1.setName("BigMac");
-		stock1.setOldPrice(130);
-		stock1.setNewPrice(99);
+		stock1.setOldPrice(80);
+		stock1.setNewPrice(60);
+		stock1.setDescription(lorem);
+		stock1.setStockImageFileName("BigMac.png");
 		stock1.setShop(shopMac);
 		shopMac.addStock(stock1);
 
@@ -71,6 +82,8 @@ public class GeofoodApplication {
 		stock2.setName("CaesarRoll");
 		stock2.setOldPrice(160);
 		stock2.setNewPrice(120);
+		stock1.setDescription(lorem);
+		stock2.setStockImageFileName("Caesar.png");
 		stock2.setShop(shopMac);
 		shopMac.addStock(stock2);
 
@@ -78,6 +91,8 @@ public class GeofoodApplication {
 		stock3.setName("Cappuccino");
 		stock3.setOldPrice(60);
 		stock3.setNewPrice(40);
+		stock1.setDescription(lorem);
+		stock3.setStockImageFileName("Cofe.png");
 		stock3.setShop(shopCofix);
 		shopCofix.addStock(stock3);
 
@@ -85,6 +100,8 @@ public class GeofoodApplication {
 		stock4.setName("Latte");
 		stock4.setOldPrice(80);
 		stock4.setNewPrice(60);
+		stock1.setDescription(lorem);
+		stock4.setStockImageFileName("Cofe.png");
 		stock4.setShop(shopCofix);
 		shopCofix.addStock(stock4);
 
@@ -92,5 +109,52 @@ public class GeofoodApplication {
 		stockService.saveStock(stock2);
 		stockService.saveStock(stock3);
 		stockService.saveStock(stock4);
+	}
+
+	private void generateShop(UserEntity admin, int ind){
+		ShopEntity shop = new ShopEntity();
+		shop.setName("Mac " + ind);
+		shop.setShopLogoFileName("Mac.png");
+		shop.setLatitude(55.760 + rnd.nextInt(99) * 0.0001);
+		shop.setLongitude(37.631 + + rnd.nextInt(99) * 0.0001);
+		shop.setAdmin(admin);
+		admin.addShop(shop);
+		shopService.saveShop(shop);
+		generateStock(shop, ind);
+	}
+
+	private void generateShop2(UserEntity admin, int ind){
+		ShopEntity shop = new ShopEntity();
+		shop.setName("Cofix " + ind);
+		shop.setShopLogoFileName("Cofix.png");
+		shop.setLatitude(55.760 + rnd.nextInt(99) * 0.0001);
+		shop.setLongitude(37.631 + + rnd.nextInt(99) * 0.0001);
+		shop.setAdmin(admin);
+		admin.addShop(shop);
+		shopService.saveShop(shop);
+		generateStock2(shop, ind);
+	}
+
+	private void generateStock(ShopEntity shop, int ind){
+		StockEntity stock = new StockEntity();
+		stock.setName("BigMac " + ind);
+		stock.setDescription(lorem);
+		stock.setOldPrice(150);
+		stock.setNewPrice(110);
+		stock.setStockImageFileName("BigMac.png");
+		stock.setShop(shop);
+		shop.addStock(stock);
+		stockService.saveStock(stock);
+	}
+	private void generateStock2(ShopEntity shop, int ind){
+		StockEntity stock = new StockEntity();
+		stock.setName("Cappucino " + ind);
+		stock.setDescription(lorem);
+		stock.setOldPrice(60);
+		stock.setNewPrice(40);
+		stock.setStockImageFileName("Cofe.png");
+		stock.setShop(shop);
+		shop.addStock(stock);
+		stockService.saveStock(stock);
 	}
 }
