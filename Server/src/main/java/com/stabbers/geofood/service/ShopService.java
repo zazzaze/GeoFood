@@ -21,8 +21,11 @@ public class ShopService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    final String lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra ipsum fringilla felis elementum, eget tincidunt enim sagittis. Sed pharetra commodo rhoncus.";
+
     public ShopEntity saveShop(ShopEntity shop) {
-        shop.setShopLogoFileName(shop.getName() + ".png");
+        //shop.setShopLogoFileName(shop.getName() + ".png");
+        shop.setDescription(lorem);
         return shopRepository.save(shop);
     }
 

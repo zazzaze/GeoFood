@@ -40,6 +40,10 @@ public class ShopEntity {
     private String shopLogoFileName;
 
     @JsonView({Views.forList.class})
+    @Column
+    private String description;
+
+    @JsonView({Views.forList.class})
     @JsonBackReference
     @ManyToOne
     @JoinColumn (name="user_id")
