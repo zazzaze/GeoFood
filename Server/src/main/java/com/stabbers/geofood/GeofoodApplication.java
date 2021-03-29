@@ -127,8 +127,8 @@ public class GeofoodApplication {
 		ShopEntity shop = new ShopEntity();
 		shop.setName("Cofix " + ind);
 		shop.setShopLogoFileName("Cofix.png");
-		shop.setLatitude(55.760 + rnd.nextInt(99) * 0.00001);
-		shop.setLongitude(37.631 + + rnd.nextInt(99) * 0.00001);
+		shop.setLatitude(55.760 + rnd.nextInt(99) * 0.0001);
+		shop.setLongitude(37.631 + + rnd.nextInt(99) * 0.0001);
 		shop.setAdmin(admin);
 		admin.addShop(shop);
 		shopService.saveShop(shop);
