@@ -83,7 +83,7 @@ public class GeofoodApplication {
 		stock2.setOldPrice(160);
 		stock2.setNewPrice(120);
 		stock1.setDescription(lorem);
-		stock2.setStockImageFileName(shopMac.getShopLogoFileName());
+		stock2.setStockImageFileName("Caesar.png");
 		stock2.setShop(shopMac);
 		shopMac.addStock(stock2);
 
