@@ -15,15 +15,18 @@ protocol RegistrationServiceProtocol: class {
 class RegistrationService: RegistrationServiceProtocol {
     
     func registerUser(loginForm: LoginForm, completion: @escaping (_ isSuccess: Bool) -> ()) {
-        guard let parameters = try? JSONEncoder().encode(loginForm) else {
-            completion(false)
-            return
-        }
         
         let contentTypeHeader = HTTPHeader(name: "Content-Type", value: "application/json")
-        AF.request(Endpoints.register.url, method: .post, parameters: parameters, headers: [contentTypeHeader]).response { response in
-            completion(response.response?.statusCode == 200)
+        let url = Endpoints.register.url
+        let data = ["login" : loginForm.login, "password" : loginForm.password]
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.httpBody = try! JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
+            completion((response as? HTTPURLResponse)?.statusCode == 200)
         }
+        dataTask.resume()
     }
     
 }

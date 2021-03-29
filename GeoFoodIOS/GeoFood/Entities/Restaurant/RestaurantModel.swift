@@ -9,15 +9,16 @@ import Foundation
 import UIKit
 
 class RestaurantModel: Codable {
-    var id: UUID
+    var id: Int32
     var name: String
     var longitude: Double
     var latitude: Double
     var shopLogoFileName: String
+    var description: String?
     var logo: UIImage?
     
     init() {
-        id = UUID()
+        id = 0
         name = "Test"
         longitude = 0
         latitude = 0
@@ -30,5 +31,6 @@ class RestaurantModel: Codable {
         case longitude
         case latitude
         case shopLogoFileName
+        case description
     }
 }

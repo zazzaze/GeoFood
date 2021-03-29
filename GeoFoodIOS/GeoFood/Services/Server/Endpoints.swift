@@ -17,15 +17,15 @@ enum Endpoints {
     case getStocks
     case loadImage
         
-    private var stringValue: String {
+    var stringValue: String {
         switch self {
-            case .register: return "\(Endpoints.base)register/"
-            case .login: return "\(Endpoints.base)auth/"
-            case .getInfo: return "\(Endpoints.base)user/get/"
+            case .register: return "\(Endpoints.base)reg/user"
+            case .login: return "\(Endpoints.base)auth"
+            case .getInfo: return "\(Endpoints.base)user/get"
                 
-            case .getRestaurants: return "\(Endpoints.base)restaurants/"
-            case .getStocks: return "\(Endpoints.base)stocks/"
-            case .loadImage: return "\(Endpoints.base)image/"
+            case .getRestaurants: return "\(Endpoints.base)user/shops"
+            case .getStocks: return "\(Endpoints.base)user/stocks"
+            case .loadImage: return "\(Endpoints.base)image"
         }
     }
     

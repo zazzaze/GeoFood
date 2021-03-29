@@ -28,14 +28,10 @@ class AuthorizationViewController: UIViewController {
     let registrationButton = UIButton(frame: .zero)
     let activityIndicator = UIActivityIndicatorView(frame: .zero)
     
-    convenience init() {
-        self.init()
-        configurator.configure(with: self)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configurator.configure(with: self)
         view.backgroundColor = .white
         title = "Авторизация"
         configureSubviews()

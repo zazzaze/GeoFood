@@ -12,6 +12,7 @@ protocol MapPresenterProtocol: class {
     func regionDidChange(region: MKCoordinateRegion, radius: Double)
     func createAnnotationView(for annotation: MKAnnotation) -> RestaurantAnnotation?
     func annotationTapped(_ annotation: MKAnnotationView)
+    func setToken(_ token: String)
 }
 
 class MapPresenter: MapPresenterProtocol {
@@ -24,6 +25,7 @@ class MapPresenter: MapPresenterProtocol {
             addAnnotations()
         }
     }
+    private var token: String!
     
     required init(view: MapViewController) {
         self.view = view
@@ -50,6 +52,16 @@ class MapPresenter: MapPresenterProtocol {
         guard let restaurant = getRestaurant(for: annotation) else {
             return nil
         }
+        var count = 1
+        ImageLoader().loadImage(fileName: restaurant.shopLogoFileName) { data in
+            guard let data = data else {
+                count = 0
+                return
+            }
+            restaurant.logo = UIImage(data: data)
+            count = 0
+        }
+        while count != 0 {}
         return RestaurantAnnotation(restaurant: restaurant)
     }
     
@@ -60,13 +72,15 @@ class MapPresenter: MapPresenterProtocol {
     }
     
     func annotationTapped(_ annotation: MKAnnotationView) {
-//        guard let annotationView = annotation as? RestaurantAnnotation,
-//              let selectedRestaurant = annotationView.restaurant
-//        else {
-//            return
-//        }
-        let restaurant = RestaurantModel()
-        router.openRestaurantView(with: restaurant)
+        guard let rest = annotation as? RestaurantAnnotation else {
+            return
+        }
+        router.openRestaurantView(with: rest.restaurant, token: token)
+    }
+    
+    func setToken(_ token: String) {
+        self.token = token
+        interactor.setToken(token)
     }
 }
 

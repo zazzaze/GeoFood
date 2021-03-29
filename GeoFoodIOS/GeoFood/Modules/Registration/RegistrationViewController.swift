@@ -19,7 +19,7 @@ class RegistrationViewController: UIViewController {
     var presenter: RegistrationPresenterProtocol!
     
     var emailTextField: TextFieldWithConditions = {
-        let emailCondition = TextFieldCondition(description: "Email имеет вид example@example.com", checker: LoginEntryChecker.checkEmail)
+        let emailCondition = TextFieldCondition(description: "Email имеет вид example@example.com", checker: {_ in return true})
         return TextFieldWithConditions(conditions: [emailCondition])
     }()
     
@@ -31,13 +31,10 @@ class RegistrationViewController: UIViewController {
     var repeatPasswordTextField: TextFieldWithConditions!
     let registrationButton = UIButton()
     
-    convenience init() {
-        self.init()
-        configurator.configure(with: self)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configurator.configure(with: self)
         
         view.backgroundColor = .white
         title = "Регистрация"

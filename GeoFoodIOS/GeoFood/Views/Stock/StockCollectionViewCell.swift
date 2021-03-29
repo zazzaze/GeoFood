@@ -15,8 +15,21 @@ class StockCollectionViewCell: UICollectionViewCell {
     private var defaultPriceLabel = UILabel()
     private var currentPriceLabel = UILabel()
     
-    init(stock: RestaurantStockModel) {
-        super.init(frame: .zero)
+    func reloadFor(stock: RestaurantStockModel) {
+        stockNameLabel.text = stock.name
+        defaultPriceLabel.text = "\(stock.oldPrice)"
+        currentPriceLabel.text = "\(stock.newPrice)"
+        ImageLoader().loadImage(fileName: stock.stockImageFileName ?? "") { data in
+            if let data = data {
+                DispatchQueue.main.async {
+                    self.stockImage.image = UIImage(data: data)
+                }
+            }
+        }
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setUp()
     }
     
@@ -75,6 +88,8 @@ class StockCollectionViewCell: UICollectionViewCell {
             stockImage.topAnchor.constraint(equalTo: topAnchor, constant: 5),
             stockImage.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),
             stockImage.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -5),
+            stockImage.heightAnchor.constraint(equalToConstant: 50),
+            stockImage.widthAnchor.constraint(equalToConstant: 50),
             
             stockNameLabel.topAnchor.constraint(equalTo: stockImage.bottomAnchor, constant: 5),
             stockNameLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5),

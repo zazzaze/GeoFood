@@ -10,6 +10,7 @@ import MapKit
 
 protocol MapInteractorProtocol: class {
     func loadRestaurants(in region: CLLocationCoordinate2D, radius: Double)
+    func setToken(_ token: String)
 }
 
 protocol MapInteractorOutputProtocol: class {
@@ -20,34 +21,24 @@ protocol MapInteractorOutputProtocol: class {
 class MapInteractor: MapInteractorProtocol {
     private weak var presenter: MapInteractorOutputProtocol!
     private var service: RestaurantServiceProtocol
+    private var token: String!
     
     required init(presenter: MapInteractorOutputProtocol, service: RestaurantServiceProtocol) {
         self.presenter = presenter
         self.service = service
     }
     
+    func setToken(_ token: String) {
+        self.token = token
+    }
+    
     func loadRestaurants(in region: CLLocationCoordinate2D, radius: Double) {
         let requestData = CoordinateRequestModel(coordinates: region, radius: radius)
-        service.getRestaurantsNear(coordinate: requestData, token: "") { restaurants in
+        service.getRestaurantsNear(coordinate: requestData, token: token) { restaurants in
             guard let restaurants = restaurants else {
                 self.presenter.restaurantsLoadUnsuccessfully()
                 return
             }
-            let group = DispatchGroup()
-            let imageLoader = ImageLoader()
-            for restaurant in restaurants {
-                group.enter()
-                DispatchQueue.global(qos: .utility).async {
-                    imageLoader.loadImage(fileName: restaurant.shopLogoFileName) { data in
-                        guard let data = data else {
-                            group.leave()
-                            return
-                        }
-                        restaurant.logo = UIImage(data: data)
-                    }
-                }
-            }
-            group.wait()
             self.presenter.restaurantsLoadSuccessfully(restaurants: restaurants)
         }
     }

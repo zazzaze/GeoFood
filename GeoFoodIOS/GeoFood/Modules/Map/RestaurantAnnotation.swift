@@ -17,6 +17,7 @@ class RestaurantAnnotation: MKAnnotationView {
     init(restaurant: RestaurantModel) {
         super.init(annotation: nil, reuseIdentifier: nil)
         self.restaurant = restaurant
+        setUp()
     }
     
     private func setUp() {

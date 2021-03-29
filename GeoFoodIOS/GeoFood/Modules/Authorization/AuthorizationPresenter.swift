@@ -34,7 +34,7 @@ class AuthorizationPresenter: AuthorizationPresenterProtocol {
     }
     
     func authorizationButtonTapped(withEmail: String, password: String) {
-        if LoginEntryChecker.checkEmail(withEmail) && LoginEntryChecker.checkPassword(password) {
+        if /*LoginEntryChecker.checkEmail(withEmail) &&*/ LoginEntryChecker.checkPassword(password) {
             view.startAnimatingActivityIndicator()
             DispatchQueue.global(qos: .utility).async { [unowned self] in
                 interactor.authUser(withEmail: withEmail, password: password)
@@ -49,7 +49,7 @@ class AuthorizationPresenter: AuthorizationPresenterProtocol {
     }
     
     func textFieldChanged(email: String, password: String) {
-        view.setAuthorizationButtonIsEnabled(LoginEntryChecker.checkEmail(email) && LoginEntryChecker.checkPassword(password))
+        view.setAuthorizationButtonIsEnabled(/*LoginEntryChecker.checkEmail(email) && */LoginEntryChecker.checkPassword(password))
     }
 }
 
@@ -57,15 +57,15 @@ extension AuthorizationPresenter: AuthorizationInteractorOutputProtocol {
     func authorizationUnsuccessfully() {
         DispatchQueue.main.async { [unowned self] in
             view.stopAnimatingActivityIndicator()
-            //FIXME: view.showAlert(title: "Не удалось авторизоваться", message: "Проверьте введенные email и пароль")
-            router.openMapView()
+            view.showAlert(title: "Не удалось авторизоваться", message: "Проверьте введенные email и пароль")
         }
     }
     
-    func authorizationSuccessfully() {
+    func authorizationSuccessfully(with token: String) {
         DispatchQueue.main.async { [unowned self] in
             view.stopAnimatingActivityIndicator()
-            router.openMapView()
+            UserDefaults.setValue(token, forKey: "token")
+            router.openMapView(with: token)
         }
     }
     

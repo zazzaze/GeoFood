@@ -13,7 +13,7 @@ protocol AuthorizationInteractorProtocol: class {
 
 protocol AuthorizationInteractorOutputProtocol: class {
     func authorizationUnsuccessfully()
-    func authorizationSuccessfully()
+    func authorizationSuccessfully(with token: String)
 }
 
 class AuthorizationInteractor: AuthorizationInteractorProtocol {
@@ -31,7 +31,7 @@ class AuthorizationInteractor: AuthorizationInteractorProtocol {
                 return
             }
             //TODO: сохранение токена
-            self.presenter.authorizationSuccessfully()
+            self.presenter.authorizationSuccessfully(with: token)
         }
     }
 }

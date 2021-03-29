@@ -16,6 +16,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     let mapView = MKMapView(frame: .zero)
     let locationManager = CLLocationManager()
     private let annotationId = "restaurantAnnotation"
+    var token: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,12 +36,21 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
             mapView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             mapView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+        presenter.setToken(token)
     }
     
     func addAnnotation(_ annotation: MKAnnotation) {
         mapView.addAnnotation(annotation)
     }
     
+    init(token: String) {
+        super.init(nibName: nil, bundle: nil)
+        self.token = token
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 }
 
 extension MapViewController: MKMapViewDelegate {

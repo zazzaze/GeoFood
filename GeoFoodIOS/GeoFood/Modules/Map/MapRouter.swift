@@ -8,7 +8,7 @@
 import Foundation
 
 protocol MapRouterProtocol: class {
-    func openRestaurantView(with restaurant: RestaurantModel)
+    func openRestaurantView(with restaurant: RestaurantModel, token: String)
 }
 
 class MapRouter: MapRouterProtocol {
@@ -18,7 +18,7 @@ class MapRouter: MapRouterProtocol {
         self.view = view
     }
     
-    func openRestaurantView(with restaurant: RestaurantModel) {
-        view.present(RestaurantViewController(restaurant: restaurant), animated: true, completion: nil)
+    func openRestaurantView(with restaurant: RestaurantModel, token: String) {
+        view.present(RestaurantViewController(restaurant: restaurant, token: token), animated: true, completion: nil)
     }
 }

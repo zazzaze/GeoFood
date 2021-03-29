@@ -26,10 +26,11 @@ class RegistrationPresenter: RegistrationPresenterProtocol {
     }
     
     func registrationButtonTapped(withEmail: String, password: String, passwordRepeat: String) {
-        if LoginEntryChecker.checkEmail(withEmail) && LoginEntryChecker.checkPassword(password) && password == passwordRepeat {
-            DispatchQueue.global(qos: .utility).async { [unowned self] in
-                interactor.registerUser(withEmail: withEmail, password: password)
-            }
+        if LoginEntryChecker.checkPassword(password) && password == passwordRepeat {
+            interactor.registerUser(withEmail: withEmail, password: password)
+//            DispatchQueue.global(qos: .utility).async { [unowned self] in
+//                interactor.registerUser(withEmail: withEmail, password: password)
+//            }
         } else {
             view.showAlert(title: "Ошибка", message: "Проверьте введенные данные")
         }
@@ -39,12 +40,16 @@ class RegistrationPresenter: RegistrationPresenterProtocol {
 
 extension RegistrationPresenter: RegistrationInteractorOutputProtocol {
     func registrationSuccessfully() {
-        view.showAlert(title: "Успешно", message: "Вы зарегистрированы")
-        router.popBack()
+        DispatchQueue.main.async {
+            self.view.showAlert(title: "Успешно", message: "Вы зарегистрированы")
+            self.router.popBack()
+        }
     }
     
     func registrationUnsuccessfully() {
-        view.showAlert(title: "Ошибка", message: "Не удалось зарегистрироваться")
+        DispatchQueue.main.async {
+            self.view.showAlert(title: "Ошибка", message: "Не удалось зарегистрироваться")
+        }
     }
     
     
