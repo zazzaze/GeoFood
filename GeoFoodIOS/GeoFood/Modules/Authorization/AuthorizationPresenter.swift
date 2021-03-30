@@ -64,7 +64,6 @@ extension AuthorizationPresenter: AuthorizationInteractorOutputProtocol {
     func authorizationSuccessfully(with token: String) {
         DispatchQueue.main.async { [unowned self] in
             view.stopAnimatingActivityIndicator()
-            UserDefaults.setValue(token, forKey: "token")
             router.openMapView(with: token)
         }
     }
