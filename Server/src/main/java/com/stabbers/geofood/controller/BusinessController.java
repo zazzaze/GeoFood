@@ -191,6 +191,7 @@ public class BusinessController {
                 visitActions.put(action.getShop().getId(), action);
             }
         }
+
         if(visitActions.get(shop.getId()) != null && visitActions.get(shop.getId()).getCount() >= 10)
             isSpecialVisitor = true;
 
