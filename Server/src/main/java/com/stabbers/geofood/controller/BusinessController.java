@@ -1,25 +1,26 @@
 package com.stabbers.geofood.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.stabbers.geofood.controller.dto.business.GetNearShopsRequest;
+import com.stabbers.geofood.controller.dto.business.*;
 import com.stabbers.geofood.config.jwt.JwtProvider;
-import com.stabbers.geofood.controller.dto.business.AddShopRequest;
-import com.stabbers.geofood.controller.dto.business.AddStockRequest;
-import com.stabbers.geofood.controller.dto.business.GetStocksRequest;
 import com.stabbers.geofood.entity.ShopEntity;
 import com.stabbers.geofood.entity.StockEntity;
 import com.stabbers.geofood.entity.UserEntity;
+import com.stabbers.geofood.entity.VisitActionEntity;
 import com.stabbers.geofood.entity.json.Views;
 import com.stabbers.geofood.service.ShopService;
 import com.stabbers.geofood.service.StockService;
 import com.stabbers.geofood.service.UserService;
+import com.stabbers.geofood.service.VisitActionService;
+import lombok.Builder;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Timestamp;
+import java.util.*;
 
 @RestController
 public class BusinessController {
@@ -30,7 +31,20 @@ public class BusinessController {
     @Autowired
     private StockService stockService;
     @Autowired
+    private VisitActionService visitActionService;
+    @Autowired
     private JwtProvider jwtProvider;
+
+
+    private UserEntity getUserByToken(String bearer ){
+        String token = Utils.getTokenFromHeader(bearer);
+        UserEntity user = null;
+        if (token != null && jwtProvider.validateToken(token)) {
+            String userLogin = jwtProvider.getLoginFromToken(token);
+            user = userService.findByLogin(userLogin);
+        }
+        return user;
+    }
 
     // ADD SHOP.
     @PostMapping("/admin/shop/add")
@@ -49,7 +63,7 @@ public class BusinessController {
 
         ShopEntity newShop = Utils.createShop(request);
 
-        newShop.setAdmin(admin);
+        newShop.setHolder(admin);
         admin.addShop(newShop);
 
         shopService.saveShop(newShop);
@@ -75,7 +89,7 @@ public class BusinessController {
         return new ResponseEntity<>(shops, HttpStatus.OK);
     }
 
-    // ADD STOCKS.
+    // ADD STOCK.
     @PostMapping("/admin/stock/add")
     public HttpStatus addStock(@RequestHeader("Authorization") String bearer, @RequestBody AddStockRequest request) {
         String token = Utils.getTokenFromHeader(bearer);
@@ -131,18 +145,14 @@ public class BusinessController {
         return new ResponseEntity<>(stocks, HttpStatus.OK);
     }
 
+    //USER
     // GET NEAR SHOPS.
     @JsonView(Views.forList.class)
     @PostMapping("/user/shops")
     public List<ShopEntity> getNearShops(@RequestHeader("Authorization") String bearer,
                                                               @RequestBody GetNearShopsRequest request) {
-        String token = Utils.getTokenFromHeader(bearer);
-
         UserEntity user = null;
-        if (token != null && jwtProvider.validateToken(token)) {
-            String userLogin = jwtProvider.getLoginFromToken(token);
-            user = userService.findByLogin(userLogin);
-        }
+        user = getUserByToken(bearer);
 
         if (user == null)
             return null;
@@ -151,7 +161,7 @@ public class BusinessController {
         ArrayList<ShopEntity> validShops = new ArrayList<>();
 
         for (ShopEntity shop : shops) {
-            if (Utils.stockInArea(request.getLatitude(), request.getLongitude(), request.getRadius(), shop))
+            if (Utils.shopInAarea(request.getLatitude(), request.getLongitude(), request.getRadius(), shop))
                 validShops.add(shop);
         }
 
@@ -162,13 +172,8 @@ public class BusinessController {
     @PostMapping("/user/stocks")
     public List<StockEntity> getStocks(@RequestHeader("Authorization") String bearer,
                                           @RequestBody GetStocksRequest request) {
-        String token = Utils.getTokenFromHeader(bearer);
-
         UserEntity user = null;
-        if (token != null && jwtProvider.validateToken(token)) {
-            String userLogin = jwtProvider.getLoginFromToken(token);
-            user = userService.findByLogin(userLogin);
-        }
+        user = getUserByToken(bearer);
 
         if (user == null)
             return null;
@@ -179,4 +184,58 @@ public class BusinessController {
 
         return stockHandler.getStocks();
     }
+
+    // GET NEAR SHOPS.
+    @JsonView(Views.forList.class)
+    @PostMapping("/movement")
+    public HttpStatus movement(@RequestHeader("Authorization") String bearer,
+                                         @RequestBody MovementRequest request) {
+        UserEntity user;
+        user = getUserByToken(bearer);
+
+        if (user == null)
+            return null;
+
+        ArrayList<ShopEntity> shops = (ArrayList<ShopEntity>) shopService.getAllShops();
+        ArrayList<ShopEntity> validShops = new ArrayList<>();
+
+        for (ShopEntity shop : shops) {
+            if (Utils.shopInAarea(request.getLatitude(), request.getLongitude(), request.getRadius(), shop))
+                validShops.add(shop);
+        }
+
+        Map<Integer, VisitActionEntity> visitActions = new HashMap<>();
+        for(VisitActionEntity action: user.getVisitActions()){
+            if(action.getUser().getId().equals(user.getId())){
+                visitActions.put(action.getShop().getId(), action);
+            }
+        }
+
+        for(ShopEntity shop : validShops) {
+            Integer shopId = shop.getId();
+            VisitActionEntity visit = visitActions.get(shopId);
+
+            if(visit != null){
+                Date lastDate = new Date(visit.getLastVisit().getTime());
+
+                if(request.getDate().getTime() - lastDate.getTime() > 60*60*1000){
+                    visit.setCount(visit.getCount() + 1);
+                    visit.setLastVisit(new Timestamp(request.getDate().getTime()));
+                }
+            }
+            else {
+                VisitActionEntity newVisit = new VisitActionEntity();
+                newVisit.setLastVisit(new Timestamp(request.getDate().getTime()));
+                newVisit.setShop(shopService.findById(shopId));
+                newVisit.setCount(1);
+                newVisit.setUser(user);
+
+                user.addVisit(newVisit);
+                visitActionService.saveVisitAction(newVisit);
+            }
+        }
+
+        return HttpStatus.OK;
+    }
+
 }

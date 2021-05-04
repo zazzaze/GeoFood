@@ -15,11 +15,11 @@ public class StockEntity {
     @Column(name = "id", updatable = false, nullable = false)
     private Integer id;
 
-    @Column
+    @Column(columnDefinition = "VARCHAR(25)")
     private String name;
 
-    @Column
-    private String description;
+    @Column(columnDefinition = "VARCHAR(5)")
+    private String promo;
 
     @Column
     private double oldPrice;
@@ -27,8 +27,9 @@ public class StockEntity {
     @Column
     private double newPrice;
 
-    @Column
-    private String stockImageFileName;
+    @Lob
+    @Column(columnDefinition = "BLOB")
+    private byte[] img;
 
     @JsonBackReference
     @ManyToOne

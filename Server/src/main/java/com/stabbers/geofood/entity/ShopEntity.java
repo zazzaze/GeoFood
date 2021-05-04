@@ -35,19 +35,23 @@ public class ShopEntity {
     @Column
     private double latitude;
 
-    @JsonView({Views.forList.class})
-    @Column
-    private String shopLogoFileName;
+    @Lob
+    @Column(columnDefinition = "BLOB")
+    private byte[] img;
 
     @JsonView({Views.forList.class})
     @Column
-    private String description;
+    private String location;
+
+    @JsonView({Views.forList.class})
+    @Column
+    private int type;
 
     @JsonView({Views.forList.class})
     @JsonBackReference
     @ManyToOne
     @JoinColumn (name="user_id")
-    private UserEntity admin;
+    private UserEntity holder;
 
     @JsonView({Views.fullMessage.class})
     @JsonIgnore
