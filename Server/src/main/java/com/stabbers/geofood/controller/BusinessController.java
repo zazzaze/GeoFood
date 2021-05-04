@@ -254,4 +254,23 @@ public class BusinessController {
         return HttpStatus.OK;
     }
 
+    @JsonView(Views.forList.class)
+    @GetMapping("/shop/img")
+    public byte[] getImg(@RequestHeader("Authorization") String bearer,
+                               @RequestBody GetShopImgRequest request) {
+
+        ShopEntity shop = shopService.findById(request.getShopId());
+        return shop.getImg();
+
+    }
+
+    @JsonView(Views.forList.class)
+    @GetMapping("/stock/img")
+    public byte[] getImg(@RequestHeader("Authorization") String bearer,
+                         @RequestBody GetStockImgRequest request) {
+
+        StockEntity stock = stockService.findById(request.getStockId());
+        return stock.getImg();
+    }
+
 }

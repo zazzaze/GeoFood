@@ -40,9 +40,9 @@ public class GeofoodApplication {
 //	@EventListener(ApplicationReadyEvent.class)
 //	private void imgTest() throws IOException
 //	{
-//		final File initialFile = new File("uploads/mac.png");
-//		final InputStream targetStream =
-//				new DataInputStream(new FileInputStream(initialFile));
+////		final File initialFile = new File("uploads/mac.png");
+////		final InputStream targetStream =
+////				new DataInputStream(new FileInputStream(initialFile));
 //
 //		UserEntity admin = new UserEntity();
 //		admin.setLogin("achekAdmin");
@@ -54,16 +54,16 @@ public class GeofoodApplication {
 //		shopMac.setLatitude(55.760735);
 //		shopMac.setLongitude(37.631996);
 //		shopMac.setHolder(admin);
-//		shopMac.setImg(IOUtils.toByteArray(targetStream));
+//		//shopMac.setImg(IOUtils.toByteArray(targetStream));
 //
 //		admin.addShop(shopMac);
 //		shopService.saveShop(shopMac);
 //
-//		ByteArrayInputStream bImg = new ByteArrayInputStream(shopMac.getImg());
-//		BufferedImage testImg = ImageIO.read(bImg);
-//		ImageIO.write(testImg, "png", new File("testMac.png") );
-//
-//		LOGGER.info("Image is done!");
+////		ByteArrayInputStream bImg = new ByteArrayInputStream(shopMac.getImg());
+////		BufferedImage testImg = ImageIO.read(bImg);
+////		ImageIO.write(testImg, "png", new File("testMac.png") );
+////
+////		LOGGER.info("Image is done!");
 //	}
 
 	//@EventListener(ApplicationReadyEvent.class)

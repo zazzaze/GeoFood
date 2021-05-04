@@ -35,10 +35,6 @@ public class ShopEntity {
     @Column
     private double latitude;
 
-    @Lob
-    @Column(columnDefinition = "BLOB")
-    private byte[] img;
-
     @JsonView({Views.forList.class})
     @Column
     private String location;
@@ -52,6 +48,12 @@ public class ShopEntity {
     @ManyToOne
     @JoinColumn (name="user_id")
     private UserEntity holder;
+
+    @JsonView({Views.fullMessage.class})
+    @Lob
+    @Column(columnDefinition = "BLOB")
+    private byte[] img;
+
 
     @JsonView({Views.fullMessage.class})
     @JsonIgnore

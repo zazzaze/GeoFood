@@ -28,4 +28,7 @@ public class StockService {
         return stockRepository.findAll();
     }
 
+    public StockEntity findById(int id){
+        return  stockRepository.findById(id).orElse(new StockEntity());
+    }
 }
