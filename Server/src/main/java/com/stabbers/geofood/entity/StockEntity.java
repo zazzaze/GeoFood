@@ -27,6 +27,9 @@ public class StockEntity {
     @Column
     private double newPrice;
 
+    @Column
+    private boolean isSpecial;
+
     @Lob
     @Column(columnDefinition = "BLOB")
     private byte[] img;

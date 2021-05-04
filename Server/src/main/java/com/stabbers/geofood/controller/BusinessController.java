@@ -145,7 +145,7 @@ public class BusinessController {
         return new ResponseEntity<>(stocks, HttpStatus.OK);
     }
 
-    //USER
+    // USER.
     // GET NEAR SHOPS.
     @JsonView(Views.forList.class)
     @PostMapping("/user/shops")
@@ -178,14 +178,29 @@ public class BusinessController {
         if (user == null)
             return null;
 
-        ShopEntity stockHandler = shopService.findById(request.getId());
-        if(stockHandler == null)
+        ShopEntity shop = shopService.findById(request.getId());
+        if(shop == null)
             return null;
 
-        return stockHandler.getStocks();
+        ArrayList<StockEntity> validStocks = (ArrayList<StockEntity>) shop.getStocks();
+
+        boolean isSpecialVisitor = false;
+        Map<Integer, VisitActionEntity> visitActions = new HashMap<>();
+        for(VisitActionEntity action: user.getVisitActions()){
+            if(action.getUser().getId().equals(user.getId())){
+                visitActions.put(action.getShop().getId(), action);
+            }
+        }
+        if(visitActions.get(shop.getId()) != null && visitActions.get(shop.getId()).getCount() >= 10)
+            isSpecialVisitor = true;
+
+        if(isSpecialVisitor)
+            validStocks.removeIf(StockEntity::isSpecial);
+
+        return shop.getStocks();
     }
 
-    // GET NEAR SHOPS.
+    // MOVEMENT CONTROLLER.
     @JsonView(Views.forList.class)
     @PostMapping("/movement")
     public HttpStatus movement(@RequestHeader("Authorization") String bearer,
