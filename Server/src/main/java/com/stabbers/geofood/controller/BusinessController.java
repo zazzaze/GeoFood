@@ -20,6 +20,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @RestController
@@ -169,11 +171,18 @@ public class BusinessController {
     }
 
     // GET ALL SHOP STOCKS
+    @JsonView(Views.forList.class)
     @PostMapping("/user/stocks")
     public List<StockEntity> getStocks(@RequestHeader("Authorization") String bearer,
                                           @RequestBody GetStocksRequest request) {
+
+        String token = Utils.getTokenFromHeader(bearer);
+
         UserEntity user = null;
-        user = getUserByToken(bearer);
+        if (token != null && jwtProvider.validateToken(token)) {
+            String userLogin = jwtProvider.getLoginFromToken(token);
+            user = userService.findByLogin(userLogin);
+        }
 
         if (user == null)
             return null;
@@ -182,7 +191,8 @@ public class BusinessController {
         if(shop == null)
             return null;
 
-        ArrayList<StockEntity> validStocks = (ArrayList<StockEntity>) shop.getStocks();
+        //ArrayList<StockEntity> validStocks = (ArrayList<StockEntity>) shop.getStocks();
+        ArrayList<StockEntity> validStocks = new ArrayList<>(shop.getStocks());
 
         boolean isSpecialVisitor = false;
         Map<Integer, VisitActionEntity> visitActions = new HashMap<>();
@@ -195,17 +205,17 @@ public class BusinessController {
         if(visitActions.get(shop.getId()) != null && visitActions.get(shop.getId()).getCount() >= 10)
             isSpecialVisitor = true;
 
-        if(isSpecialVisitor)
+        if(!isSpecialVisitor)
             validStocks.removeIf(StockEntity::isSpecial);
 
-        return shop.getStocks();
+        return validStocks;
     }
 
     // MOVEMENT CONTROLLER.
     @JsonView(Views.forList.class)
     @PostMapping("/movement")
     public HttpStatus movement(@RequestHeader("Authorization") String bearer,
-                                         @RequestBody MovementRequest request) {
+                                         @RequestBody MovementRequest request) throws ParseException {
         UserEntity user;
         user = getUserByToken(bearer);
 
@@ -216,7 +226,7 @@ public class BusinessController {
         ArrayList<ShopEntity> validShops = new ArrayList<>();
 
         for (ShopEntity shop : shops) {
-            if (Utils.shopInAarea(request.getLatitude(), request.getLongitude(), request.getRadius(), shop))
+            if (Utils.shopInAarea(request.getLatitude(), request.getLongitude(), 100, shop))
                 validShops.add(shop);
         }
 
@@ -230,18 +240,21 @@ public class BusinessController {
         for(ShopEntity shop : validShops) {
             Integer shopId = shop.getId();
             VisitActionEntity visit = visitActions.get(shopId);
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date requestDate = formatter.parse(request.getDate());
 
             if(visit != null){
                 Date lastDate = new Date(visit.getLastVisit().getTime());
 
-                if(request.getDate().getTime() - lastDate.getTime() > 60*60*1000){
+                if(requestDate.getTime() - lastDate.getTime() >= 1000){
                     visit.setCount(visit.getCount() + 1);
-                    visit.setLastVisit(new Timestamp(request.getDate().getTime()));
+                    visit.setLastVisit(new Timestamp(requestDate.getTime()));
+                    visitActionService.saveVisitAction(visit);
                 }
             }
             else {
                 VisitActionEntity newVisit = new VisitActionEntity();
-                newVisit.setLastVisit(new Timestamp(request.getDate().getTime()));
+                newVisit.setLastVisit(new Timestamp(requestDate.getTime()));
                 newVisit.setShop(shopService.findById(shopId));
                 newVisit.setCount(1);
                 newVisit.setUser(user);
@@ -254,20 +267,17 @@ public class BusinessController {
         return HttpStatus.OK;
     }
 
-    @JsonView(Views.forList.class)
-    @GetMapping("/shop/img")
-    public byte[] getImg(@RequestHeader("Authorization") String bearer,
-                               @RequestBody GetShopImgRequest request) {
+    @JsonView(Views.fullMessage.class)
+    @PostMapping("/shop/img")
+    public byte[] getImg(@RequestBody GetShopImgRequest request) {
 
         ShopEntity shop = shopService.findById(request.getShopId());
         return shop.getImg();
-
     }
 
-    @JsonView(Views.forList.class)
-    @GetMapping("/stock/img")
-    public byte[] getImg(@RequestHeader("Authorization") String bearer,
-                         @RequestBody GetStockImgRequest request) {
+    @JsonView(Views.fullMessage.class)
+    @PostMapping("/stock/img")
+    public byte[] getImg(@RequestBody GetStockImgRequest request) {
 
         StockEntity stock = stockService.findById(request.getStockId());
         return stock.getImg();

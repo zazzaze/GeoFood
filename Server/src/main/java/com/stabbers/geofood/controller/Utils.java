@@ -36,10 +36,13 @@ public class Utils {
     public static boolean shopInAarea(double x, double y, double radius, ShopEntity shop){
         double stockX = shop.getLatitude();
         double stockY = shop.getLongitude();
-        double h = Math.sqrt((stockX - x) * (stockX - x) + (stockY - y) * (stockY - y));
-        if(h <= radius)
-            return true;
-        else
-            return false;
+        double deltaX = 0.00005;
+        double deltaY = 0.00005;
+//        double h = Math.sqrt((stockX - x) * (stockX - x) + (stockY - y) * (stockY - y));
+//        if(h <= radius)
+//            return true;
+//        else
+//            return false;
+        return Math.abs(stockX - x) < deltaX * radius && Math.abs(stockY - y) < deltaY * radius;
     }
 }

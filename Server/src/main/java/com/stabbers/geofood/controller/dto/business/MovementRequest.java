@@ -14,9 +14,6 @@ public class MovementRequest {
     private double latitude;
 
     @NotEmpty
-    private double radius;
-
-    @NotEmpty
-    private Date date;
+    private String date;
 
 }

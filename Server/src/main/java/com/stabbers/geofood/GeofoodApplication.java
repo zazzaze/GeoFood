@@ -3,9 +3,12 @@ package com.stabbers.geofood;
 import com.stabbers.geofood.entity.ShopEntity;
 import com.stabbers.geofood.entity.StockEntity;
 import com.stabbers.geofood.entity.UserEntity;
+import com.stabbers.geofood.entity.VisitActionEntity;
 import com.stabbers.geofood.service.ShopService;
 import com.stabbers.geofood.service.StockService;
 import com.stabbers.geofood.service.UserService;
+import com.stabbers.geofood.service.VisitActionService;
+import lombok.AllArgsConstructor;
 import org.apache.commons.io.IOUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,11 +17,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
-
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.*;
-import java.util.Random;
+
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 @SpringBootApplication
 public class GeofoodApplication {
@@ -28,169 +33,165 @@ public class GeofoodApplication {
 	private ShopService shopService;
 	@Autowired
 	private StockService stockService;
+	@Autowired
+	private VisitActionService visitActionService;
 
-	private static final Random rnd = new Random();
-	private static final String lorem = "XT1g3";
+
+	String path = "achek/uploads/";
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(GeofoodApplication.class);
+	private String lorem = "lorem ipsum";
+	private final String srcChar = "qwertyuiopasdfghjklzxcvbnm1234567890QWERTYUIOPASDFGHJKLZXCVBNM";
+	private  String getPromo(){
+		String ans = "";
+		for(int i = 0; i < 5; ++i){
+			ans +=  srcChar.toCharArray()[(int) (Math.random() * (srcChar.length()))];
+		}
+		return ans;
+	}
+	@AllArgsConstructor
+	private  class Shop {
+		double longitude;
+		double latitude;
+		String name;
+		int type;
+	}
+
+	private final List<Shop> shops = Arrays.asList(new Shop(55.74776520767051, 37.612974838004156, "Cofix", 0),
+			new Shop(55.751741766356055, 37.61115492031277, "Cofix", 0),
+			new Shop(55.755537194261436, 37.61409890481368, "Cofix", 0),
+			new Shop(55.758067274364045, 37.6186486990423, "Cofix", 0),
+			new Shop(55.75945272487036, 37.6241619791078, "Cofix", 0),
+			new Shop(55.757314291488534, 37.62823003041814, "Cofix", 0),
+			new Shop(55.755567315228, 37.63251218969216, "McDonald’s", 1),
+			new Shop(55.75336842353714, 37.63331509455606, "McDonald’s", 1),
+			new Shop(55.74987403927311, 37.63144164987365, "McDonald’s", 1),
+			new Shop(55.74924140176145, 37.624750776007915, "McDonald’s", 1),
+			new Shop(55.74927152758989, 37.616721727369075, "McDonald’s", 1)
+	);
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(GeofoodApplication.class, args);
 	}
 
-//	@EventListener(ApplicationReadyEvent.class)
-//	private void imgTest() throws IOException
-//	{
-////		final File initialFile = new File("uploads/mac.png");
-////		final InputStream targetStream =
-////				new DataInputStream(new FileInputStream(initialFile));
-//
-//		UserEntity admin = new UserEntity();
-//		admin.setLogin("achekAdmin");
-//		admin.setPassword("1234567890");
-//		userService.saveAdmin(admin);
-//
-//		ShopEntity shopMac = new ShopEntity();
-//		shopMac.setName("Mac");
-//		shopMac.setLatitude(55.760735);
-//		shopMac.setLongitude(37.631996);
-//		shopMac.setHolder(admin);
-//		//shopMac.setImg(IOUtils.toByteArray(targetStream));
-//
-//		admin.addShop(shopMac);
-//		shopService.saveShop(shopMac);
-//
-////		ByteArrayInputStream bImg = new ByteArrayInputStream(shopMac.getImg());
-////		BufferedImage testImg = ImageIO.read(bImg);
-////		ImageIO.write(testImg, "png", new File("testMac.png") );
-////
-////		LOGGER.info("Image is done!");
-//	}
+	@EventListener(ApplicationReadyEvent.class)
+	private void imgTest() throws IOException
+	{
+		createAdminWithContent();
+	}
 
-	//@EventListener(ApplicationReadyEvent.class)
-//	private void test(){
-//		// USERS.
-//		UserEntity user = new UserEntity();
-//		user.setLogin("achekUser");
-//		user.setPassword("1234567890");
-//		userService.saveUser(user);
-//
-//		UserEntity admin = new UserEntity();
-//		admin.setLogin("achekAdmin");
-//		admin.setPassword("1234567890");
-//		userService.saveAdmin(admin);
-//
-//		// SHOPS.
-//		ShopEntity shopMac = new ShopEntity();
-//		shopMac.setName("Mac");
-//		shopMac.setLatitude(55.760735);
-//		shopMac.setLongitude(37.631996);
-//		shopMac.setAdmin(admin);
-//		shopMac.setShopLogoFileName("Mac.png");
-//		admin.addShop(shopMac);
-//		shopService.saveShop(shopMac);
-//
-//		ShopEntity shopCofix = new ShopEntity();
-//		shopCofix.setName("Cofix");
-//		shopCofix.setLatitude(55.760396);
-//		shopCofix.setLongitude(37.631663);
-//		shopCofix.setShopLogoFileName("Mac.png");
-//		shopCofix.setAdmin(admin);
-//		admin.addShop(shopCofix);
-//		shopService.saveShop(shopCofix);
-//
-//		for(int i = 0; i < 10; ++i){
-//			generateShop(admin, i);
-//			generateShop2(admin, i);
-//		}
-//
-//		// STOCKS.
-//		StockEntity stock1 = new StockEntity();
-//		stock1.setName("BigMac");
-//		stock1.setOldPrice(80);
-//		stock1.setNewPrice(60);
-//		stock1.setPromo(lorem);
-//		//stock1.setStockImageFileName("BigMac.png");
-//		stock1.setShop(shopMac);
-//		shopMac.addStock(stock1);
-//
-//		StockEntity stock2 = new StockEntity();
-//		stock2.setName("CaesarRoll");
-//		stock2.setOldPrice(160);
-//		stock2.setNewPrice(120);
-//		stock1.setPromo(lorem);
-//		//stock2.setStockImageFileName("Caesar.png");
-//		stock2.setShop(shopMac);
-//		shopMac.addStock(stock2);
-//
-//		StockEntity stock3 = new StockEntity();
-//		stock3.setName("Cappuccino");
-//		stock3.setOldPrice(60);
-//		stock3.setNewPrice(40);
-//		stock1.setPromo(lorem);
-//		//stock3.setStockImageFileName("Cofe.png");
-//		stock3.setShop(shopCofix);
-//		shopCofix.addStock(stock3);
-//
-//		StockEntity stock4 = new StockEntity();
-//		stock4.setName("Latte");
-//		stock4.setOldPrice(80);
-//		stock4.setNewPrice(60);
-//		stock1.setPromo(lorem);
-//		//stock4.setStockImageFileName("Cofe.png");
-//		stock4.setShop(shopCofix);
-//		shopCofix.addStock(stock4);
-//
-//		stockService.saveStock(stock1);
-//		stockService.saveStock(stock2);
-//		stockService.saveStock(stock3);
-//		stockService.saveStock(stock4);
-//	}
+	public void createAdminWithContent() throws IOException {
+		UserEntity admin = new UserEntity();
+		admin.setLogin("admin");
+		admin.setPassword("impsstabb");
+		userService.saveAdmin(admin);
 
-//	private void generateShop(UserEntity admin, int ind){
-//		ShopEntity shop = new ShopEntity();
-//		shop.setName("Mac " + ind);
-//		shop.setShopLogoFileName("Mac.png");
-//		shop.setLatitude(55.760 + rnd.nextInt(99) * 0.0001);
-//		shop.setLongitude(37.631 + + rnd.nextInt(99) * 0.0001);
-//		shop.setHolder(admin);
-//		admin.addShop(shop);
-//		shopService.saveShop(shop);
-//		generateStock(shop, ind);
-//	}
-//
-//	private void generateShop2(UserEntity admin, int ind){
-//		ShopEntity shop = new ShopEntity();
-//		shop.setName("Cofix " + ind);
-//		shop.setShopLogoFileName("Cofix.png");
-//		shop.setLatitude(55.760 + rnd.nextInt(99) * 0.0001);
-//		shop.setLongitude(37.631 + + rnd.nextInt(99) * 0.0001);
-//		shop.setHolder(admin);
-//		admin.addShop(shop);
-//		shopService.saveShop(shop);
-//		generateStock2(shop, ind);
-//	}
-//
-//	private void generateStock(ShopEntity shop, int ind){
-//		StockEntity stock = new StockEntity();
-//		stock.setName("BigMac " + ind);
-//		stock.setPromo(lorem);
-//		stock.setOldPrice(150);
-//		stock.setNewPrice(110);
-//		//stock.setStockImageFileName("BigMac.png");
-//		stock.setShop(shop);
-//		shop.addStock(stock);
-//		stockService.saveStock(stock);
-//	}
-//
-//	private void generateStock2(ShopEntity shop, int ind){
-//		StockEntity stock = new StockEntity();
-//		stock.setName("Cappucino " + ind);
-//		stock.setPromo(lorem);
-//		stock.setOldPrice(60);
-//		stock.setNewPrice(40);
-//		//stock.setStockImageFileName("Cofe.png");
-//		stock.setShop(shop);
-//		shop.addStock(stock);
-//		stockService.saveStock(stock);
-//	}
+		UserEntity user = new UserEntity();
+		user.setLogin("egor");
+		user.setPassword("1234567890");
+		userService.saveUser(user);
+
+		generateShops(admin, user);
+	}
+
+	private void generateShops(UserEntity holder, UserEntity user) throws IOException {
+		int cnt = 0;
+		for(Shop point : shops){
+			ShopEntity newShop = new ShopEntity();
+			newShop.setHolder(holder);
+			newShop.setLocation(lorem);
+			newShop.setLatitude(point.longitude);
+			newShop.setLongitude(point.latitude);
+			newShop.setName(point.name + "_" + cnt);
+			newShop.setType(point.type);
+			if(newShop.getType() == 1){
+				final File initialFile = new File(path + "Mac_Logo.png");
+				final InputStream targetStream = new DataInputStream(new FileInputStream(initialFile));
+				newShop.setImg(IOUtils.toByteArray(targetStream));
+			}
+			else {
+				final File initialFile = new File(path + "Cofix_Logo.png");
+				final InputStream targetStream = new DataInputStream(new FileInputStream(initialFile));
+				newShop.setImg(IOUtils.toByteArray(targetStream));
+			}
+
+			holder.addShop(newShop);
+			shopService.saveShop(newShop);
+
+			// SPECIAL
+			if(cnt == 0){
+				createSpecialStock(newShop);
+				createVisit(user, newShop, 9);
+			}
+			else if(cnt < 6){
+				createSpecialStock(newShop);
+				createVisit(user, newShop, 8);
+			}
+			// SPECIAL
+
+			if(newShop.getType() == 0)
+				generateStocks(newShop, false);
+			else
+				generateStocks(newShop, true);
+			cnt++;
+		}
+	}
+
+	private void generateStocks(ShopEntity holder,  boolean isMac) throws IOException{
+		for(int i = 0; i < 3; ++i){
+			StockEntity newStock = new StockEntity();
+			newStock.setPromo(getPromo());
+			newStock.setShop(holder);
+			newStock.setName(holder.getName() + "_stock_" + i);
+			newStock.setNewPrice(100);
+			newStock.setOldPrice(200);
+
+			if(isMac){
+				final File initialFile = new File(path + "Mac_Stock.png");
+				final InputStream targetStream = new DataInputStream(new FileInputStream(initialFile));
+				newStock.setImg(IOUtils.toByteArray(targetStream));
+			}
+			else {
+				final File initialFile = new File(path + "Cofix_Stock.png");
+				final InputStream targetStream = new DataInputStream(new FileInputStream(initialFile));
+				newStock.setImg(IOUtils.toByteArray(targetStream));
+			}
+
+
+			stockService.saveStock(newStock);
+
+			holder.addStock(newStock);
+		}
+	}
+
+	private void createSpecialStock(ShopEntity holder) throws IOException{
+		StockEntity newStock = new StockEntity();
+		newStock.setPromo(getPromo());
+		newStock.setShop(holder);
+		newStock.setName(holder.getName() + "_SPECIAL");
+		newStock.setNewPrice(50);
+		newStock.setOldPrice(200);
+		newStock.setSpecial(true);
+
+		final File initialFile = new File(path + "Special.png");
+		final InputStream targetStream = new DataInputStream(new FileInputStream(initialFile));
+		newStock.setImg(IOUtils.toByteArray(targetStream));
+
+		stockService.saveStock(newStock);
+
+		holder.addStock(newStock);
+	}
+
+	public void createVisit(UserEntity user, ShopEntity shop, int cnt){
+		VisitActionEntity newVisit = new VisitActionEntity();
+		newVisit.setUser(user);
+		newVisit.setCount(cnt);
+		newVisit.setShop(shop);
+		user.addVisit(newVisit);
+		Date date = new Date(System.currentTimeMillis());
+		newVisit.setLastVisit(new Timestamp(date.getTime()));
+		visitActionService.saveVisitAction(newVisit);
+	}
+
 }

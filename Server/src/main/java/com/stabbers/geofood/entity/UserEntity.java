@@ -1,10 +1,7 @@
 package com.stabbers.geofood.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Builder;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
@@ -41,7 +38,6 @@ public class UserEntity {
     @JsonManagedReference
     @OneToMany(targetEntity = ShopEntity.class, mappedBy = "holder", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ShopEntity> shops = new ArrayList<>();
-
     public void addShop(ShopEntity newShop){
         shops.add(newShop);
     }
