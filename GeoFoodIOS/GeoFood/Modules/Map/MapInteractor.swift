@@ -8,38 +8,53 @@
 import Foundation
 import MapKit
 
-protocol MapInteractorProtocol: class {
+protocol MapInteractorInput: class {
     func loadRestaurants(in region: CLLocationCoordinate2D, radius: Double)
-    func setToken(_ token: String)
+    func sendUserLocationUpdate(_ location: CLLocation)
 }
 
-protocol MapInteractorOutputProtocol: class {
-    func restaurantsLoadSuccessfully(restaurants: [RestaurantModel])
-    func restaurantsLoadUnsuccessfully()
+protocol MapInteractorOutput: class {
+    func restaurantsLoad(restaurants: [RestaurantModel])
 }
 
-class MapInteractor: MapInteractorProtocol {
-    private weak var presenter: MapInteractorOutputProtocol!
-    private var service: RestaurantServiceProtocol
+class MapInteractor {
+    private weak var presenter: MapInteractorOutput!
+    private var service: UserService
     private var token: String!
     
-    required init(presenter: MapInteractorOutputProtocol, service: RestaurantServiceProtocol) {
+    required init(presenter: MapInteractorOutput, service: UserService) {
         self.presenter = presenter
         self.service = service
     }
-    
-    func setToken(_ token: String) {
-        self.token = token
-    }
-    
+}
+
+extension MapInteractor: MapInteractorInput {
     func loadRestaurants(in region: CLLocationCoordinate2D, radius: Double) {
         let requestData = CoordinateRequestModel(coordinates: region, radius: radius)
-        service.getRestaurantsNear(coordinate: requestData, token: token) { restaurants in
+        service.getRestaurantsNear(coordinate: requestData) { restaurants in
             guard let restaurants = restaurants else {
-                self.presenter.restaurantsLoadUnsuccessfully()
+                self.presenter.restaurantsLoad(restaurants: [])
                 return
             }
-            self.presenter.restaurantsLoadSuccessfully(restaurants: restaurants)
+            let group = DispatchGroup()
+            for rest in restaurants {
+                group.enter()
+                ImageLoader.loadRestaurantImage(restId: rest.id) { data in
+                    if let data = data {
+                        rest.logoImage = UIImage(data: data)
+                    } else {
+                        rest.logoImage = UIImage(named: "empty")
+                    }
+                    group.leave()
+                }
+            }
+            group.notify(queue: DispatchQueue.global(qos: .utility), work: DispatchWorkItem {
+                self.presenter.restaurantsLoad(restaurants: restaurants)
+            })
         }
+    }
+    
+    func sendUserLocationUpdate(_ location: CLLocation) {
+        service.updateUserLocation(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
     }
 }

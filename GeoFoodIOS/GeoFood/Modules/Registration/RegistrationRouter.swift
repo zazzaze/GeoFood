@@ -9,16 +9,21 @@ import Foundation
 
 protocol RegistrationRouterProtocol: class {
     func popBack()
+    func openAccountView()
 }
 
 class RegistrationRouter: RegistrationRouterProtocol {
-    var view: RegistrationViewProtocol
+    var view: RegistrationViewOutput
     
-    required init(view: RegistrationViewProtocol) {
+    required init(view: RegistrationViewOutput) {
         self.view = view
     }
     
     func popBack() {
         view.getNavigationController()?.popViewController(animated: true)
+    }
+    
+    func openAccountView() {
+        view.getNavigationController()?.pushViewController(AccountConfigurator.assembly(), animated: true)
     }
 }

@@ -19,10 +19,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.windowScene = scene
-        let navigationController = UINavigationController(rootViewController: AuthorizationViewController())
+        let mainView = MainViewController()
         //let navigationController = UINavigationController(rootViewController: MapViewController())
-        navigationController.navigationBar.backgroundColor = .clear
-        window?.rootViewController = navigationController
+        window?.rootViewController = mainView
         window?.makeKeyAndVisible()
     }
 

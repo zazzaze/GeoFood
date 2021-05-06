@@ -17,7 +17,6 @@ class AuthorizationConfigurator: AuthorizationConfiguratorProtocol {
         let interactor = AuthorizationInteractor(presenter: presenter)
         let router = AuthorizationRouter(view: view)
         
-        interactor.authorizationService = AuthorizationService()
         presenter.interactor = interactor
         presenter.router = router
         view.presenter = presenter

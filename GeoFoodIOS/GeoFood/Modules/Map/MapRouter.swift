@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 protocol MapRouterProtocol: class {
     func openRestaurantView(with restaurant: RestaurantModel, token: String)
@@ -19,6 +20,6 @@ class MapRouter: MapRouterProtocol {
     }
     
     func openRestaurantView(with restaurant: RestaurantModel, token: String) {
-        view.present(RestaurantViewController(restaurant: restaurant, token: token), animated: true, completion: nil)
+        view.present(UINavigationController(rootViewController: RestaurantConfigurator.assembly(with: restaurant)), animated: true, completion: nil)
     }
 }

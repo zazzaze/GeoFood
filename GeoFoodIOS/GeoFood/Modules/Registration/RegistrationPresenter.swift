@@ -7,17 +7,18 @@
 
 import Foundation
 
-protocol RegistrationPresenterProtocol: class {
+protocol RegistrationPresenterInput: class {
     func viewDidAppear()
     func registrationButtonTapped(withEmail: String, password: String, passwordRepeat: String)
+    func backButtonTapped()
 }
 
-class RegistrationPresenter: RegistrationPresenterProtocol {
-    weak var view: RegistrationViewProtocol!
+class RegistrationPresenter: RegistrationPresenterInput {
+    weak var view: RegistrationViewOutput!
     var interactor: RegistrationInteractorProtocol!
     var router: RegistrationRouterProtocol!
     
-    required init(view: RegistrationViewProtocol) {
+    required init(view: RegistrationViewOutput) {
         self.view = view
     }
     
@@ -26,23 +27,23 @@ class RegistrationPresenter: RegistrationPresenterProtocol {
     }
     
     func registrationButtonTapped(withEmail: String, password: String, passwordRepeat: String) {
-        if LoginEntryChecker.checkPassword(password) && password == passwordRepeat {
+        if /*LoginEntryChecker.checkPassword(password) && password == passwordRepeat*/ true {
             interactor.registerUser(withEmail: withEmail, password: password)
-//            DispatchQueue.global(qos: .utility).async { [unowned self] in
-//                interactor.registerUser(withEmail: withEmail, password: password)
-//            }
         } else {
             view.showAlert(title: "Ошибка", message: "Проверьте введенные данные")
         }
     }
+    
+    func backButtonTapped() {
+        router.popBack()
+    }
 }
 
 
-extension RegistrationPresenter: RegistrationInteractorOutputProtocol {
+extension RegistrationPresenter: RegistrationPresenterOutputProtocol {
     func registrationSuccessfully() {
         DispatchQueue.main.async {
-            self.view.showAlert(title: "Успешно", message: "Вы зарегистрированы")
-            self.router.popBack()
+            self.router.openAccountView()
         }
     }
     

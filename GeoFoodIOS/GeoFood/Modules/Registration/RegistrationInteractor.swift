@@ -11,23 +11,29 @@ protocol RegistrationInteractorProtocol: class {
     func registerUser(withEmail: String, password: String)
 }
 
-protocol RegistrationInteractorOutputProtocol: class {
+protocol RegistrationPresenterOutputProtocol: class {
     func registrationSuccessfully()
     func registrationUnsuccessfully()
 }
 
 class RegistrationInteractor: RegistrationInteractorProtocol {
-    weak var presenter: RegistrationInteractorOutputProtocol!
-    var registrationService: RegistrationServiceProtocol!
+    weak var presenter: RegistrationPresenterOutputProtocol!
+    var userService: UserService = UserService.shared
     
-    required init(presenter: RegistrationInteractorOutputProtocol) {
+    required init(presenter: RegistrationPresenterOutputProtocol) {
         self.presenter = presenter
     }
     
     func registerUser(withEmail: String, password: String) {
-        registrationService.registerUser(loginForm: LoginForm(login: withEmail, password: password)) { isSuccess in
+        userService.registerUser(with: LoginForm(login: withEmail, password: password)) { isSuccess in
             if isSuccess {
-                self.presenter.registrationSuccessfully()
+                self.userService.authUser(with: LoginForm(login: withEmail, password: password)) { isSuccess in
+                    if isSuccess {
+                        self.presenter.registrationSuccessfully()
+                    } else {
+                        self.presenter.registrationUnsuccessfully()
+                    }
+                }
             } else {
                 self.presenter.registrationUnsuccessfully()
             }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol RegistrationViewProtocol: class {
+protocol RegistrationViewOutput: class {
     func setNavigationBarHidden(_ isHidden: Bool, animated: Bool)
     func showAlert(title: String, message: String)
     func getNavigationController() -> UINavigationController?
@@ -16,28 +16,24 @@ protocol RegistrationViewProtocol: class {
 class RegistrationViewController: UIViewController {
 
     let configurator: RegistrationConfiguratorProtocol = RegistrationConfigurator()
-    var presenter: RegistrationPresenterProtocol!
+    var presenter: RegistrationPresenterInput!
     
-    var emailTextField: TextFieldWithConditions = {
-        let emailCondition = TextFieldCondition(description: "Email имеет вид example@example.com", checker: {_ in return true})
-        return TextFieldWithConditions(conditions: [emailCondition])
-    }()
+    var emailTextField: TitledTextField = TitledTextField.emailTextField()
     
-    var passwordTextField: TextFieldWithConditions = {
-        let passwordCondition = TextFieldCondition(description: "Длина пароля больше 8", checker: LoginEntryChecker.checkPassword)
-        return TextFieldWithConditions(conditions: [passwordCondition])
-    }()
+    var passwordTextField: TitledTextField = TitledTextField.passwordTextField()
     
-    var repeatPasswordTextField: TextFieldWithConditions!
+    var repeatPasswordTextField = TitledTextField.passwordTextField()
     let registrationButton = UIButton()
+    let backButton = UIButton()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configurator.configure(with: self)
         
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         title = "Регистрация"
+        self.navigationItem.setHidesBackButton(true, animated: false)
         
         configureSubviews()
         addAllSubviews()
@@ -46,6 +42,7 @@ class RegistrationViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        self.navigationController?.tabBarItem.title = self.title
         presenter.viewDidAppear()
     }
     
@@ -54,38 +51,40 @@ class RegistrationViewController: UIViewController {
         configurePasswordTextField()
         configureRepeatPasswordTextField()
         configureRegistrationButton()
+        configureBackButton()
     }
     
     private func configureEmailTextField() {
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
-        emailTextField.textColor = .black
-        emailTextField.keyboardType = .emailAddress
-        emailTextField.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
     }
-    
+
     private func configurePasswordTextField() {
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
-        passwordTextField.textColor = .black
-        passwordTextField.isSecureTextEntry = true
-        passwordTextField.attributedPlaceholder = NSAttributedString(string: "Пароль", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
     }
-    
+
     private func configureRepeatPasswordTextField() {
-        let repeatPasswordCondition = TextFieldCondition(description: "Пароли должны совпадать", checker: repeatPasswordValidator)
-        
-        repeatPasswordTextField = TextFieldWithConditions(conditions: [repeatPasswordCondition])
         repeatPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
-        repeatPasswordTextField.textColor = .black
-        repeatPasswordTextField.isSecureTextEntry = true
-        repeatPasswordTextField.attributedPlaceholder = NSAttributedString(string: "Пароль повторно", attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        repeatPasswordTextField.titleText = "Повторите пароль"
     }
     
     private func configureRegistrationButton() {
         registrationButton.translatesAutoresizingMaskIntoConstraints = false
         registrationButton.setTitle("Зарегистрироваться", for: .normal)
-        registrationButton.setTitleColor(.systemBlue, for: .normal)
-        registrationButton.setTitleColor(.lightGray, for: .disabled)
+        registrationButton.setTitleColor(UIColor(named: "dark_blue"), for: .normal)
+        registrationButton.layer.borderColor = UIColor(named: "light_green")?.cgColor
+        registrationButton.layer.borderWidth = 2
+        registrationButton.layer.cornerRadius = 10
+        registrationButton.backgroundColor = UIColor(named: "lime")
+        registrationButton.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .semibold)
         registrationButton.addTarget(self, action: #selector(registrationButtonTapped), for: .touchUpInside)
+    }
+    
+    private func configureBackButton() {
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        let attrString = NSAttributedString(string: "Войти", attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue])
+        backButton.setAttributedTitle(attrString, for: .normal)
+        backButton.setTitleColor(UIColor(named: "dark_blue"), for: .normal)
+        backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
     }
     
     private func addAllSubviews() {
@@ -93,39 +92,55 @@ class RegistrationViewController: UIViewController {
         view.addSubview(passwordTextField)
         view.addSubview(repeatPasswordTextField)
         view.addSubview(registrationButton)
+        view.addSubview(backButton)
     }
     
     private func initConstraints() {
         NSLayoutConstraint.activate([
-            emailTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            emailTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            emailTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            emailTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 22),
+            emailTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 32),
+            emailTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -32),
+            emailTextField.heightAnchor.constraint(equalToConstant: 80),
             
-            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 20),
-            passwordTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            passwordTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            passwordTextField.topAnchor.constraint(equalTo: emailTextField.bottomAnchor, constant: 7),
+            passwordTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 32),
+            passwordTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -32),
+            passwordTextField.heightAnchor.constraint(equalToConstant: 80),
             
-            repeatPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 20),
-            repeatPasswordTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-            repeatPasswordTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
+            repeatPasswordTextField.topAnchor.constraint(equalTo: passwordTextField.bottomAnchor, constant: 7),
+            repeatPasswordTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 32),
+            repeatPasswordTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -32),
+            repeatPasswordTextField.heightAnchor.constraint(equalToConstant: 80),
             
             registrationButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            registrationButton.topAnchor.constraint(equalTo: repeatPasswordTextField.bottomAnchor, constant: 20)
+            registrationButton.topAnchor.constraint(equalTo: repeatPasswordTextField.bottomAnchor, constant: 22),
+            registrationButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 46),
+            registrationButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -46),
+            registrationButton.heightAnchor.constraint(equalToConstant: 50),
+            
+            backButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            backButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -66),
+            backButton.topAnchor.constraint(greaterThanOrEqualTo: registrationButton.bottomAnchor, constant: 20)
+            
         ])
     }
     
     
     
     private func repeatPasswordValidator(_ password: String) -> Bool {
-        passwordTextField.text! == password
+        passwordTextField.titleText! == password
     }
     
     @objc func registrationButtonTapped() {
-        presenter.registrationButtonTapped(withEmail: emailTextField.text!, password: passwordTextField.text!, passwordRepeat: repeatPasswordTextField.text!)
+        presenter.registrationButtonTapped(withEmail: emailTextField.text, password: passwordTextField.text, passwordRepeat: repeatPasswordTextField.text)
+    }
+    
+    @objc func backButtonTapped() {
+        presenter.backButtonTapped()
     }
 }
 
-extension RegistrationViewController: RegistrationViewProtocol {
+extension RegistrationViewController: RegistrationViewOutput {
     func setNavigationBarHidden(_ isHidden: Bool, animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }

@@ -14,7 +14,7 @@ protocol MapConfiguratorProtocol: class {
 class MapConfigurator: MapConfiguratorProtocol  {
     func configure(with view: MapViewController) {
         let presenter = MapPresenter(view: view)
-        let interactor = MapInteractor(presenter: presenter, service: RestaurantService())
+        let interactor = MapInteractor(presenter: presenter, service: UserService.shared)
         let router = MapRouter(view: view)
         
         presenter.interactor = interactor

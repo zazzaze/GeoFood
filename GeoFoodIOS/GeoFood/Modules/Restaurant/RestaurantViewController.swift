@@ -7,164 +7,293 @@
 
 import UIKit
 
-class RestaurantViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        stocks.count
-    }
+protocol RestaurantViewControllerOutput: AnyObject {
+    func viewDidLoad()
+}
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        var cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionCellIdentifier, for: indexPath) as! StockCollectionViewCell
-        cell.reloadFor(stock: stocks[indexPath.row])
-        return cell
-    }
+class RestaurantViewController: UIViewController {
     
-    private var logo: UIImageView = UIImageView(image: UIImage(named: "empty"))
-    private var nameLabel = UILabel()
-    private var descriptionLabel = UITextView()
+    var isDragging = false
+    var isDecelerating = false
+    var lastSalesTableScrollY: CGFloat = 0
     
-    private var stocksCollection: UICollectionView = {
+    var presenter: RestaurantViewControllerOutput!
+    
+    private let header = RestaurantHeaderView()
+    private let salesTable = UITableView()
+    private let specialSalesCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .vertical
+        layout.scrollDirection = .horizontal
         return UICollectionView(frame: .zero, collectionViewLayout: layout)
     }()
-    private var token: String!
-    
-    private var stocks: [RestaurantStockModel] = [] {
-        didSet {
-            DispatchQueue.main.async {
-                self.stocksCollection.reloadData()
-            }
-        }
-    }
-    private var restaurantsService = RestaurantService()
-    private var currentRestaurant: RestaurantModel!
+    private let pageControl = UIPageControl()
+    private let scrollView = UIScrollView()
+    private let contentView = UIView()
     
     private let collectionCellIdentifier = "stockCell"
     
-    init(restaurant: RestaurantModel, token: String) {
-        super.init(nibName: nil, bundle: nil)
-        self.token = token
-        self.currentRestaurant = restaurant
-    }
+    private var viewModel: RestaurantViewModel?
+    private var salesTableTopAnchor: NSLayoutYAxisAnchor?
     
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.scrollView.contentSize = contentView.bounds.size
     }
     
     override func viewDidLoad() {
         view.backgroundColor = .white
-        ImageLoader().loadImage(fileName: currentRestaurant.shopLogoFileName) { data in
-            guard let data = data else {
-                DispatchQueue.main.async {
-                    self.logo.image = UIImage(named: "empty")
-                }
-                return
-            }
-            DispatchQueue.main.async {
-                self.logo.image = UIImage(data: data)
-            }
-        }
+        title = "Акции"
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+        let background = UIImage(named: "background")
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  .scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
         configureSubviews()
         addAllSubviews()
         initConstraints()
-        RestaurantService().getRestaurantStocks(restaurantId: currentRestaurant.id, token: token) { rest in
-            if let rest = rest {
-                self.stocks = rest
-            }
-        }
+        presenter.viewDidLoad()
     }
     
     func configureSubviews() {
-        configureLogo()
-        configureNameLabel()
-        configureDescriptionLabel()
-        configureStocksCollection()
-    }
-    
-    func configureLogo() {
-        logo.translatesAutoresizingMaskIntoConstraints = false
-        logo.contentMode = .scaleAspectFill
-    }
-    
-    func configureNameLabel() {
-        nameLabel.textColor = .black
-        nameLabel.font = UIFont.boldSystemFont(ofSize: 18)
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.text = currentRestaurant.name
-    }
-    
-    func configureDescriptionLabel() {
-        descriptionLabel.translatesAutoresizingMaskIntoConstraints = false
-        descriptionLabel.font = UIFont.systemFont(ofSize: 14)
-        descriptionLabel.textColor = .gray
-        descriptionLabel.text = currentRestaurant.description
-    }
-    
-    func configureStocksCollection() {
-        stocksCollection.register(StockCollectionViewCell.self, forCellWithReuseIdentifier: collectionCellIdentifier)
-        stocksCollection.backgroundColor = .clear
-        stocksCollection.translatesAutoresizingMaskIntoConstraints = false
-        stocksCollection.dataSource = self
-        stocksCollection.delegate = self
+        header.translatesAutoresizingMaskIntoConstraints = false
+        salesTable.translatesAutoresizingMaskIntoConstraints = false
+        salesTable.delegate = self
+        salesTable.dataSource = self
+        salesTable.register(SaleCell.self, forCellReuseIdentifier: collectionCellIdentifier)
+        salesTable.backgroundColor = .clear
+        salesTable.separatorStyle = .none
+        salesTable.allowsSelection = false
+        salesTable.isScrollEnabled = false
+        salesTable.showsVerticalScrollIndicator = false
+        salesTableTopAnchor = salesTable.topAnchor
+
+        specialSalesCollection.backgroundColor = .clear
+        specialSalesCollection.translatesAutoresizingMaskIntoConstraints = false
+        specialSalesCollection.dataSource = self
+        specialSalesCollection.register(SpecialSaleCollectionViewCell.self, forCellWithReuseIdentifier: "collectionCell")
+        specialSalesCollection.showsHorizontalScrollIndicator = false
+        specialSalesCollection.isPagingEnabled = true
+        specialSalesCollection.layer.masksToBounds = false
+        let layout = specialSalesCollection.collectionViewLayout as! UICollectionViewFlowLayout
+        layout.itemSize = CGSize(width: self.view.frame.width - 60, height: 160)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 30, bottom: 0, right: 30)
+        layout.minimumLineSpacing = 60
+        
+        pageControl.translatesAutoresizingMaskIntoConstraints = false
+        pageControl.pageIndicatorTintColor = .lightGray
+        pageControl.currentPageIndicatorTintColor = .darkGray
+        pageControl.isUserInteractionEnabled = false
+        
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.delegate = self
+        
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.layer.masksToBounds = true
     }
     
     func addAllSubviews() {
-        view.addSubview(logo)
-        view.addSubview(nameLabel)
-        view.addSubview(descriptionLabel)
-        view.addSubview(stocksCollection)
+        view.addSubview(scrollView)
+        scrollView.addSubview(contentView)
+        contentView.addSubview(header)
+        contentView.addSubview(specialSalesCollection)
+        contentView.addSubview(salesTable)
+        contentView.addSubview(pageControl)
     }
     
     func initConstraints() {
         NSLayoutConstraint.activate([
-            logo.heightAnchor.constraint(equalToConstant: 80),
-            logo.widthAnchor.constraint(equalToConstant: 80),
-            logo.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            logo.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+            scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
             
-            nameLabel.topAnchor.constraint(equalTo: logo.topAnchor),
-            nameLabel.leadingAnchor.constraint(equalTo: logo.trailingAnchor, constant: 20),
-            nameLabel.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -10),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            contentView.centerXAnchor.constraint(equalTo: scrollView.centerXAnchor),
             
-            descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5),
-            descriptionLabel.bottomAnchor.constraint(greaterThanOrEqualTo: logo.bottomAnchor),
-            descriptionLabel.leadingAnchor.constraint(equalTo: logo.trailingAnchor, constant: 20),
-            descriptionLabel.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -10),
+            header.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 12),
+            header.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 33),
+            header.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -33),
+            header.heightAnchor.constraint(equalToConstant: 60),
+
+            specialSalesCollection.topAnchor.constraint(equalTo: header.bottomAnchor, constant: 10),
+            specialSalesCollection.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            specialSalesCollection.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            specialSalesCollection.heightAnchor.constraint(equalToConstant: 160),
+
+            pageControl.topAnchor.constraint(equalTo: specialSalesCollection.bottomAnchor, constant: 5),
+            pageControl.leadingAnchor.constraint(greaterThanOrEqualTo: contentView.leadingAnchor, constant: 10),
+            pageControl.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -10),
+            pageControl.centerXAnchor.constraint(equalTo: contentView.centerXAnchor),
+            pageControl.heightAnchor.constraint(equalToConstant: 20),
+
+            salesTable.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 10),
+            salesTable.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
+            salesTable.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: -20),
+            salesTable.widthAnchor.constraint(equalTo: contentView.widthAnchor, constant: -40),
+            salesTable.heightAnchor.constraint(equalTo: scrollView.heightAnchor),
             
-            stocksCollection.topAnchor.constraint(equalTo: logo.bottomAnchor, constant: 10),
-            stocksCollection.leadingAnchor.constraint(equalTo: logo.trailingAnchor, constant: 10),
-            stocksCollection.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -10),
-            stocksCollection.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -5)
+            contentView.bottomAnchor.constraint(equalTo: salesTable.bottomAnchor)
         ])
+        scrollView.contentSize = contentView.bounds.size
+    }
+}
+
+extension RestaurantViewController: RestaurantPresenterOutput {
+    func configure(with vm: RestaurantViewModel) {
+        self.viewModel = vm
+        header.configure(with: vm)
+        specialSalesCollection.isHidden = vm.specialSales.count == 0
+        pageControl.isHidden = vm.specialSales.count == 0
+        if specialSalesCollection.isHidden {
+            salesTable.topAnchor.constraint(equalTo: header.bottomAnchor, constant: 10).isActive = true
+        } else {
+            salesTable.topAnchor.constraint(equalTo: pageControl.bottomAnchor, constant: 10).isActive = true
+        }
+        salesTable.reloadData()
+        specialSalesCollection.reloadData()
+    }
+}
+
+extension RestaurantViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: collectionCellIdentifier) as? SaleCell,
+              let viewModel = self.viewModel else {
+            return UITableViewCell()
+        }
+        let sale = viewModel.sales[indexPath.row]
+        cell.configure(with: sale)
+        return cell
     }
     
-    private func loadDataForCollection() {
-        DispatchQueue.global(qos: .utility).async {
-            self.restaurantsService.getRestaurantStocks(restaurantId: self.currentRestaurant.id, token: "") { stocks in
-                guard let stocks = stocks else {
-                    return
-                }
-                let group = DispatchGroup()
-                for stock in stocks {
-                    group.enter()
-                    DispatchQueue.global(qos: .utility).async {
-                        ImageLoader().loadImage(fileName: stock.stockImageFileName ?? "") { data in
-                            guard let data = data else {
-                                group.leave()
-                                return
-                            }
-                            stock.image = UIImage(data: data)
-                            group.leave()
-                        }
-                    }
-                }
-                group.wait()
-                self.stocks = stocks
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel?.sales.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 90
+    }
+    
+}
+
+extension RestaurantViewController: UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
+        
+        let label = UILabel(frame: CGRect(x: 3, y: 0, width: view.frame.width - 3, height: 30))
+        label.text = "Все акции:"
+        label.textColor = UIColor(named: "dark_blue")
+        label.font = UIFont.systemFont(ofSize: 19, weight: .semibold)
+        view.addSubview(label)
+        view.backgroundColor = .clear
+        return view
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        40
+    }
+    
+}
+
+extension RestaurantViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        self.pageControl.numberOfPages = viewModel?.specialSales.count ?? 0
+        return viewModel?.specialSales.count ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as? SpecialSaleCollectionViewCell,
+              let viewModel = self.viewModel
+        else {
+            return UICollectionViewCell()
+        }
+        
+        let sale = viewModel.specialSales[indexPath.row]
+        cell.configure(with: sale)
+        return cell
+    }
+    
+}
+
+
+extension RestaurantViewController: UIScrollViewDelegate {
+    
+    func getCurrentPage() {
+        let visibleRect = CGRect(origin: specialSalesCollection.contentOffset, size: specialSalesCollection.bounds.size)
+        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+        if let visibleIndexPath = specialSalesCollection.indexPathForItem(at: visiblePoint) {
+            self.pageControl.currentPage = visibleIndexPath.row
+        }
+    }
+    
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+        if scrollView == self.scrollView && !isDecelerating {
+            if scrollView.contentOffset.y > 20  {
+                scrollView.setContentOffset(CGPoint(x: 0, y: salesTable.frame.minY), animated: true)
+                scrollView.isScrollEnabled = false
+                self.salesTable.isScrollEnabled = true
+                self.isModalInPresentation = true
+                isDragging = true
+            } else {
+                scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
             }
         }
+        if scrollView == salesTable {
+            if scrollView.contentOffset.y <= 0 && lastSalesTableScrollY <= 0 {
+                self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+                self.scrollView.isScrollEnabled = true
+                scrollView.isScrollEnabled = false
+                self.isModalInPresentation = false
+            }
+            lastSalesTableScrollY = scrollView.contentOffset.y
+        }
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            return CGSize(width: 100, height: 60)
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        if scrollView == self.scrollView && !isDragging {
+            if scrollView.contentOffset.y > 20  {
+                scrollView.setContentOffset(CGPoint(x: 0, y: salesTable.frame.minY), animated: true)
+                scrollView.isScrollEnabled = false
+                self.salesTable.isScrollEnabled = true
+                self.isModalInPresentation = true
+                isDecelerating = true
+            } else {
+                scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+            }
         }
+        if scrollView == salesTable {
+            if scrollView.contentOffset.y <= 0 && lastSalesTableScrollY <= 0 {
+                self.scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+                self.scrollView.isScrollEnabled = true
+                scrollView.isScrollEnabled = false
+                self.isModalInPresentation = false
+                isDragging = false
+                isDecelerating = false
+            }
+            lastSalesTableScrollY = scrollView.contentOffset.y
+        }
+        if scrollView == specialSalesCollection {
+            getCurrentPage()
+        }
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView == specialSalesCollection {
+            getCurrentPage()
+        }
+    }
+
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if scrollView == specialSalesCollection {
+            getCurrentPage()
+        }
+    }
 }

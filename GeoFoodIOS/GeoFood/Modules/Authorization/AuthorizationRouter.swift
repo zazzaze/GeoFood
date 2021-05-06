@@ -9,7 +9,7 @@ import Foundation
 
 protocol AuthorizationRouterProtocol: class {
     func openRegistrationView()
-    func openMapView(with token: String)
+    func openAccountView(animated: Bool)
 }
 
 class AuthorizationRouter: AuthorizationRouterProtocol {
@@ -24,8 +24,7 @@ class AuthorizationRouter: AuthorizationRouterProtocol {
         view.getNavigationController()?.pushViewController(registrationVc, animated: true)
     }
     
-    func openMapView(with token: String) {
-        let mapVc = MapViewController(token: token)
-        view.getNavigationController()?.pushViewController(mapVc, animated: true)
+    func openAccountView(animated: Bool) {
+        self.view.getNavigationController()?.pushViewController(AccountConfigurator.assembly(), animated: animated)
     }
 }

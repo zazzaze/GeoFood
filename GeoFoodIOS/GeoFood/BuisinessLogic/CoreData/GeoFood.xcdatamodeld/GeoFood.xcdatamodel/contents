@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17709" systemVersion="20C69" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Location" representedClassName="Location" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="untrackedLocations" inverseEntity="User"/>
+    </entity>
+    <entity name="Restaurant" representedClassName="Restaurant" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="logoImage" optional="YES" attributeType="Binary"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <relationship name="sales" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Sale" inverseName="currentRestaurant" inverseEntity="Sale"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="User" inverseName="restaurants" inverseEntity="User"/>
+    </entity>
+    <entity name="Sale" representedClassName="Sale" syncable="YES">
+        <attribute name="code" optional="YES" attributeType="String"/>
+        <attribute name="image" optional="YES" attributeType="Binary"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="price" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="currentRestaurant" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Restaurant" inverseName="sales" inverseEntity="Restaurant"/>
+    </entity>
+    <entity name="User" representedClassName="User" syncable="YES">
+        <attribute name="login" optional="YES" attributeType="String"/>
+        <attribute name="password" optional="YES" attributeType="String"/>
+        <attribute name="token" optional="YES" attributeType="String"/>
+        <relationship name="restaurants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Restaurant" inverseName="user" inverseEntity="Restaurant"/>
+        <relationship name="untrackedLocations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Location" inverseName="user" inverseEntity="Location"/>
+    </entity>
+    <elements>
+        <element name="Location" positionX="-162" positionY="162" width="128" height="89"/>
+        <element name="Restaurant" positionX="-399.021240234375" positionY="173.7115783691406" width="128" height="134"/>
+        <element name="Sale" positionX="290.3701171875" positionY="16.53732299804688" width="128" height="118"/>
+        <element name="User" positionX="-63" positionY="-18" width="128" height="104"/>
+    </elements>
+</model>

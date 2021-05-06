@@ -26,19 +26,18 @@ class AuthorizationPresenter: AuthorizationPresenterProtocol {
     }
     
     func viewDidLoad() {
-        view.setNavigationBarHidden(true, animated: false)
+        if interactor.isUserAuth {
+            self.router.openAccountView(animated: false)
+        }
     }
     
     func viewDidAppear() {
-        view.setNavigationBarHidden(true, animated: true)
     }
     
     func authorizationButtonTapped(withEmail: String, password: String) {
-        if /*LoginEntryChecker.checkEmail(withEmail) &&*/ LoginEntryChecker.checkPassword(password) {
+        if /*LoginEntryChecker.checkEmail(withEmail) && LoginEntryChecker.checkPassword(password)*/ true {
             view.startAnimatingActivityIndicator()
-            DispatchQueue.global(qos: .utility).async { [unowned self] in
-                interactor.authUser(withEmail: withEmail, password: password)
-            }
+            interactor.authUser(withEmail: withEmail, password: password)
         } else {
             view.showAlert(title: "Неверные данные", message: "Проверьте введенные email и пароль")
         }
@@ -61,10 +60,10 @@ extension AuthorizationPresenter: AuthorizationInteractorOutputProtocol {
         }
     }
     
-    func authorizationSuccessfully(with token: String) {
+    func authorizationSuccessfully() {
         DispatchQueue.main.async { [unowned self] in
             view.stopAnimatingActivityIndicator()
-            router.openMapView(with: token)
+            router.openAccountView(animated: true)
         }
     }
     

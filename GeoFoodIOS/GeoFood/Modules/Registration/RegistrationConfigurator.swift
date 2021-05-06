@@ -19,6 +19,5 @@ class RegistrationConfigurator: RegistrationConfiguratorProtocol {
         view.presenter = presenter
         presenter.interactor = interactor
         presenter.router = RegistrationRouter(view: view)
-        interactor.registrationService = RegistrationService()
     }
 }
