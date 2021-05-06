@@ -27,19 +27,22 @@ public class Utils {
     public static StockEntity createStock(AddStockRequest request){
         StockEntity newStock = new StockEntity();
         newStock.setName(request.getName());
-        newStock.setDescription(request.getDescription());
+        newStock.setPromo(request.getPromo());
         newStock.setOldPrice(request.getOldPrice());
         newStock.setNewPrice(request.getNewPrice());
         return newStock;
     }
 
-    public static boolean stockInArea(double x, double y, double radius, ShopEntity shop){
+    public static boolean shopInAarea(double x, double y, double radius, ShopEntity shop){
         double stockX = shop.getLatitude();
         double stockY = shop.getLongitude();
-        double h = Math.sqrt((stockX - x) * (stockX - x) + (stockY - y) * (stockY - y));
-        if(h <= radius)
-            return true;
-        else
-            return false;
+        double deltaX = 0.00005;
+        double deltaY = 0.00005;
+//        double h = Math.sqrt((stockX - x) * (stockX - x) + (stockY - y) * (stockY - y));
+//        if(h <= radius)
+//            return true;
+//        else
+//            return false;
+        return Math.abs(stockX - x) < deltaX * radius && Math.abs(stockY - y) < deltaY * radius;
     }
 }

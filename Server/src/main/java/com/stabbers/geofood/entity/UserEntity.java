@@ -1,9 +1,7 @@
 package com.stabbers.geofood.entity;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
@@ -20,10 +18,10 @@ public class UserEntity {
     @Column(name = "id", updatable = false, nullable = false)
     private Integer id;
 
-    @Column(unique = true)
+    @Column(unique = true, columnDefinition = "VARCHAR(128)")
     private String login;
 
-    @Column
+    @Column(columnDefinition = "VARCHAR(128)")
     private String password;
 
     @ManyToOne
@@ -31,9 +29,15 @@ public class UserEntity {
     private RoleEntity role;
 
     @JsonManagedReference
-    @OneToMany(targetEntity = ShopEntity.class, mappedBy = "admin", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ShopEntity> shops = new ArrayList<>();
+    @OneToMany(targetEntity = VisitActionEntity.class, mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<VisitActionEntity> visitActions = new ArrayList<>();
+    public void addVisit(VisitActionEntity newVisit){
+        visitActions.add(newVisit);
+    }
 
+    @JsonManagedReference
+    @OneToMany(targetEntity = ShopEntity.class, mappedBy = "holder", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ShopEntity> shops = new ArrayList<>();
     public void addShop(ShopEntity newShop){
         shops.add(newShop);
     }

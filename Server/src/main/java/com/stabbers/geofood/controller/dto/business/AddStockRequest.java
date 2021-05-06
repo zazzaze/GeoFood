@@ -11,7 +11,7 @@ public class AddStockRequest {
     private String name;
 
     @NotEmpty
-    private String description;
+    private String promo;
 
     @NotEmpty
     private double oldPrice;

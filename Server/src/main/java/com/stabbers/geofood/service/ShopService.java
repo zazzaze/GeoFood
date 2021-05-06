@@ -11,21 +11,16 @@ import java.util.List;
 
 @Service
 public class ShopService {
-//    @Bean
-//    PasswordEncoder getEncoder() {
-//        return new BCryptPasswordEncoder();
-//    }
 
     @Autowired
     private ShopRepository shopRepository;
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    final String lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin viverra ipsum fringilla felis elementum, eget tincidunt enim sagittis. Sed pharetra commodo rhoncus.";
+    final String lorem = "Lorem ipsum";
 
     public ShopEntity saveShop(ShopEntity shop) {
-        //shop.setShopLogoFileName(shop.getName() + ".png");
-        shop.setDescription(lorem);
+        shop.setLocation(lorem);
         return shopRepository.save(shop);
     }
 
@@ -36,9 +31,5 @@ public class ShopService {
     public ShopEntity findById(int id){
         return  shopRepository.findById(id).orElse(new ShopEntity());
     }
-
-//    public ShopEntity findByName(String name) {
-//        return shopRepository.findByName(name);
-//    }
 
 }

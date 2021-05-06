@@ -1,25 +1,28 @@
 package com.stabbers.geofood.controller;
 
 import com.fasterxml.jackson.annotation.JsonView;
-import com.stabbers.geofood.controller.dto.business.GetNearShopsRequest;
+import com.stabbers.geofood.controller.dto.business.*;
 import com.stabbers.geofood.config.jwt.JwtProvider;
-import com.stabbers.geofood.controller.dto.business.AddShopRequest;
-import com.stabbers.geofood.controller.dto.business.AddStockRequest;
-import com.stabbers.geofood.controller.dto.business.GetStocksRequest;
 import com.stabbers.geofood.entity.ShopEntity;
 import com.stabbers.geofood.entity.StockEntity;
 import com.stabbers.geofood.entity.UserEntity;
+import com.stabbers.geofood.entity.VisitActionEntity;
 import com.stabbers.geofood.entity.json.Views;
 import com.stabbers.geofood.service.ShopService;
 import com.stabbers.geofood.service.StockService;
 import com.stabbers.geofood.service.UserService;
+import com.stabbers.geofood.service.VisitActionService;
+import lombok.Builder;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @RestController
 public class BusinessController {
@@ -30,7 +33,20 @@ public class BusinessController {
     @Autowired
     private StockService stockService;
     @Autowired
+    private VisitActionService visitActionService;
+    @Autowired
     private JwtProvider jwtProvider;
+
+
+    private UserEntity getUserByToken(String bearer ){
+        String token = Utils.getTokenFromHeader(bearer);
+        UserEntity user = null;
+        if (token != null && jwtProvider.validateToken(token)) {
+            String userLogin = jwtProvider.getLoginFromToken(token);
+            user = userService.findByLogin(userLogin);
+        }
+        return user;
+    }
 
     // ADD SHOP.
     @PostMapping("/admin/shop/add")
@@ -49,7 +65,7 @@ public class BusinessController {
 
         ShopEntity newShop = Utils.createShop(request);
 
-        newShop.setAdmin(admin);
+        newShop.setHolder(admin);
         admin.addShop(newShop);
 
         shopService.saveShop(newShop);
@@ -75,7 +91,7 @@ public class BusinessController {
         return new ResponseEntity<>(shops, HttpStatus.OK);
     }
 
-    // ADD STOCKS.
+    // ADD STOCK.
     @PostMapping("/admin/stock/add")
     public HttpStatus addStock(@RequestHeader("Authorization") String bearer, @RequestBody AddStockRequest request) {
         String token = Utils.getTokenFromHeader(bearer);
@@ -131,18 +147,14 @@ public class BusinessController {
         return new ResponseEntity<>(stocks, HttpStatus.OK);
     }
 
+    // USER.
     // GET NEAR SHOPS.
     @JsonView(Views.forList.class)
     @PostMapping("/user/shops")
     public List<ShopEntity> getNearShops(@RequestHeader("Authorization") String bearer,
                                                               @RequestBody GetNearShopsRequest request) {
-        String token = Utils.getTokenFromHeader(bearer);
-
         UserEntity user = null;
-        if (token != null && jwtProvider.validateToken(token)) {
-            String userLogin = jwtProvider.getLoginFromToken(token);
-            user = userService.findByLogin(userLogin);
-        }
+        user = getUserByToken(bearer);
 
         if (user == null)
             return null;
@@ -151,7 +163,7 @@ public class BusinessController {
         ArrayList<ShopEntity> validShops = new ArrayList<>();
 
         for (ShopEntity shop : shops) {
-            if (Utils.stockInArea(request.getLatitude(), request.getLongitude(), request.getRadius(), shop))
+            if (Utils.shopInAarea(request.getLatitude(), request.getLongitude(), request.getRadius(), shop))
                 validShops.add(shop);
         }
 
@@ -159,9 +171,11 @@ public class BusinessController {
     }
 
     // GET ALL SHOP STOCKS
+    @JsonView(Views.forList.class)
     @PostMapping("/user/stocks")
     public List<StockEntity> getStocks(@RequestHeader("Authorization") String bearer,
                                           @RequestBody GetStocksRequest request) {
+
         String token = Utils.getTokenFromHeader(bearer);
 
         UserEntity user = null;
@@ -173,10 +187,100 @@ public class BusinessController {
         if (user == null)
             return null;
 
-        ShopEntity stockHandler = shopService.findById(request.getId());
-        if(stockHandler == null)
+        ShopEntity shop = shopService.findById(request.getId());
+        if(shop == null)
             return null;
 
-        return stockHandler.getStocks();
+        //ArrayList<StockEntity> validStocks = (ArrayList<StockEntity>) shop.getStocks();
+        ArrayList<StockEntity> validStocks = new ArrayList<>(shop.getStocks());
+
+        boolean isSpecialVisitor = false;
+        Map<Integer, VisitActionEntity> visitActions = new HashMap<>();
+        for(VisitActionEntity action: user.getVisitActions()){
+            if(action.getUser().getId().equals(user.getId())){
+                visitActions.put(action.getShop().getId(), action);
+            }
+        }
+
+        if(visitActions.get(shop.getId()) != null && visitActions.get(shop.getId()).getCount() >= 10)
+            isSpecialVisitor = true;
+
+        if(!isSpecialVisitor)
+            validStocks.removeIf(StockEntity::isSpecial);
+
+        return validStocks;
     }
+
+    // MOVEMENT CONTROLLER.
+    @JsonView(Views.forList.class)
+    @PostMapping("/movement")
+    public HttpStatus movement(@RequestHeader("Authorization") String bearer,
+                                         @RequestBody MovementRequest request) throws ParseException {
+        UserEntity user;
+        user = getUserByToken(bearer);
+
+        if (user == null)
+            return null;
+
+        ArrayList<ShopEntity> shops = (ArrayList<ShopEntity>) shopService.getAllShops();
+        ArrayList<ShopEntity> validShops = new ArrayList<>();
+
+        for (ShopEntity shop : shops) {
+            if (Utils.shopInAarea(request.getLatitude(), request.getLongitude(), 100, shop))
+                validShops.add(shop);
+        }
+
+        Map<Integer, VisitActionEntity> visitActions = new HashMap<>();
+        for(VisitActionEntity action: user.getVisitActions()){
+            if(action.getUser().getId().equals(user.getId())){
+                visitActions.put(action.getShop().getId(), action);
+            }
+        }
+
+        for(ShopEntity shop : validShops) {
+            Integer shopId = shop.getId();
+            VisitActionEntity visit = visitActions.get(shopId);
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date requestDate = formatter.parse(request.getDate());
+
+            if(visit != null){
+                Date lastDate = new Date(visit.getLastVisit().getTime());
+
+                if(requestDate.getTime() - lastDate.getTime() >= 1000){
+                    visit.setCount(visit.getCount() + 1);
+                    visit.setLastVisit(new Timestamp(requestDate.getTime()));
+                    visitActionService.saveVisitAction(visit);
+                }
+            }
+            else {
+                VisitActionEntity newVisit = new VisitActionEntity();
+                newVisit.setLastVisit(new Timestamp(requestDate.getTime()));
+                newVisit.setShop(shopService.findById(shopId));
+                newVisit.setCount(1);
+                newVisit.setUser(user);
+
+                user.addVisit(newVisit);
+                visitActionService.saveVisitAction(newVisit);
+            }
+        }
+
+        return HttpStatus.OK;
+    }
+
+    @JsonView(Views.fullMessage.class)
+    @PostMapping("/shop/img")
+    public byte[] getImg(@RequestBody GetShopImgRequest request) {
+
+        ShopEntity shop = shopService.findById(request.getShopId());
+        return shop.getImg();
+    }
+
+    @JsonView(Views.fullMessage.class)
+    @PostMapping("/stock/img")
+    public byte[] getImg(@RequestBody GetStockImgRequest request) {
+
+        StockEntity stock = stockService.findById(request.getStockId());
+        return stock.getImg();
+    }
+
 }
