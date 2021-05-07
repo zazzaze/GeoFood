@@ -7,8 +7,10 @@
 
 import UIKit
 
+/// TabBar контроллер для карты и авторизации
 class MainViewController: UITabBarController {
-
+    
+    /// Вью загрузилось
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,6 +32,7 @@ class MainViewController: UITabBarController {
         tabBar.unselectedItemTintColor = UIColor(named: "light_blue")
     }
     
+    /// Перерисовка tabbar
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tabBar.backgroundColor = UIColor(named: "light_green")

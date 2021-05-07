@@ -7,35 +7,50 @@
 
 import UIKit
 
+/// Ячейка таблицы с акцией
 class SaleCell: UITableViewCell {
     
+    /// Задняя картинка для акции
     let backImage = UIImageView()
+    /// Внешняя вью
     let frontView = UIView()
+    /// Название акции
     let saleName = UILabel()
+    /// Промокод акции
     let saleCode = UILabel()
+    /// Цена акции
     let salePrice = UILabel()
     
     
+    /// Конструктор
+    /// - Parameters:
+    ///   - style: Стиль ячейки
+    ///   - reuseIdentifier: id ячейки
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupUI()
     }
     
+    /// Конструктор
+    /// - Parameter coder: кодер
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /// Вью загрузилось из storyboard
     override func awakeFromNib() {
         super.awakeFromNib()
         configureSubviews()
         addAllSubviews()
     }
     
+    /// Конфигурировать вью
     private func setupUI() {
         configureSubviews()
         addAllSubviews()
     }
     
+    /// Конфигурировать внутренние вью
     private func configureSubviews() {
         layer.cornerRadius = 17
         contentView.layer.cornerRadius = 17
@@ -72,6 +87,7 @@ class SaleCell: UITableViewCell {
         salePrice.textColor = UIColor(named: "dark_blue")
     }
     
+    /// Добавить все вью
     private func addAllSubviews() {
         contentView.addSubview(backImage)
         contentView.addSubview(frontView)
@@ -80,6 +96,7 @@ class SaleCell: UITableViewCell {
         frontView.addSubview(salePrice)
     }
     
+    /// Перерисовать вью
     override func layoutSubviews() {
         super.layoutSubviews()
         NSLayoutConstraint.activate([
@@ -107,7 +124,9 @@ class SaleCell: UITableViewCell {
         ])
         backImage.frame = CGRect(x: 0, y: 0, width: 85, height: contentView.frame.height)
     }
-
+    
+    /// Сконфигурировать вью по модели представления акции
+    /// - Parameter vm: Модель представления
     func configure(with vm: SaleViewModel) {
         self.backImage.image = vm.image
         saleName.text = vm.name

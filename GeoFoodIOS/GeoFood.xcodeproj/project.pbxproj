@@ -11,34 +11,26 @@
 		7456228126027776003B2D7B /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7456228026027776003B2D7B /* RestaurantViewController.swift */; };
 		745F638B26011655003FB7E9 /* LoginEntryChecker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745F638A26011655003FB7E9 /* LoginEntryChecker.swift */; };
 		745F639226011C50003FB7E9 /* LoginForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745F639126011C50003FB7E9 /* LoginForm.swift */; };
-		748B2411263F1B4F00C80B4D /* RestaurantRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748B2410263F1B4F00C80B4D /* RestaurantRouter.swift */; };
 		748B2415263F1BB000C80B4D /* RestaurantPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748B2414263F1BB000C80B4D /* RestaurantPresenter.swift */; };
 		7490280E25FCFD8D00B382B4 /* RegistrationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490280D25FCFD8D00B382B4 /* RegistrationViewController.swift */; };
-		7490281825FF58A300B382B4 /* AuthorizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490281725FF58A300B382B4 /* AuthorizationService.swift */; };
 		7490282125FF5D1800B382B4 /* AuthorizationPresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490282025FF5D1800B382B4 /* AuthorizationPresenterTests.swift */; };
 		7490283925FF63CD00B382B4 /* AuthorizationViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490283825FF63CD00B382B4 /* AuthorizationViewControllerTests.swift */; };
-		7490283D25FF737B00B382B4 /* RegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490283C25FF737B00B382B4 /* RegistrationService.swift */; };
 		7490284125FF738500B382B4 /* Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490284025FF738500B382B4 /* Endpoints.swift */; };
 		7490285225FF922700B382B4 /* RegistrationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490285125FF922700B382B4 /* RegistrationConfigurator.swift */; };
 		7490285625FF93F300B382B4 /* RegistrationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490285525FF93F300B382B4 /* RegistrationPresenter.swift */; };
 		7490285A25FF949100B382B4 /* RegistrationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490285925FF949100B382B4 /* RegistrationInteractor.swift */; };
 		7490285E25FF950500B382B4 /* RegistrationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490285D25FF950500B382B4 /* RegistrationRouter.swift */; };
-		7490286425FF9A7600B382B4 /* TextFieldWithConditions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490286325FF9A7600B382B4 /* TextFieldWithConditions.swift */; };
-		7490286825FF9BB500B382B4 /* TextFieldCondition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490286725FF9BB500B382B4 /* TextFieldCondition.swift */; };
-		7490286C25FF9CAD00B382B4 /* ConditionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7490286B25FF9CAD00B382B4 /* ConditionView.swift */; };
 		7498FBFB261C5B5F00E962AF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7498FBFA261C5B5F00E962AF /* MainViewController.swift */; };
 		7498FC01261CACFE00E962AF /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7498FC00261CACFE00E962AF /* Colors.xcassets */; };
 		749C49A82633692D0042E695 /* RestaurantHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C49A72633692D0042E695 /* RestaurantHeaderView.swift */; };
 		749C49AE26336E210042E695 /* RestaurantViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C49AD26336E210042E695 /* RestaurantViewModel.swift */; };
 		749C49B4263428500042E695 /* SaleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C49B3263428500042E695 /* SaleCell.swift */; };
 		749C49BA26342DB50042E695 /* SaleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 749C49B926342DB50042E695 /* SaleViewModel.swift */; };
-		74A7BA41260CF3130041A18A /* Wave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A7BA40260CF3130041A18A /* Wave.swift */; };
 		74A7BA47260CFBB30041A18A /* MapConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A7BA46260CFBB30041A18A /* MapConfigurator.swift */; };
 		74A7BA4D260D1E920041A18A /* RestaurantSaleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A7BA4C260D1E920041A18A /* RestaurantSaleModel.swift */; };
 		74A7BA51260D1E9F0041A18A /* RestaurantModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A7BA50260D1E9F0041A18A /* RestaurantModel.swift */; };
 		74A7BA60260DD5120041A18A /* MapInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A7BA5F260DD5120041A18A /* MapInteractor.swift */; };
 		74A7BA64260DD5B00041A18A /* MapRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A7BA63260DD5B00041A18A /* MapRouter.swift */; };
-		74A7BA6E260DD6E80041A18A /* RestaurantsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A7BA6D260DD6E80041A18A /* RestaurantsService.swift */; };
 		74A7BA72260DD75C0041A18A /* MapExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A7BA71260DD75C0041A18A /* MapExtension.swift */; };
 		74A7BA76260DD7DE0041A18A /* CoordinateRequestModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A7BA75260DD7DE0041A18A /* CoordinateRequestModel.swift */; };
 		74A7BA7B260DE5CA0041A18A /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74A7BA7A260DE5CA0041A18A /* ImageLoader.swift */; };
@@ -103,36 +95,28 @@
 		7456228026027776003B2D7B /* RestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
 		745F638A26011655003FB7E9 /* LoginEntryChecker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEntryChecker.swift; sourceTree = "<group>"; };
 		745F639126011C50003FB7E9 /* LoginForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginForm.swift; sourceTree = "<group>"; };
-		748B2410263F1B4F00C80B4D /* RestaurantRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantRouter.swift; sourceTree = "<group>"; };
 		748B2414263F1BB000C80B4D /* RestaurantPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantPresenter.swift; sourceTree = "<group>"; };
 		7490280D25FCFD8D00B382B4 /* RegistrationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewController.swift; sourceTree = "<group>"; };
-		7490281725FF58A300B382B4 /* AuthorizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationService.swift; sourceTree = "<group>"; };
 		7490281E25FF5D1800B382B4 /* GeoFoodTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeoFoodTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7490282025FF5D1800B382B4 /* AuthorizationPresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationPresenterTests.swift; sourceTree = "<group>"; };
 		7490282225FF5D1800B382B4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7490283825FF63CD00B382B4 /* AuthorizationViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizationViewControllerTests.swift; sourceTree = "<group>"; };
-		7490283C25FF737B00B382B4 /* RegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationService.swift; sourceTree = "<group>"; };
 		7490284025FF738500B382B4 /* Endpoints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Endpoints.swift; sourceTree = "<group>"; };
 		7490285125FF922700B382B4 /* RegistrationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationConfigurator.swift; sourceTree = "<group>"; };
 		7490285525FF93F300B382B4 /* RegistrationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationPresenter.swift; sourceTree = "<group>"; };
 		7490285925FF949100B382B4 /* RegistrationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationInteractor.swift; sourceTree = "<group>"; };
 		7490285D25FF950500B382B4 /* RegistrationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationRouter.swift; sourceTree = "<group>"; };
-		7490286325FF9A7600B382B4 /* TextFieldWithConditions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldWithConditions.swift; sourceTree = "<group>"; };
-		7490286725FF9BB500B382B4 /* TextFieldCondition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldCondition.swift; sourceTree = "<group>"; };
-		7490286B25FF9CAD00B382B4 /* ConditionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionView.swift; sourceTree = "<group>"; };
 		7498FBFA261C5B5F00E962AF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		7498FC00261CACFE00E962AF /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
 		749C49A72633692D0042E695 /* RestaurantHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantHeaderView.swift; sourceTree = "<group>"; };
 		749C49AD26336E210042E695 /* RestaurantViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewModel.swift; sourceTree = "<group>"; };
 		749C49B3263428500042E695 /* SaleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleCell.swift; sourceTree = "<group>"; };
 		749C49B926342DB50042E695 /* SaleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaleViewModel.swift; sourceTree = "<group>"; };
-		74A7BA40260CF3130041A18A /* Wave.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wave.swift; sourceTree = "<group>"; };
 		74A7BA46260CFBB30041A18A /* MapConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapConfigurator.swift; sourceTree = "<group>"; };
 		74A7BA4C260D1E920041A18A /* RestaurantSaleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantSaleModel.swift; sourceTree = "<group>"; };
 		74A7BA50260D1E9F0041A18A /* RestaurantModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantModel.swift; sourceTree = "<group>"; };
 		74A7BA5F260DD5120041A18A /* MapInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInteractor.swift; sourceTree = "<group>"; };
 		74A7BA63260DD5B00041A18A /* MapRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRouter.swift; sourceTree = "<group>"; };
-		74A7BA6D260DD6E80041A18A /* RestaurantsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsService.swift; sourceTree = "<group>"; };
 		74A7BA71260DD75C0041A18A /* MapExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapExtension.swift; sourceTree = "<group>"; };
 		74A7BA75260DD7DE0041A18A /* CoordinateRequestModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateRequestModel.swift; sourceTree = "<group>"; };
 		74A7BA7A260DE5CA0041A18A /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
@@ -210,7 +194,6 @@
 				7456228026027776003B2D7B /* RestaurantViewController.swift */,
 				749C49A4263367CD0042E695 /* Subviews */,
 				749C49AB26336E010042E695 /* Presenter */,
-				748B2410263F1B4F00C80B4D /* RestaurantRouter.swift */,
 				74F3300E26418D980047C0A9 /* RestaurantConfigurator.swift */,
 				74F330122641919D0047C0A9 /* RestaurantInteractor.swift */,
 			);
@@ -232,6 +215,14 @@
 				74A7BA54260D1EA60041A18A /* Authorization */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		7470FFFC26447A55001D928F /* RequestModels */ = {
+			isa = PBXGroup;
+			children = (
+				74A7BA75260DD7DE0041A18A /* CoordinateRequestModel.swift */,
+			);
+			path = RequestModels;
 			sourceTree = "<group>";
 		};
 		7490280C25FCFD7500B382B4 /* Registration */ = {
@@ -260,8 +251,8 @@
 		7490281525FF588D00B382B4 /* Server */ = {
 			isa = PBXGroup;
 			children = (
-				74A7BA6C260DD6C40041A18A /* Restaurants */,
-				74A7BA69260DD68B0041A18A /* Authorization */,
+				7470FFFC26447A55001D928F /* RequestModels */,
+				74A7BA7A260DE5CA0041A18A /* ImageLoader.swift */,
 				7490284025FF738500B382B4 /* Endpoints.swift */,
 				74C709FC26359E1C007A83B7 /* UserService.swift */,
 				74C70A0026359ED2007A83B7 /* RequestFactory.swift */,
@@ -296,20 +287,8 @@
 			children = (
 				74F1660E26309F0100F34001 /* Button */,
 				74F1660326308B5200F34001 /* TextField */,
-				74A7BA3F260CF2F90041A18A /* Wave */,
-				7490286225FF9A3500B382B4 /* TextFieldWithConditions */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		7490286225FF9A3500B382B4 /* TextFieldWithConditions */ = {
-			isa = PBXGroup;
-			children = (
-				7490286325FF9A7600B382B4 /* TextFieldWithConditions.swift */,
-				7490286725FF9BB500B382B4 /* TextFieldCondition.swift */,
-				7490286B25FF9CAD00B382B4 /* ConditionView.swift */,
-			);
-			path = TextFieldWithConditions;
 			sourceTree = "<group>";
 		};
 		7498FBF9261C5AFE00E962AF /* TabBar */ = {
@@ -348,39 +327,12 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		74A7BA3F260CF2F90041A18A /* Wave */ = {
-			isa = PBXGroup;
-			children = (
-				74A7BA40260CF3130041A18A /* Wave.swift */,
-			);
-			path = Wave;
-			sourceTree = "<group>";
-		};
 		74A7BA54260D1EA60041A18A /* Authorization */ = {
 			isa = PBXGroup;
 			children = (
 				745F639126011C50003FB7E9 /* LoginForm.swift */,
 			);
 			path = Authorization;
-			sourceTree = "<group>";
-		};
-		74A7BA69260DD68B0041A18A /* Authorization */ = {
-			isa = PBXGroup;
-			children = (
-				7490281725FF58A300B382B4 /* AuthorizationService.swift */,
-				7490283C25FF737B00B382B4 /* RegistrationService.swift */,
-			);
-			path = Authorization;
-			sourceTree = "<group>";
-		};
-		74A7BA6C260DD6C40041A18A /* Restaurants */ = {
-			isa = PBXGroup;
-			children = (
-				74A7BA6D260DD6E80041A18A /* RestaurantsService.swift */,
-				74A7BA75260DD7DE0041A18A /* CoordinateRequestModel.swift */,
-				74A7BA7A260DE5CA0041A18A /* ImageLoader.swift */,
-			);
-			path = Restaurants;
 			sourceTree = "<group>";
 		};
 		74B25703263B4E0200C32C89 /* PlainModels */ = {
@@ -788,7 +740,6 @@
 				74F1661026309F1700F34001 /* NextButton.swift in Sources */,
 				74A7BA64260DD5B00041A18A /* MapRouter.swift in Sources */,
 				74C709F626359A46007A83B7 /* User+CoreDataProperties.swift in Sources */,
-				7490281825FF58A300B382B4 /* AuthorizationService.swift in Sources */,
 				7456228126027776003B2D7B /* RestaurantViewController.swift in Sources */,
 				74A7BA51260D1E9F0041A18A /* RestaurantModel.swift in Sources */,
 				74C709F526359A46007A83B7 /* User+CoreDataClass.swift in Sources */,
@@ -800,7 +751,6 @@
 				74F3302F2642AD2A0047C0A9 /* AccountRouter.swift in Sources */,
 				74F1660B2630931200F34001 /* TitledTextField.swift in Sources */,
 				74E6162325FA98AD00A148F5 /* AuthorizationViewController.swift in Sources */,
-				74A7BA6E260DD6E80041A18A /* RestaurantsService.swift in Sources */,
 				74DC6E4126022E5800FB7DC0 /* MapPresenter.swift in Sources */,
 				74F3301D2642AA750047C0A9 /* AccountPresenter.swift in Sources */,
 				74C709F826359A46007A83B7 /* Sale+CoreDataClass.swift in Sources */,
@@ -812,18 +762,14 @@
 				749C49AE26336E210042E695 /* RestaurantViewModel.swift in Sources */,
 				74C709F926359A46007A83B7 /* Sale+CoreDataProperties.swift in Sources */,
 				74C70A0C26371C8C007A83B7 /* Location+CoreDataProperties.swift in Sources */,
-				74A7BA41260CF3130041A18A /* Wave.swift in Sources */,
 				74E6163E25FA999400A148F5 /* AuthorizationRouter.swift in Sources */,
-				748B2411263F1B4F00C80B4D /* RestaurantRouter.swift in Sources */,
 				7498FBFB261C5B5F00E962AF /* MainViewController.swift in Sources */,
 				74C70A0D26371C8D007A83B7 /* Location+CoreDataClass.swift in Sources */,
 				749C49A82633692D0042E695 /* RestaurantHeaderView.swift in Sources */,
 				745F638B26011655003FB7E9 /* LoginEntryChecker.swift in Sources */,
 				74E6163B25FA998B00A148F5 /* AuthorizationInteractor.swift in Sources */,
-				7490283D25FF737B00B382B4 /* RegistrationService.swift in Sources */,
 				74F1660526308B8E00F34001 /* InputTextField.swift in Sources */,
 				74EF9DC52639D62B0000B3BD /* SpecialSaleCollectionViewCell.swift in Sources */,
-				7490286425FF9A7600B382B4 /* TextFieldWithConditions.swift in Sources */,
 				74F3301926421A680047C0A9 /* LocationManager.swift in Sources */,
 				749C49BA26342DB50042E695 /* SaleViewModel.swift in Sources */,
 				74F33009264185270047C0A9 /* AccountViewController.swift in Sources */,
@@ -837,7 +783,6 @@
 				748B2415263F1BB000C80B4D /* RestaurantPresenter.swift in Sources */,
 				74C709E6263594CC007A83B7 /* GeoFood.xcdatamodeld in Sources */,
 				74F3300F26418D980047C0A9 /* RestaurantConfigurator.swift in Sources */,
-				7490286C25FF9CAD00B382B4 /* ConditionView.swift in Sources */,
 				74A7BA83260E1B0E0041A18A /* RestaurantAnnotation.swift in Sources */,
 				74E6164125FA99A400A148F5 /* AuthorizationConfigurator.swift in Sources */,
 				74A7BA76260DD7DE0041A18A /* CoordinateRequestModel.swift in Sources */,
@@ -854,7 +799,6 @@
 				7490284125FF738500B382B4 /* Endpoints.swift in Sources */,
 				74F3302B2642ACB00047C0A9 /* UserViewModel.swift in Sources */,
 				7490285E25FF950500B382B4 /* RegistrationRouter.swift in Sources */,
-				7490286825FF9BB500B382B4 /* TextFieldCondition.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

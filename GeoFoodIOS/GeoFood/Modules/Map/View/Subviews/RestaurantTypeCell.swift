@@ -7,18 +7,25 @@
 
 import UIKit
 
+/// Ячейка типа ресторана
 class RestaurantTypeCell: UICollectionViewCell {
     
+    /// Название типа
     private let textLabel = UILabel()
+    /// Картинка типа
     private let image = UIImageView()
+    /// Выбран ли тип
     var selectionMode = false
     
     
+    /// Конструктор
+    /// - Parameter frame: Фрейм ячейки
     override init(frame: CGRect) {
         super.init(frame: .zero)
         setupUI()
     }
     
+    /// Конфигурировать вью
     private func setupUI() {
         textLabel.font = UIFont.systemFont(ofSize: 10, weight: .semibold)
         textLabel.textColor = UIColor(named: "dark_blue")
@@ -42,6 +49,7 @@ class RestaurantTypeCell: UICollectionViewCell {
         contentView.addSubview(image)
     }
     
+    /// Перерисовать вью
     override func layoutSubviews() {
         super.layoutSubviews()
         NSLayoutConstraint.activate([
@@ -58,6 +66,8 @@ class RestaurantTypeCell: UICollectionViewCell {
         ])
     }
     
+    /// Конфигурировать ячейку по типу кафе
+    /// - Parameter type: Тип кафе
     func configure(with type: RestaurantType) {
         textLabel.text = type.text
         image.image = type.image

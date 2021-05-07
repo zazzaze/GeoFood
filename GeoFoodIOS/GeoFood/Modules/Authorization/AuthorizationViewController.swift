@@ -7,31 +7,56 @@
 
 import UIKit
 
+/// Протокол контроллера авторизации
 protocol AuthorizationViewProtocol: class {
-    func setAuthorizationButtonIsEnabled(_ isEnabled: Bool)
+    /// Показать сообщение
+    /// - Parameters:
+    ///   - title: Заголовок сообщения
+    ///   - message: Текст сообщения
     func showAlert(title: String, message: String)
+    /// Изменить видимость навигации
+    /// - Parameters:
+    ///   - isHidden: Спрятан ли
+    ///   - animated: Анимировано
     func setNavigationBarHidden(_ isHidden: Bool, animated: Bool)
+    /// Начать анимацию индикатора загрузки
     func startAnimatingActivityIndicator()
+    /// Завершить анимацию индикатора загрузки
     func stopAnimatingActivityIndicator()
+    /// Получить контроллер навигации
     func getNavigationController() -> UINavigationController?
 }
 
+/// Контроллер авторизации
 class AuthorizationViewController: UIViewController {
-
+    
+    /// Презентер авторизации
     var presenter: AuthorizationPresenterProtocol!
+    /// Конфигуратор модуля
     var configurator = AuthorizationConfigurator()
     
+    /// Картинка фона
     let backgroundImage = UIImageView(image: UIImage(named: "auth_background"))
+    /// Поле ввода почты
     let emailTextField = TitledTextField.emailTextField()
+    /// Поле ввода почты
     let passwordTextField = TitledTextField.passwordTextField()
+    /// Кнопка авторизации
     let authorizationButton = NextButton()
+    /// Кнопка открытия модуля регистрации
     let registrationButton = UIButton(frame: .zero)
+    /// Индикатор загрузки
     let activityIndicator = UIActivityIndicatorView(frame: .zero)
+    /// Текст подзаголовка
     let subtitleLabel = UILabel(frame: .zero)
+    /// Текст заголовка
     let titleLabel = UILabel(frame: .zero)
+    /// 2 уровень подзаголовка
     let smallSubtitleLabel = UILabel(frame: .zero)
+    /// Нижняя подпись
     let footerLabel = UILabel(frame: .zero)
     
+    /// Контроллер загрузился
     override func viewDidLoad() {
         super.viewDidLoad()
         UITabBar.appearance().tintColor = UIColor(named: "dark_blue")
@@ -45,12 +70,14 @@ class AuthorizationViewController: UIViewController {
         presenter.viewDidLoad()
     }
     
+    /// Контроллер отобразился
+    /// - Parameter animated: Анимировано
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.tabBarItem.title = "Авторизация"
-        presenter.viewDidAppear()
     }
     
+    /// Конфигурировать вью
     private func configureSubviews() {
         configureBackgroundImage()
         configureSubtitleLabel()
@@ -64,10 +91,12 @@ class AuthorizationViewController: UIViewController {
         configureActivityIndicator()
     }
     
+    /// Конфигурировать картинку фона
     private func configureBackgroundImage() {
         backgroundImage.translatesAutoresizingMaskIntoConstraints = false;
     }
     
+    /// Конфигурировать подзаголовка
     private func configureSubtitleLabel() {
         subtitleLabel.translatesAutoresizingMaskIntoConstraints = false;
         subtitleLabel.font = UIFont.systemFont(ofSize: 20, weight: .light)
@@ -75,6 +104,7 @@ class AuthorizationViewController: UIViewController {
         subtitleLabel.text = "Welcome to"
     }
     
+    /// Конфигурировать заголовок
     private func configureTitleLabel() {
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         titleLabel.textColor = UIColor(named: "dark_blue")
@@ -82,6 +112,7 @@ class AuthorizationViewController: UIViewController {
         titleLabel.text = "GeoFood"
     }
     
+    /// Конфигурировать 2 уровень подзаголовка
     private func configureSmallSubtitleLabel() {
         smallSubtitleLabel.translatesAutoresizingMaskIntoConstraints = false
         smallSubtitleLabel.font = UIFont.systemFont(ofSize: 14, weight: .medium)
@@ -93,20 +124,24 @@ class AuthorizationViewController: UIViewController {
 """
     }
     
+    /// Конфигурировать поле ввода почты
     private func configureEmailTextField() {
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    /// Конфигурировать поле ввода пароля
     private func configurePasswordTextField() {
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
     }
     
+    /// Конфигурировать кнопку авторизации
     private func configureAuthorizationButton() {
         authorizationButton.translatesAutoresizingMaskIntoConstraints = false
         authorizationButton.setTitle("Войти", for: .normal)
         authorizationButton.addTarget(self, action: #selector(authorizationButtonTapped), for: .touchUpInside)
     }
     
+    /// Конфигурировать нижний текст
     private func configureFooterLabel() {
         footerLabel.translatesAutoresizingMaskIntoConstraints = false;
         footerLabel.textColor = UIColor(named: "dark_blue")
@@ -114,6 +149,7 @@ class AuthorizationViewController: UIViewController {
         footerLabel.text = "Нет аккаунта?"
     }
     
+    /// Конфигурировать кнопку перехода на модуль авторизации
     private func configureRegistrationButton() {
         registrationButton.translatesAutoresizingMaskIntoConstraints = false
         let attrString = NSAttributedString(string: "Зарегистрироваться", attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue])
@@ -122,12 +158,14 @@ class AuthorizationViewController: UIViewController {
         registrationButton.addTarget(self, action: #selector(registrationButtonTapped), for: .touchUpInside)
     }
     
+    /// Конфигурировать индикатор загрузки
     private func configureActivityIndicator() {
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
         activityIndicator.style = .large
         activityIndicator.color = .darkGray
     }
     
+    /// Добавить все вью
     private func addAllSubviews() {
         view.addSubview(backgroundImage)
         view.addSubview(subtitleLabel)
@@ -142,6 +180,7 @@ class AuthorizationViewController: UIViewController {
         view.addSubview(activityIndicator)
     }
     
+    /// Активировать констреинты
     private func initConstraints() {
         NSLayoutConstraint.activate([
             backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
@@ -186,52 +225,41 @@ class AuthorizationViewController: UIViewController {
             registrationButton.leadingAnchor.constraint(greaterThanOrEqualTo: view.leadingAnchor, constant: 30),
             registrationButton.trailingAnchor.constraint(lessThanOrEqualTo: view.trailingAnchor, constant: -30),
             
-            
-            
-//
-//            passwordTextField.bottomAnchor.constraint(equalTo: authorizationButton.topAnchor, constant: -20),
-//            passwordTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-//            passwordTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-//
-//            emailTextField.bottomAnchor.constraint(equalTo: passwordTextField.topAnchor, constant: -20),
-//            emailTextField.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20),
-//            emailTextField.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -20),
-//
-//            registrationButton.topAnchor.constraint(equalTo: authorizationButton.bottomAnchor, constant: 20),
-//            registrationButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//
-//            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-//            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor),
         ])
     }
     
+    /// Событие нажатия на кнопку авторизации
     @objc private func authorizationButtonTapped() {
         presenter.authorizationButtonTapped(withEmail: emailTextField.text, password: passwordTextField.text)
     }
     
+    /// Событие нажатия на кнопку регистрации
     @objc private func registrationButtonTapped() {
         presenter.registrationButtonTapped()
-    }
-    
-    @objc private func textFieldChanged() {
-        presenter.textFieldChanged(email: emailTextField.text, password: passwordTextField.text)
     }
     
 }
 
 extension AuthorizationViewController: AuthorizationViewProtocol {
+    /// Начать анимацию индикатора загрузки
     func startAnimatingActivityIndicator() {
         DispatchQueue.main.async {
             self.activityIndicator.startAnimating()
         }
     }
-    
+    /// Завершить анимацию индикатора загрузки
     func stopAnimatingActivityIndicator() {
         DispatchQueue.main.async {
             self.activityIndicator.stopAnimating()
         }
     }
     
+    /// Показать сообщение
+    /// - Parameters:
+    ///   - title: Заголовок сообщения
+    ///   - message: Текст сообщения
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let alertAction = UIAlertAction(title: "Попробовать снова", style: .default, handler: nil)
@@ -239,14 +267,15 @@ extension AuthorizationViewController: AuthorizationViewProtocol {
         present(alert, animated: true, completion: nil)
     }
     
-    func setAuthorizationButtonIsEnabled(_ isEnabled: Bool) {
-        authorizationButton.isEnabled = isEnabled
-    }
-    
+    /// Изменить видимость навигации
+    /// - Parameters:
+    ///   - isHidden: Спрятан ли
+    ///   - animated: Анимировано
     func setNavigationBarHidden(_ isHidden: Bool, animated: Bool) {
         navigationController?.setNavigationBarHidden(isHidden, animated: animated)
     }
     
+    /// Получить контроллер навигации
     func getNavigationController() -> UINavigationController? {
         navigationController
     }

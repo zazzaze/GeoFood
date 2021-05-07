@@ -7,11 +7,15 @@
 
 import Foundation
 
+/// Протокол конфигуратора модуля
 protocol RegistrationConfiguratorProtocol: class {
     func configure(with: RegistrationViewController)
 }
 
+/// Конфигуратор модуля
 class RegistrationConfigurator: RegistrationConfiguratorProtocol {
+    /// Конфигурировать модуль регистрации
+    /// - Parameter view: Контроллер модуля
     func configure(with view: RegistrationViewController) {
         let presenter = RegistrationPresenter(view: view)
         let interactor = RegistrationInteractor(presenter: presenter)

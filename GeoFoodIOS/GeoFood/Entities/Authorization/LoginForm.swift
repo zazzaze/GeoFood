@@ -7,7 +7,10 @@
 
 import Foundation
 
+/// Форма авторизации и регистрации пользователя
 struct LoginForm: Codable {
+    /// Почта пользователя
     var login: String
+    /// Пароль пользователя
     var password: String
 }

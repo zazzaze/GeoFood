@@ -8,18 +8,29 @@
 import Foundation
 import UIKit
 
+/// Протокол роутера карты
 protocol MapRouterProtocol: class {
-    func openRestaurantView(with restaurant: RestaurantModel, token: String)
+    /// Открыть модуль кафе
+    /// - Parameters:
+    ///   - restaurant: Кафе для модуля
+    func openRestaurantView(with restaurant: RestaurantModel)
 }
 
+/// Роутер карты
 class MapRouter: MapRouterProtocol {
+    /// Контроллер карты
     private var view: MapViewController
     
+    /// Конструктор
+    /// - Parameter view: Контроллер карты
     required init(view: MapViewController) {
         self.view = view
     }
     
-    func openRestaurantView(with restaurant: RestaurantModel, token: String) {
+    /// Открыть модуль кафе
+    /// - Parameters:
+    ///   - restaurant: Кафе для модуля
+    func openRestaurantView(with restaurant: RestaurantModel) {
         view.present(UINavigationController(rootViewController: RestaurantConfigurator.assembly(with: restaurant)), animated: true, completion: nil)
     }
 }

@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 
 @objc(Location)
+/// Позиция пользователя
 public class Location: NSManagedObject {
 
 }

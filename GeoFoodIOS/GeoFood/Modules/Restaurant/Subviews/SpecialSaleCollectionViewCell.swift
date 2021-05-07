@@ -8,33 +8,50 @@
 import UIKit
 import CoreImage.CIFilterBuiltins
 
+/// Ячейка специальной акции
 class SpecialSaleCollectionViewCell: UICollectionViewCell {
+    /// Контекст для генерации qr-кода
     private let context = CIContext()
+    /// Фильтр для генерации qr-кода
     private let filter = CIFilter.qrCodeGenerator()
     
     
+    /// Картинка акции
     private let image = UIImageView()
+    /// Название акции
     private let title = UILabel()
+    /// Промокод акции
     private let codeLabel = UILabel()
+    /// Кнопка получения акции
     private let getButton = NextButton()
+    /// Вью акции
     private let frontView = UIView()
+    /// Вью qr-кода
     private let backView = UIView()
+    /// Картинка qr-кода
     private let qrImage = UIImageView()
+    /// Кнопка закрытия qr-кода
     private let closeQRButton = UIImageView()
     
+    /// Открыта ли вью акции
     private var isFront = true
     
+    /// Конструктор
+    /// - Parameter frame: Фрейм ячейки
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
     
+    /// Конструктор
+    /// - Parameter coder: кодер
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupUI()
     }
     
     
+    /// Конфигурировать вью
     private func setupUI() {
         backgroundColor = .clear
         contentView.backgroundColor = .white
@@ -92,6 +109,7 @@ class SpecialSaleCollectionViewCell: UICollectionViewCell {
         backView.addGestureRecognizer(tapGesture)
     }
     
+    /// Отрисовать внутренние вью
     override func layoutSubviews() {
         super.layoutSubviews()
         NSLayoutConstraint.activate([
@@ -137,6 +155,7 @@ class SpecialSaleCollectionViewCell: UICollectionViewCell {
         ])
     }
     
+    /// Событие нажатия на кнопку открытия/закрытия акции
     @objc private func didTapButton() {
         let fromView = isFront ? frontView : backView
         let toView = isFront ? backView : frontView
@@ -144,6 +163,8 @@ class SpecialSaleCollectionViewCell: UICollectionViewCell {
         isFront.toggle()
     }
     
+    /// Сконфигурировать вью по модели представления акции
+    /// - Parameter vm: Модель представления акции
     func configure(with vm: SaleViewModel) {
         title.text = vm.name
         codeLabel.text = vm.code
@@ -151,16 +172,13 @@ class SpecialSaleCollectionViewCell: UICollectionViewCell {
         qrImage.image = generateQRCode(from: vm.code)
     }
     
+    /// Генерация картинки qr-кода
+    /// - Parameter string: Строка qr-кода
+    /// - Returns: Картинка с qr-кодом
     private func generateQRCode(from string: String) -> UIImage? {
-        //let data = Data(string.utf8)
-        //filter.setValue(data, forKey: "inputMessage")
-        // 2
         let data = Data(string.utf8)
-        // 3
         guard let qrFilter = CIFilter(name: "CIQRCodeGenerator") else { return nil }
-        // 4
         qrFilter.setValue(data, forKey: "inputMessage")
-        // 5
         guard let qrImage = qrFilter.outputImage?.transformed(by: CGAffineTransform(scaleX: 10, y: 10)) else { return nil }
         
         return UIImage(ciImage: qrImage)

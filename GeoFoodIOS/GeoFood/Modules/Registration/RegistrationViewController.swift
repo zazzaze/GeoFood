@@ -7,25 +7,35 @@
 
 import UIKit
 
+/// Выходные методы контроллера регистрации
 protocol RegistrationViewOutput: class {
     func setNavigationBarHidden(_ isHidden: Bool, animated: Bool)
     func showAlert(title: String, message: String)
     func getNavigationController() -> UINavigationController?
 }
 
+/// Контроллер регитсрации
 class RegistrationViewController: UIViewController {
-
+    
+    /// Конфигуратор модуля
     let configurator: RegistrationConfiguratorProtocol = RegistrationConfigurator()
+    /// Презентер регистрации
     var presenter: RegistrationPresenterInput!
     
+    /// Поле ввода почты
     var emailTextField: TitledTextField = TitledTextField.emailTextField()
     
+    /// Поле ввода пароля
     var passwordTextField: TitledTextField = TitledTextField.passwordTextField()
     
+    /// Поле повторного ввода пароля
     var repeatPasswordTextField = TitledTextField.passwordTextField()
+    /// Кнопка регистрации
     let registrationButton = UIButton()
+    /// Кнопка возвращения на экран авторизации
     let backButton = UIButton()
     
+    /// Контроллер загружен
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,12 +50,15 @@ class RegistrationViewController: UIViewController {
         initConstraints()
     }
     
+    /// Контроллер отобразился
+    /// - Parameter animated: Анимировано ли
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.tabBarItem.title = self.title
         presenter.viewDidAppear()
     }
     
+    /// Конфигурировать вью
     private func configureSubviews() {
         configureEmailTextField()
         configurePasswordTextField()
@@ -54,19 +67,23 @@ class RegistrationViewController: UIViewController {
         configureBackButton()
     }
     
+    /// Конфигурировать поле ввода почты
     private func configureEmailTextField() {
         emailTextField.translatesAutoresizingMaskIntoConstraints = false
     }
-
+    
+    /// Конфигурировать поле ввода пароля
     private func configurePasswordTextField() {
         passwordTextField.translatesAutoresizingMaskIntoConstraints = false
     }
-
+    
+    /// Конфигурировать поле ввода пароля повторно
     private func configureRepeatPasswordTextField() {
         repeatPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
         repeatPasswordTextField.titleText = "Повторите пароль"
     }
     
+    /// Конфигурировать кнопку регистрации
     private func configureRegistrationButton() {
         registrationButton.translatesAutoresizingMaskIntoConstraints = false
         registrationButton.setTitle("Зарегистрироваться", for: .normal)
@@ -79,6 +96,7 @@ class RegistrationViewController: UIViewController {
         registrationButton.addTarget(self, action: #selector(registrationButtonTapped), for: .touchUpInside)
     }
     
+    /// Конфигурировать кнопку возврата
     private func configureBackButton() {
         backButton.translatesAutoresizingMaskIntoConstraints = false
         let attrString = NSAttributedString(string: "Войти", attributes: [NSAttributedString.Key.underlineStyle: NSUnderlineStyle.thick.rawValue])
@@ -87,6 +105,7 @@ class RegistrationViewController: UIViewController {
         backButton.addTarget(self, action: #selector(backButtonTapped), for: .touchUpInside)
     }
     
+    /// Добавить все вью
     private func addAllSubviews() {
         view.addSubview(emailTextField)
         view.addSubview(passwordTextField)
@@ -95,6 +114,7 @@ class RegistrationViewController: UIViewController {
         view.addSubview(backButton)
     }
     
+    /// Активировать констреинты
     private func initConstraints() {
         NSLayoutConstraint.activate([
             emailTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 22),
@@ -127,24 +147,37 @@ class RegistrationViewController: UIViewController {
     
     
     
+    /// Проверить повторно введенные пароль
+    /// - Parameter password: Строка пароля
+    /// - Returns: Результат проверки
     private func repeatPasswordValidator(_ password: String) -> Bool {
         passwordTextField.titleText! == password
     }
     
+    /// Событие нажатия на кнопку регистрации
     @objc func registrationButtonTapped() {
         presenter.registrationButtonTapped(withEmail: emailTextField.text, password: passwordTextField.text, passwordRepeat: repeatPasswordTextField.text)
     }
     
+    /// Событие нажатия на кнопку выхода из вью
     @objc func backButtonTapped() {
         presenter.backButtonTapped()
     }
 }
 
 extension RegistrationViewController: RegistrationViewOutput {
+    /// Поставить видимость навигации
+    /// - Parameters:
+    ///   - isHidden: Спрятан ли
+    ///   - animated: Анимировано
     func setNavigationBarHidden(_ isHidden: Bool, animated: Bool) {
         navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
+    /// Показать сообщение
+    /// - Parameters:
+    ///   - title: Заголовок сообщения
+    ///   - message: Текст сообщения
     func showAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
@@ -152,6 +185,8 @@ extension RegistrationViewController: RegistrationViewOutput {
         present(alert, animated: true, completion: nil)
     }
     
+    /// Получить контроллер навигации
+    /// - Returns: Контроллер навигации
     func getNavigationController() -> UINavigationController? {
         navigationController
     }

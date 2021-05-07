@@ -7,23 +7,40 @@
 
 import Foundation
 
-protocol RegistrationInteractorProtocol: class {
+/// Входные методы интерактора
+protocol RegistrationInteractorInput: class {
+    /// Зарегистрировать пользователя
+    /// - Parameters:
+    ///   - withEmail: Почта пользователя
+    ///   - password: Пароль
     func registerUser(withEmail: String, password: String)
 }
 
-protocol RegistrationPresenterOutputProtocol: class {
+/// Выходные методы интерактора
+protocol RegistrationPresenterOutput: class {
+    /// Регистрация прошла успешно
     func registrationSuccessfully()
+    /// Не удалось зарегистрироваться
     func registrationUnsuccessfully()
 }
 
-class RegistrationInteractor: RegistrationInteractorProtocol {
-    weak var presenter: RegistrationPresenterOutputProtocol!
+/// Интерактор регистрации
+class RegistrationInteractor: RegistrationInteractorInput {
+    /// Презентер регистрации
+    weak var presenter: RegistrationPresenterOutput!
+    /// Сервис пользователя
     var userService: UserService = UserService.shared
     
-    required init(presenter: RegistrationPresenterOutputProtocol) {
+    /// Конструктор
+    /// - Parameter presenter: Презентер регистрации
+    required init(presenter: RegistrationPresenterOutput) {
         self.presenter = presenter
     }
     
+    /// Зарегистрировать пользователя
+    /// - Parameters:
+    ///   - withEmail: Почта пользователя
+    ///   - password: Пароль
     func registerUser(withEmail: String, password: String) {
         userService.registerUser(with: LoginForm(login: withEmail, password: password)) { isSuccess in
             if isSuccess {

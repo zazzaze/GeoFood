@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 
 @objc(Restaurant)
+/// Модель кафе
 public class Restaurant: NSManagedObject {
 
 }

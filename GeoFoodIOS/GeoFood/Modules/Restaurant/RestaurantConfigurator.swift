@@ -7,7 +7,11 @@
 
 import Foundation
 
+/// Конфигуратор модуля кафе
 class RestaurantConfigurator {
+    /// Конфигурировать модуль
+    /// - Parameter restaurant: Текущее кафе
+    /// - Returns: Сконфигурированный контроллер модуля
     static func assembly(with restaurant: RestaurantModel) -> RestaurantViewController {
         let view = RestaurantViewController()
         let presenter = RestaurantPresenter(with: view, currentRestaurant: restaurant)

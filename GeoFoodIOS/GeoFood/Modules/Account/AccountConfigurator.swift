@@ -7,7 +7,10 @@
 
 import Foundation
 
+/// Конфигуратор модуля аккаунта
 class AccountConfigurator {
+    /// Создает зависимости между компонентами модуля
+    /// - Returns: Контроллер модуля
     static func assembly() -> AccountViewController {
         let view = AccountViewController()
         let presenter = AccountPresenter(with: view)

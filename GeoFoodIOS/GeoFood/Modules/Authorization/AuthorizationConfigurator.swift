@@ -7,11 +7,17 @@
 
 import Foundation
 
+/// Протокол конфигуратора авторизации
 protocol AuthorizationConfiguratorProtocol: class {
+    /// Конфигурировать модуль авторизации
+    /// - Parameter with: Контроллер авторизации
     func configure(with: AuthorizationViewController)
 }
 
+/// Конфигуратор авторизации
 class AuthorizationConfigurator: AuthorizationConfiguratorProtocol {
+    /// Конфигурировать модуль авторизации
+    /// - Parameter with: Контроллер авторизации
     func configure(with view: AuthorizationViewController) {
         let presenter = AuthorizationPresenter(view: view)
         let interactor = AuthorizationInteractor(presenter: presenter)

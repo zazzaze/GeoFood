@@ -8,16 +8,27 @@
 import Foundation
 import UIKit
 
+/// Модель кафе
 class RestaurantModel: Codable {
+    /// id кафе
     var id: Int32
+    /// Название кафе
     var name: String
+    /// Долгота позиции кафе
     var longitude: Double
+    /// Широта позиции кафе
     var latitude: Double
+    /// Картинка кафе
     var logoImage: UIImage?
+    /// Тип кафе
     var type: RestaurantType
+    /// Адрес кафе
     var location: String
+    /// Акции ресторана
     var sales: [RestaurantSaleModel]?
     
+    /// Конструктор из модели кафе для CoreData
+    /// - Parameter model: Модель кафе для CoreData
     init(from model: Restaurant) {
         id = model.id
         name = model.name
@@ -28,6 +39,7 @@ class RestaurantModel: Codable {
         sales = model.sales?.compactMap{ $0 as? RestaurantSaleModel }
     }
     
+    /// Конструктор без параметров
     init() {
         id = 0
         name = "Test"
@@ -37,6 +49,7 @@ class RestaurantModel: Codable {
         location = ""
     }
     
+    /// Ключи для десериализации
     enum CodingKeys: CodingKey {
         case id
         case name
@@ -47,10 +60,12 @@ class RestaurantModel: Codable {
     }
 }
 
+/// Перечисление типов ресторана
 @objc public enum RestaurantType: Int32, Codable {
     case coffee = 0
     case fastFood = 1
     
+    /// Картинка для типа
     var image: UIImage {
         switch self {
         case .coffee:
@@ -59,7 +74,8 @@ class RestaurantModel: Codable {
             return UIImage(named: "fast-food")!
         }
     }
-
+    
+    /// Текст названия типа
     var text: String {
         switch self {
         case .coffee:
@@ -69,5 +85,6 @@ class RestaurantModel: Codable {
         }
     }
     
+    /// Количество типов
     static let typesCount = 2
 }

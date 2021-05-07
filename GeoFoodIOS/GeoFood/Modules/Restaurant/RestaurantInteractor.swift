@@ -8,22 +8,34 @@
 import Foundation
 import UIKit
 
+/// Входные методы интерактора
 protocol RestaurantInteractorInput: AnyObject {
+    /// Загрузить акции кафе
+    /// - Parameter restId: id кафе
     func loadSales(for restId: Int32)
 }
 
+/// Выходные методы интерактора
 protocol RestaurantInteractorOutput: AnyObject {
+    /// Акции, загруженные из сети
+    /// - Parameter sales: Массив загруженных акций
     func loadedSales(_ sales: [RestaurantSaleModel])
 }
 
 class RestaurantInteractor: RestaurantInteractorInput {
+    /// Сервис пользователя
     let userService = UserService.shared
+    /// Презентер кафе
     weak var output: RestaurantInteractorOutput!
     
+    /// Конструктор
+    /// - Parameter output: Презентер кафе
     init(with output: RestaurantInteractorOutput) {
         self.output = output
     }
     
+    /// Загрузить акции
+    /// - Parameter restId: id кафеы
     func loadSales(for restId: Int32) {
         self.userService.getRestaurantSales(restaurantId: restId){ sales in
             guard let sales = sales else {

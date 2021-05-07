@@ -10,6 +10,7 @@ import Foundation
 import CoreData
 
 @objc(User)
+/// Модель пользователя
 public class User: NSManagedObject {
 
 }

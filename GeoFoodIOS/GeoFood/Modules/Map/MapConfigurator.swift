@@ -7,11 +7,17 @@
 
 import Foundation
 
+/// Протокол конфигуратора модуля карты
 protocol MapConfiguratorProtocol: class {
+    /// Конфигурировать модуль по контроллеру
+    /// - Parameter with: Контроллер карты
     func configure(with: MapViewController)
 }
 
+/// Конфигуратор модуля карты
 class MapConfigurator: MapConfiguratorProtocol  {
+    /// Конфигурировать модуль по контроллеру
+    /// - Parameter with: Контроллер карты
     func configure(with view: MapViewController) {
         let presenter = MapPresenter(view: view)
         let interactor = MapInteractor(presenter: presenter, service: UserService.shared)

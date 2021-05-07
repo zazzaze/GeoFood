@@ -7,23 +7,34 @@
 
 import UIKit
 
+/// Выходные методы контроллера
 protocol AccountViewOutput: AnyObject {
+    /// Событие нажатия кнопки выхода
     func logoutTapped()
+    /// Контроллер загружен
     func viewDidLoad()
 }
 
+/// Входные методы контроллера
 protocol AccountViewInput: AnyObject {
+    /// Сконфигурировать контроллер по модели данных пользователя
+    /// - Parameter viewModel: Модель данных пользователя
     func configure(with viewModel: UserViewModel)
 }
 
 class AccountViewController: UIViewController, AccountViewInput {
     
+    /// Кнопка выхода из аккаунта
     var logoutButton = UIButton()
+    /// Заголовок поля почты
     var emailTitle = UILabel()
+    /// Текст почты пользователя
     var userEmail = UILabel()
     
+    /// Presenter модуля
     var output: AccountViewOutput!
-
+    
+    /// Контроллер загружен
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Аккаунт"
@@ -75,27 +86,21 @@ class AccountViewController: UIViewController, AccountViewInput {
         output.viewDidLoad()
     }
     
+    /// Контроллер появился на экране
+    /// - Parameter animated: анимировано ли появился
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.tabBarItem.title = self.title
     }
     
+    /// Событие нажатия на кнопку выхода из аккаунта
     @objc private func logoutButtonTapped() {
         output.logoutTapped()
     }
     
+    /// Сконфигурировать контроллер по модели данных пользователя
+    /// - Parameter viewModel: Модель данных пользователя
     func configure(with viewModel: UserViewModel) {
         self.userEmail.text = viewModel.login
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -9,15 +9,27 @@ import Foundation
 import UIKit
 import MapKit
 
+/// Модель представления данных кафе
 class RestaurantViewModel {
+    /// Названия кафе
     let name: String
+    /// Адрес кафе
     var address: String
+    /// Расстояние до кафе
     let distance: String
+    /// Картинка типа акции
     let typeImage: UIImage
+    /// Логотип кафе
     let logoImage: UIImage
+    /// Акции кафе
     let sales: [SaleViewModel]
+    /// Специальные кафе
     let specialSales: [SaleViewModel]
     
+    /// Конструктор
+    /// - Parameters:
+    ///   - model: Модель представления данных кафе
+    ///   - allSales: Все акции кафе
     init(with model: RestaurantModel, allSales: [RestaurantSaleModel]) {
         name = model.name
         address = model.location

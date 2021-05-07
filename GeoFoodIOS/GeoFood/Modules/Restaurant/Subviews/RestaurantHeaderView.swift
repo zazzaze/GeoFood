@@ -7,34 +7,47 @@
 
 import UIKit
 
+/// Вью информации о кафе
 class RestaurantHeaderView: UIView {
     
+    /// Картинка кафе
     private let logoImage = UIImageView()
+    /// Картинка типа кафе
     private let smallImage = UIImageView()
+    /// Название кафе
     private let nameLabel = UILabel()
+    /// Адрес кафе
     private let addressLabel = UILabel()
+    /// Расстояние пользователя до кафе
     private let distanceLabel = UILabel()
     
+    /// Конструктор
     init() {
         super.init(frame: .zero)
         setupUI()
     }
     
+    /// Конструктор
+    /// - Parameter frame: Фрейм
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupUI()
     }
     
+    /// Конструктор
+    /// - Parameter coder: Кодер
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupUI()
     }
     
+    /// Конфигурировать представление вью
     private func setupUI() {
         configureSubviews()
         addAllSubviews()
     }
     
+    /// Конфигурировать представление внутренних вью
     private func configureSubviews() {
         configureLogoImage()
         configureSmallImage()
@@ -43,6 +56,7 @@ class RestaurantHeaderView: UIView {
         configureDistanceLabel()
     }
     
+    /// Конфигурировать логотип компании
     private func configureLogoImage() {
         logoImage.translatesAutoresizingMaskIntoConstraints = false
         logoImage.layer.cornerRadius = 13
@@ -52,29 +66,34 @@ class RestaurantHeaderView: UIView {
         logoImage.layer.masksToBounds = true
     }
     
+    /// Конфигурировать картинку типа компании
     private func configureSmallImage() {
         smallImage.translatesAutoresizingMaskIntoConstraints = false
         smallImage.tintColor = UIColor(named: "dark_blue")
     }
     
+    /// Конфигурировать текст названия компании
     private func configureNameLabel() {
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         nameLabel.textColor = UIColor(named: "dark_blue")
     }
     
+    /// Конфигурировать текст адреса компании
     private func configureAddressLabel() {
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
         addressLabel.font = UIFont.systemFont(ofSize: 14, weight: .regular)
         addressLabel.textColor = .lightGray
     }
     
+    /// Конфигурировать текст расстояния
     private func configureDistanceLabel() {
         distanceLabel.translatesAutoresizingMaskIntoConstraints = false
         distanceLabel.font = UIFont.systemFont(ofSize: 13, weight: .medium)
         distanceLabel.textColor = .lightGray
     }
     
+    /// Добавить все вью
     private func addAllSubviews() {
         addSubview(logoImage)
         addSubview(smallImage)
@@ -83,6 +102,7 @@ class RestaurantHeaderView: UIView {
         addSubview(distanceLabel)
     }
     
+    /// Перерисовать вью
     override func layoutSubviews() {
         super.layoutSubviews()
         NSLayoutConstraint.activate([
@@ -111,6 +131,8 @@ class RestaurantHeaderView: UIView {
         ])
     }
     
+    /// Конфигурировать вью по модели представления кафе
+    /// - Parameter vm: Модель представления кафе
     func configure(with vm: RestaurantViewModel) {
         self.logoImage.image = vm.logoImage
         nameLabel.text = vm.name

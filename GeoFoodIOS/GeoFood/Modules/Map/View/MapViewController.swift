@@ -8,32 +8,46 @@
 import UIKit
 import MapKit
 
+/// Входные методы карты
 protocol MapViewInput: AnyObject {
+    /// Конфигурировать вью по модели представления карты
+    /// - Parameter vm: Модель представления карты
     func configure(with vm: MapViewModel)
 }
 
+/// Контроллер карты
 class MapViewController: UIViewController {
-
+    
+    /// Конфигуратор модуля карты
     let configurator: MapConfiguratorProtocol = MapConfigurator()
+    /// Последняя позиция пользователя
     var lastLocation: CLLocation?
+    /// Презентер карты
     var presenter: MapPresenterInput!
     
+    /// Карта
     let mapView = MKMapView(frame: .zero)
+    /// Сервис положения пользователя
     let locationManager = LocationManager.shared
+    /// Модель представления карты
     var viewModel: MapViewModel?
+    /// id аннотации
     private let annotationId = "restaurantAnnotation"
+    /// Первое ли отображение карты
     private var isFirstAppear = true
     
+    /// Коллекция типов кафе
     private var typesCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         return UICollectionView(frame: .zero, collectionViewLayout: layout)
     }()
     
+    /// Переместить карту на текущую позицию пользователя
     private let currentLocationButton = UIButton()
-    private var isModeFollow = false
     
     
+    /// Контроллер загрузился
     override func viewDidLoad() {
         super.viewDidLoad()
         configurator.configure(with: self)
@@ -80,6 +94,8 @@ class MapViewController: UIViewController {
     
     
     
+    /// Контроллер отобразился
+    /// - Parameter animated: Анимировано ли отобразился
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.navigationController?.setNavigationBarHidden(true, animated: false)
@@ -91,6 +107,7 @@ class MapViewController: UIViewController {
         presenter.viewDidAppear()
     }
     
+    /// Изменить способ следования за пользователем
     @objc func changeFollowMode() {
         if mapView.userTrackingMode == .none {
             mapView.setUserTrackingMode(.follow, animated: true)
@@ -99,6 +116,7 @@ class MapViewController: UIViewController {
         }
     }
     
+    /// Проверка возможности отслеживать позицию пользователя
     private func checkAuthorizationStatus() {
         if locationManager.authorizationStatus == .denied {
             let alert = UIAlertController(title: "Ошибка", message: "Разрешите доступ к вашей геопозиции", preferredStyle: .alert)
@@ -118,6 +136,8 @@ class MapViewController: UIViewController {
 }
 
 extension MapViewController: MapViewInput {
+    /// Конфигурировать по модели представления карты
+    /// - Parameter vm: Модель представления карты
     func configure(with vm: MapViewModel) {
         self.viewModel = vm
         if vm.deleteAll {
@@ -132,10 +152,19 @@ extension MapViewController: MapViewInput {
 }
 
 extension MapViewController: MKMapViewDelegate {
+    /// Событие изменения отображаемого региона на карте
+    /// - Parameters:
+    ///   - mapView: Карта
+    ///   - animated: Анимировано ли отобразился
     func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
         presenter.regionDidChange(region: mapView.region, radius: mapView.currentRadius())
     }
     
+    /// Сконфигурировать вью для аннотации
+    /// - Parameters:
+    ///   - mapView: Карта, на которой отображается аннотация
+    ///   - annotation: Аннотация, для которой конфигурируется вью
+    /// - Returns: Вью для аннотации
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
             let userAnnotation = MKUserLocationView()
@@ -159,11 +188,20 @@ extension MapViewController: MKMapViewDelegate {
         return annotationView
     }
     
+    /// Событие клика на аннотацию
+    /// - Parameters:
+    ///   - mapView: Карта
+    ///   - view: Выбранное вью
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         mapView.deselectAnnotation(view.annotation, animated: false)
         presenter.annotationTapped(view)
     }
     
+    /// Событие изменения способа следования за пользователем
+    /// - Parameters:
+    ///   - mapView: Карта
+    ///   - mode: Способ следования
+    ///   - animated: Анимировано ли изменен
     func mapView(_ mapView: MKMapView, didChange mode: MKUserTrackingMode, animated: Bool) {
         if mode == .follow {
             currentLocationButton.setImage(UIImage(systemName: "location.fill"), for: .normal)
@@ -176,20 +214,36 @@ extension MapViewController: MKMapViewDelegate {
 }
 
 extension MapViewController: CLLocationManagerDelegate {
+    /// Событие изменения позиции пользователя
+    /// - Parameters:
+    ///   - manager: Сервис
+    ///   - locations: Все позиции пользователя
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         self.presenter.updateUserLocation(locations)
     }
     
+    /// Событие изменения доступа к отслеживанию позиции пользователя
+    /// - Parameter manager: Сервис
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         checkAuthorizationStatus()
     }
 }
 
 extension MapViewController: UICollectionViewDataSource {
+    /// Вычисление количества ячеек в коллекции
+    /// - Parameters:
+    ///   - collectionView: Коллекция типов
+    ///   - section: Секция коллекции
+    /// - Returns: Количество ячеек
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         RestaurantType.typesCount
     }
     
+    /// Конфигурация ячейки коллекции
+    /// - Parameters:
+    ///   - collectionView: Коллекция типов
+    ///   - indexPath: Индекс ячейки
+    /// - Returns: Сконфигурированная ячейка
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "typeCell", for: indexPath) as? RestaurantTypeCell else {
             return RestaurantTypeCell()
@@ -198,6 +252,10 @@ extension MapViewController: UICollectionViewDataSource {
         return cell
     }
     
+    /// Событие выбора ячейки коллекции
+    /// - Parameters:
+    ///   - collectionView: Коллекция типов
+    ///   - indexPath: индекс выбранной ячейки
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let cell = collectionView.cellForItem(at: indexPath) as? RestaurantTypeCell else {
             return
@@ -210,6 +268,12 @@ extension MapViewController: UICollectionViewDataSource {
 }
 
 extension MapViewController: UICollectionViewDelegateFlowLayout {
+    /// Вычисление размера ячейки коллекции
+    /// - Parameters:
+    ///   - collectionView: Коллекция типов
+    ///   - collectionViewLayout: Layout коллекции
+    ///   - indexPath: Индекс ячейки
+    /// - Returns: Размер ячейки
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 120, height: 40)
     }

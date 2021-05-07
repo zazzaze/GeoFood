@@ -1,0 +1,383 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Location+CoreDataClass.swift",
+      "line": 13,
+      "symbol": "Location",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Location+CoreDataClass.swift",
+      "line": 13,
+      "symbol": "Location",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Location+CoreDataProperties.swift",
+      "line": 15,
+      "symbol": "Location.fetch()",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Location+CoreDataProperties.swift",
+      "line": 19,
+      "symbol": "Location.latitude",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Location+CoreDataProperties.swift",
+      "line": 20,
+      "symbol": "Location.longitude",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Location+CoreDataProperties.swift",
+      "line": 21,
+      "symbol": "Location.date",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Location+CoreDataProperties.swift",
+      "line": 22,
+      "symbol": "Location.user",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Restaurant+CoreDataClass.swift",
+      "line": 13,
+      "symbol": "Restaurant",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Restaurant+CoreDataClass.swift",
+      "line": 13,
+      "symbol": "Restaurant",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Restaurant+CoreDataClass.swift",
+      "line": 41,
+      "symbol": "Restaurant",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Restaurant+CoreDataProperties.swift",
+      "line": 15,
+      "symbol": "Restaurant.fetch()",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Restaurant+CoreDataProperties.swift",
+      "line": 19,
+      "symbol": "Restaurant.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Restaurant+CoreDataProperties.swift",
+      "line": 20,
+      "symbol": "Restaurant.address",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Restaurant+CoreDataProperties.swift",
+      "line": 21,
+      "symbol": "Restaurant.latitude",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Restaurant+CoreDataProperties.swift",
+      "line": 22,
+      "symbol": "Restaurant.longitude",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Restaurant+CoreDataProperties.swift",
+      "line": 23,
+      "symbol": "Restaurant.logoImage",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Restaurant+CoreDataProperties.swift",
+      "line": 24,
+      "symbol": "Restaurant.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Restaurant+CoreDataProperties.swift",
+      "line": 25,
+      "symbol": "Restaurant.sales",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Restaurant+CoreDataProperties.swift",
+      "line": 26,
+      "symbol": "Restaurant.type",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Restaurant+CoreDataProperties.swift",
+      "line": 44,
+      "symbol": "Restaurant.addToSales(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Restaurant+CoreDataProperties.swift",
+      "line": 47,
+      "symbol": "Restaurant.removeFromSales(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Restaurant+CoreDataProperties.swift",
+      "line": 50,
+      "symbol": "Restaurant.addToSales(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Restaurant+CoreDataProperties.swift",
+      "line": 53,
+      "symbol": "Restaurant.removeFromSales(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Sale+CoreDataClass.swift",
+      "line": 13,
+      "symbol": "Sale",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Sale+CoreDataClass.swift",
+      "line": 13,
+      "symbol": "Sale",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Sale+CoreDataProperties.swift",
+      "line": 15,
+      "symbol": "Sale.fetch()",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Sale+CoreDataProperties.swift",
+      "line": 19,
+      "symbol": "Sale.id",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Sale+CoreDataProperties.swift",
+      "line": 20,
+      "symbol": "Sale.code",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Sale+CoreDataProperties.swift",
+      "line": 21,
+      "symbol": "Sale.image",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Sale+CoreDataProperties.swift",
+      "line": 22,
+      "symbol": "Sale.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Sale+CoreDataProperties.swift",
+      "line": 23,
+      "symbol": "Sale.price",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Sale+CoreDataProperties.swift",
+      "line": 24,
+      "symbol": "Sale.isSpecial",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/Sale+CoreDataProperties.swift",
+      "line": 25,
+      "symbol": "Sale.currentRestaurant",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/User+CoreDataClass.swift",
+      "line": 13,
+      "symbol": "User",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/User+CoreDataClass.swift",
+      "line": 13,
+      "symbol": "User",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/User+CoreDataClass.swift",
+      "line": 28,
+      "symbol": "User",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/User+CoreDataClass.swift",
+      "line": 45,
+      "symbol": "User",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/User+CoreDataProperties.swift",
+      "line": 15,
+      "symbol": "User.fetch()",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/User+CoreDataProperties.swift",
+      "line": 19,
+      "symbol": "User.token",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/User+CoreDataProperties.swift",
+      "line": 20,
+      "symbol": "User.login",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/User+CoreDataProperties.swift",
+      "line": 21,
+      "symbol": "User.password",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/User+CoreDataProperties.swift",
+      "line": 22,
+      "symbol": "User.restaurants",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/User+CoreDataProperties.swift",
+      "line": 23,
+      "symbol": "User.untrackedLocations",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/User+CoreDataProperties.swift",
+      "line": 31,
+      "symbol": "User.addToRestaurants(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/User+CoreDataProperties.swift",
+      "line": 34,
+      "symbol": "User.removeFromRestaurants(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/User+CoreDataProperties.swift",
+      "line": 37,
+      "symbol": "User.addToRestaurants(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/User+CoreDataProperties.swift",
+      "line": 40,
+      "symbol": "User.removeFromRestaurants(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/User+CoreDataProperties.swift",
+      "line": 48,
+      "symbol": "User.addToUntrackedLocations(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/User+CoreDataProperties.swift",
+      "line": 51,
+      "symbol": "User.removeFromUntrackedLocations(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/User+CoreDataProperties.swift",
+      "line": 54,
+      "symbol": "User.addToUntrackedLocations(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/CoreData/DataModels/User+CoreDataProperties.swift",
+      "line": 57,
+      "symbol": "User.removeFromUntrackedLocations(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/PlainModels/RestaurantModel.swift",
+      "line": 50,
+      "symbol": "RestaurantType",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/PlainModels/RestaurantModel.swift",
+      "line": 51,
+      "symbol": "RestaurantType.coffee",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS/GeoFood/BuisinessLogic/PlainModels/RestaurantModel.swift",
+      "line": 52,
+      "symbol": "RestaurantType.fastFood",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/egor/Desktop/Учеба/курсач 2 курс/GeoFood/GeoFoodIOS"
+}

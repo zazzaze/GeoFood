@@ -7,33 +7,46 @@
 
 import Foundation
 
+/// Протокол презентера авторизации
 protocol AuthorizationPresenterProtocol: class {
+    /// Контроллер загрузился
     func viewDidLoad()
-    func viewDidAppear()
+    /// Событие нажатия на кнопку авторизации
+    /// - Parameters:
+    ///   - withEmail: Введенная почта
+    ///   - password: Введенный пароль
     func authorizationButtonTapped(withEmail: String, password: String)
+    /// Событие нажатия на кнопку регистрации
     func registrationButtonTapped()
-    func textFieldChanged(email: String, password: String)
 }
 
+/// Презентер авторизации
 class AuthorizationPresenter: AuthorizationPresenterProtocol {
     
+    /// Контроллер авторизации
     weak var view: AuthorizationViewProtocol!
+    /// Интерактор авторизации
     var interactor: AuthorizationInteractorProtocol!
+    /// Роутер авторизации
     var router: AuthorizationRouterProtocol!
     
+    /// Конструктор
+    /// - Parameter view: Контроллер
     required init(view: AuthorizationViewProtocol) {
         self.view = view
     }
     
+    /// Контроллер загрузился
     func viewDidLoad() {
         if interactor.isUserAuth {
             self.router.openAccountView(animated: false)
         }
     }
     
-    func viewDidAppear() {
-    }
-    
+    /// Событие нажатия на кнопку авторизации
+    /// - Parameters:
+    ///   - withEmail: Введенная почта
+    ///   - password: Введенный пароль
     func authorizationButtonTapped(withEmail: String, password: String) {
         if /*LoginEntryChecker.checkEmail(withEmail) && LoginEntryChecker.checkPassword(password)*/ true {
             view.startAnimatingActivityIndicator()
@@ -43,16 +56,14 @@ class AuthorizationPresenter: AuthorizationPresenterProtocol {
         }
     }
     
+    /// Событие нажатия на кнопку регистрации
     func registrationButtonTapped() {
         router.openRegistrationView()
-    }
-    
-    func textFieldChanged(email: String, password: String) {
-        view.setAuthorizationButtonIsEnabled(/*LoginEntryChecker.checkEmail(email) && */LoginEntryChecker.checkPassword(password))
     }
 }
 
 extension AuthorizationPresenter: AuthorizationInteractorOutputProtocol {
+    /// Авторизация прошла неуспешно
     func authorizationUnsuccessfully() {
         DispatchQueue.main.async { [unowned self] in
             view.stopAnimatingActivityIndicator()
@@ -60,6 +71,7 @@ extension AuthorizationPresenter: AuthorizationInteractorOutputProtocol {
         }
     }
     
+    /// Авторизация прошла успешно
     func authorizationSuccessfully() {
         DispatchQueue.main.async { [unowned self] in
             view.stopAnimatingActivityIndicator()

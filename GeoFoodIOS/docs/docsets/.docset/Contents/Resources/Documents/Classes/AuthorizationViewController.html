@@ -1,0 +1,1363 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AuthorizationViewController Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/AuthorizationViewController" class="dashAnchor"></a>
+    <a title="AuthorizationViewController Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (90% documented)</p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        AuthorizationViewController Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/AccountConfigurator.html">AccountConfigurator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AccountInteractor.html">AccountInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AccountPresenter.html">AccountPresenter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AccountRouter.html">AccountRouter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AccountViewController.html">AccountViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AppDelegate.html">AppDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AuthorizationConfigurator.html">AuthorizationConfigurator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AuthorizationInteractor.html">AuthorizationInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AuthorizationPresenter.html">AuthorizationPresenter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AuthorizationRouter.html">AuthorizationRouter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/AuthorizationViewController.html">AuthorizationViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CoreData.html">CoreData</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ImageLoader.html">ImageLoader</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/InputTextField.html">InputTextField</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Location.html">Location</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LocationManager.html">LocationManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LoginEntryChecker.html">LoginEntryChecker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MainViewController.html">MainViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MapConfigurator.html">MapConfigurator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MapInteractor.html">MapInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MapPresenter.html">MapPresenter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MapRestaurantViewModel.html">MapRestaurantViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MapRouter.html">MapRouter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MapViewController.html">MapViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MapViewModel.html">MapViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NextButton.html">NextButton</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegistrationConfigurator.html">RegistrationConfigurator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegistrationInteractor.html">RegistrationInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegistrationPresenter.html">RegistrationPresenter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegistrationRouter.html">RegistrationRouter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RegistrationViewController.html">RegistrationViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RequestFactory.html">RequestFactory</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Restaurant.html">Restaurant</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RestaurantAnnotation.html">RestaurantAnnotation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RestaurantConfigurator.html">RestaurantConfigurator</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RestaurantHeaderView.html">RestaurantHeaderView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RestaurantInteractor.html">RestaurantInteractor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RestaurantModel.html">RestaurantModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RestaurantModel/CodingKeys.html">– CodingKeys</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RestaurantPresenter.html">RestaurantPresenter</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RestaurantSaleModel.html">RestaurantSaleModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RestaurantSaleModel/CodingKeys.html">– CodingKeys</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RestaurantTypeCell.html">RestaurantTypeCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RestaurantViewController.html">RestaurantViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/RestaurantViewModel.html">RestaurantViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Sale.html">Sale</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SaleCell.html">SaleCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SaleViewModel.html">SaleViewModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SceneDelegate.html">SceneDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SpecialSaleCollectionViewCell.html">SpecialSaleCollectionViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TitledTextField.html">TitledTextField</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/User.html">User</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UserModel.html">UserModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UserService.html">UserService</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/UserViewModel.html">UserViewModel</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/Endpoints.html">Endpoints</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/RestaurantType.html">RestaurantType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/MKMapView.html">MKMapView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/AccountPresenterInput.html">AccountPresenterInput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AccountPresenterOutput.html">AccountPresenterOutput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AccountRouterInput.html">AccountRouterInput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AccountViewInput.html">AccountViewInput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AccountViewOutput.html">AccountViewOutput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AuthorizationConfiguratorProtocol.html">AuthorizationConfiguratorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AuthorizationInteractorOutputProtocol.html">AuthorizationInteractorOutputProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AuthorizationInteractorProtocol.html">AuthorizationInteractorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AuthorizationPresenterProtocol.html">AuthorizationPresenterProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AuthorizationRouterProtocol.html">AuthorizationRouterProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AuthorizationViewProtocol.html">AuthorizationViewProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ImageLoaderProtocol.html">ImageLoaderProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/LoginEntryCheckerProtocol.html">LoginEntryCheckerProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MapConfiguratorProtocol.html">MapConfiguratorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MapInteractorInput.html">MapInteractorInput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MapInteractorOutput.html">MapInteractorOutput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MapPresenterInput.html">MapPresenterInput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MapRouterProtocol.html">MapRouterProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/MapViewInput.html">MapViewInput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RegistrationConfiguratorProtocol.html">RegistrationConfiguratorProtocol</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RegistrationInteractorInput.html">RegistrationInteractorInput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RegistrationPresenterInput.html">RegistrationPresenterInput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RegistrationPresenterOutput.html">RegistrationPresenterOutput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RegistrationRouterInput.html">RegistrationRouterInput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RegistrationViewOutput.html">RegistrationViewOutput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RestaurantInteractorInput.html">RestaurantInteractorInput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RestaurantInteractorOutput.html">RestaurantInteractorOutput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RestaurantPresenterOutput.html">RestaurantPresenterOutput</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/RestaurantViewControllerOutput.html">RestaurantViewControllerOutput</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/CoordinateRequestModel.html">CoordinateRequestModel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/LoginForm.html">LoginForm</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>AuthorizationViewController</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">AuthorizationViewController</span> <span class="p">:</span> <span class="kt">UIViewController</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">AuthorizationViewController</span><span class="p">:</span> <span class="kt"><a href="../Protocols/AuthorizationViewProtocol.html">AuthorizationViewProtocol</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>Контроллер авторизации</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC9presenterAA0C17PresenterProtocol_pSgvp"></a>
+                    <a name="//apple_ref/swift/Property/presenter" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC9presenterAA0C17PresenterProtocol_pSgvp">presenter</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Презентер авторизации</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">presenter</span><span class="p">:</span> <span class="kt"><a href="../Protocols/AuthorizationPresenterProtocol.html">AuthorizationPresenterProtocol</a></span><span class="o">!</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC12configuratorAA0C12ConfiguratorCvp"></a>
+                    <a name="//apple_ref/swift/Property/configurator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC12configuratorAA0C12ConfiguratorCvp">configurator</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Конфигуратор модуля</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">configurator</span><span class="p">:</span> <span class="kt"><a href="../Classes/AuthorizationConfigurator.html">AuthorizationConfigurator</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC15backgroundImageSo07UIImageD0Cvp"></a>
+                    <a name="//apple_ref/swift/Property/backgroundImage" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC15backgroundImageSo07UIImageD0Cvp">backgroundImage</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Картинка фона</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">backgroundImage</span><span class="p">:</span> <span class="kt">UIImageView</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC14emailTextFieldAA06TitledgH0Cvp"></a>
+                    <a name="//apple_ref/swift/Property/emailTextField" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC14emailTextFieldAA06TitledgH0Cvp">emailTextField</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Поле ввода почты</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">emailTextField</span><span class="p">:</span> <span class="kt"><a href="../Classes/TitledTextField.html">TitledTextField</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC17passwordTextFieldAA06TitledgH0Cvp"></a>
+                    <a name="//apple_ref/swift/Property/passwordTextField" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC17passwordTextFieldAA06TitledgH0Cvp">passwordTextField</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Поле ввода почты</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">passwordTextField</span><span class="p">:</span> <span class="kt"><a href="../Classes/TitledTextField.html">TitledTextField</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC19authorizationButtonAA04NextG0Cvp"></a>
+                    <a name="//apple_ref/swift/Property/authorizationButton" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC19authorizationButtonAA04NextG0Cvp">authorizationButton</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Кнопка авторизации</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">authorizationButton</span><span class="p">:</span> <span class="kt"><a href="../Classes/NextButton.html">NextButton</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC18registrationButtonSo8UIButtonCvp"></a>
+                    <a name="//apple_ref/swift/Property/registrationButton" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC18registrationButtonSo8UIButtonCvp">registrationButton</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Кнопка открытия модуля регистрации</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">registrationButton</span><span class="p">:</span> <span class="kt">UIButton</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC17activityIndicatorSo010UIActivitygD0Cvp"></a>
+                    <a name="//apple_ref/swift/Property/activityIndicator" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC17activityIndicatorSo010UIActivitygD0Cvp">activityIndicator</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Индикатор загрузки</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">activityIndicator</span><span class="p">:</span> <span class="kt">UIActivityIndicatorView</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC13subtitleLabelSo7UILabelCvp"></a>
+                    <a name="//apple_ref/swift/Property/subtitleLabel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC13subtitleLabelSo7UILabelCvp">subtitleLabel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Текст подзаголовка</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">subtitleLabel</span><span class="p">:</span> <span class="kt">UILabel</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC10titleLabelSo7UILabelCvp"></a>
+                    <a name="//apple_ref/swift/Property/titleLabel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC10titleLabelSo7UILabelCvp">titleLabel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Текст заголовка</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">titleLabel</span><span class="p">:</span> <span class="kt">UILabel</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC18smallSubtitleLabelSo7UILabelCvp"></a>
+                    <a name="//apple_ref/swift/Property/smallSubtitleLabel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC18smallSubtitleLabelSo7UILabelCvp">smallSubtitleLabel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>2 уровень подзаголовка</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">smallSubtitleLabel</span><span class="p">:</span> <span class="kt">UILabel</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC11footerLabelSo7UILabelCvp"></a>
+                    <a name="//apple_ref/swift/Property/footerLabel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC11footerLabelSo7UILabelCvp">footerLabel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Нижняя подпись</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">let</span> <span class="nv">footerLabel</span><span class="p">:</span> <span class="kt">UILabel</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@GeoFood@objc(cs)AuthorizationViewController(im)viewDidLoad"></a>
+                    <a name="//apple_ref/swift/Method/viewDidLoad()" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@GeoFood@objc(cs)AuthorizationViewController(im)viewDidLoad">viewDidLoad()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Контроллер загрузился</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidLoad</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@M@GeoFood@objc(cs)AuthorizationViewController(im)viewDidAppear:"></a>
+                    <a name="//apple_ref/swift/Method/viewDidAppear(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@M@GeoFood@objc(cs)AuthorizationViewController(im)viewDidAppear:">viewDidAppear(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Контроллер отобразился</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidAppear</span><span class="p">(</span><span class="n">_</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>animated</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Анимировано</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC17configureSubviews33_9A544805C67280E894E3751C6806B28FLLyyF"></a>
+                    <a name="//apple_ref/swift/Method/configureSubviews()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC17configureSubviews33_9A544805C67280E894E3751C6806B28FLLyyF">configureSubviews()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Конфигурировать вью</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">configureSubviews</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC24configureBackgroundImage33_9A544805C67280E894E3751C6806B28FLLyyF"></a>
+                    <a name="//apple_ref/swift/Method/configureBackgroundImage()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC24configureBackgroundImage33_9A544805C67280E894E3751C6806B28FLLyyF">configureBackgroundImage()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Конфигурировать картинку фона</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">configureBackgroundImage</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC22configureSubtitleLabel33_9A544805C67280E894E3751C6806B28FLLyyF"></a>
+                    <a name="//apple_ref/swift/Method/configureSubtitleLabel()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC22configureSubtitleLabel33_9A544805C67280E894E3751C6806B28FLLyyF">configureSubtitleLabel()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Конфигурировать подзаголовка</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">configureSubtitleLabel</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC19configureTitleLabel33_9A544805C67280E894E3751C6806B28FLLyyF"></a>
+                    <a name="//apple_ref/swift/Method/configureTitleLabel()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC19configureTitleLabel33_9A544805C67280E894E3751C6806B28FLLyyF">configureTitleLabel()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Конфигурировать заголовок</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">configureTitleLabel</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC27configureSmallSubtitleLabel33_9A544805C67280E894E3751C6806B28FLLyyF"></a>
+                    <a name="//apple_ref/swift/Method/configureSmallSubtitleLabel()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC27configureSmallSubtitleLabel33_9A544805C67280E894E3751C6806B28FLLyyF">configureSmallSubtitleLabel()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Конфигурировать 2 уровень подзаголовка</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">configureSmallSubtitleLabel</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC23configureEmailTextField33_9A544805C67280E894E3751C6806B28FLLyyF"></a>
+                    <a name="//apple_ref/swift/Method/configureEmailTextField()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC23configureEmailTextField33_9A544805C67280E894E3751C6806B28FLLyyF">configureEmailTextField()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Конфигурировать поле ввода почты</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">configureEmailTextField</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC26configurePasswordTextField33_9A544805C67280E894E3751C6806B28FLLyyF"></a>
+                    <a name="//apple_ref/swift/Method/configurePasswordTextField()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC26configurePasswordTextField33_9A544805C67280E894E3751C6806B28FLLyyF">configurePasswordTextField()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Конфигурировать поле ввода пароля</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">configurePasswordTextField</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC09configureC6Button33_9A544805C67280E894E3751C6806B28FLLyyF"></a>
+                    <a name="//apple_ref/swift/Method/configureAuthorizationButton()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC09configureC6Button33_9A544805C67280E894E3751C6806B28FLLyyF">configureAuthorizationButton()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Конфигурировать кнопку авторизации</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">configureAuthorizationButton</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC20configureFooterLabel33_9A544805C67280E894E3751C6806B28FLLyyF"></a>
+                    <a name="//apple_ref/swift/Method/configureFooterLabel()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC20configureFooterLabel33_9A544805C67280E894E3751C6806B28FLLyyF">configureFooterLabel()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Конфигурировать нижний текст</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">configureFooterLabel</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC27configureRegistrationButton33_9A544805C67280E894E3751C6806B28FLLyyF"></a>
+                    <a name="//apple_ref/swift/Method/configureRegistrationButton()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC27configureRegistrationButton33_9A544805C67280E894E3751C6806B28FLLyyF">configureRegistrationButton()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Конфигурировать кнопку перехода на модуль авторизации</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">configureRegistrationButton</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC26configureActivityIndicator33_9A544805C67280E894E3751C6806B28FLLyyF"></a>
+                    <a name="//apple_ref/swift/Method/configureActivityIndicator()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC26configureActivityIndicator33_9A544805C67280E894E3751C6806B28FLLyyF">configureActivityIndicator()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Конфигурировать индикатор загрузки</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">configureActivityIndicator</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC14addAllSubviews33_9A544805C67280E894E3751C6806B28FLLyyF"></a>
+                    <a name="//apple_ref/swift/Method/addAllSubviews()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC14addAllSubviews33_9A544805C67280E894E3751C6806B28FLLyyF">addAllSubviews()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Добавить все вью</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">addAllSubviews</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC15initConstraints33_9A544805C67280E894E3751C6806B28FLLyyF"></a>
+                    <a name="//apple_ref/swift/Method/initConstraints()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC15initConstraints33_9A544805C67280E894E3751C6806B28FLLyyF">initConstraints()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Активировать констреинты</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">private</span> <span class="kd">func</span> <span class="nf">initConstraints</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC25authorizationButtonTapped33_9A544805C67280E894E3751C6806B28FLLyyF"></a>
+                    <a name="//apple_ref/swift/Method/authorizationButtonTapped()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC25authorizationButtonTapped33_9A544805C67280E894E3751C6806B28FLLyyF">authorizationButtonTapped()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Событие нажатия на кнопку авторизации</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">private</span> <span class="kd">func</span> <span class="nf">authorizationButtonTapped</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC24registrationButtonTapped33_9A544805C67280E894E3751C6806B28FLLyyF"></a>
+                    <a name="//apple_ref/swift/Method/registrationButtonTapped()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC24registrationButtonTapped33_9A544805C67280E894E3751C6806B28FLLyyF">registrationButtonTapped()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Событие нажатия на кнопку регистрации</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@objc</span>
+<span class="kd">private</span> <span class="kd">func</span> <span class="nf">registrationButtonTapped</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC31startAnimatingActivityIndicatoryyF"></a>
+                    <a name="//apple_ref/swift/Method/startAnimatingActivityIndicator()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC31startAnimatingActivityIndicatoryyF">startAnimatingActivityIndicator()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Начать анимацию индикатора загрузки</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">startAnimatingActivityIndicator</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC30stopAnimatingActivityIndicatoryyF"></a>
+                    <a name="//apple_ref/swift/Method/stopAnimatingActivityIndicator()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC30stopAnimatingActivityIndicatoryyF">stopAnimatingActivityIndicator()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Завершить анимацию индикатора загрузки</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">stopAnimatingActivityIndicator</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC9showAlert5title7messageySS_SStF"></a>
+                    <a name="//apple_ref/swift/Method/showAlert(title:message:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC9showAlert5title7messageySS_SStF">showAlert(title:<wbr>message:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Показать сообщение</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">showAlert</span><span class="p">(</span><span class="nv">title</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>title</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Заголовок сообщения</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>message</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Текст сообщения</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC22setNavigationBarHidden_8animatedySb_SbtF"></a>
+                    <a name="//apple_ref/swift/Method/setNavigationBarHidden(_:animated:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC22setNavigationBarHidden_8animatedySb_SbtF">setNavigationBarHidden(_:<wbr>animated:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Изменить видимость навигации</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">setNavigationBarHidden</span><span class="p">(</span><span class="n">_</span> <span class="nv">isHidden</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">,</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>isHidden</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Спрятан ли</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>animated</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Анимировано</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:7GeoFood27AuthorizationViewControllerC013getNavigationE0So012UINavigationE0CSgyF"></a>
+                    <a name="//apple_ref/swift/Method/getNavigationController()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:7GeoFood27AuthorizationViewControllerC013getNavigationE0So012UINavigationE0CSgyF">getNavigationController()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Получить контроллер навигации</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">getNavigationController</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UINavigationController</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="" target="_blank" rel="external"></a>. All rights reserved. (Last updated: 2021-05-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.7</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

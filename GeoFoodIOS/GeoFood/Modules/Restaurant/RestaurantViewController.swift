@@ -7,39 +7,56 @@
 
 import UIKit
 
+/// Выходные методы контроллера
 protocol RestaurantViewControllerOutput: AnyObject {
     func viewDidLoad()
 }
 
+/// Контроллер кафе
 class RestaurantViewController: UIViewController {
     
+    /// Взаимодействует ли пользователь с скроллом
     var isDragging = false
+    /// Скроллится ли скролл
     var isDecelerating = false
+    /// Последняя позиция контента скролла
     var lastSalesTableScrollY: CGFloat = 0
     
+    /// Презентер кафе
     var presenter: RestaurantViewControllerOutput!
     
+    /// Верхняя вью с информацией о кафе
     private let header = RestaurantHeaderView()
+    /// Таблица общих акций
     private let salesTable = UITableView()
+    /// Коллекция специальных акций
     private let specialSalesCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         return UICollectionView(frame: .zero, collectionViewLayout: layout)
     }()
+    /// Точки под коллекцией с указанием текущей акции
     private let pageControl = UIPageControl()
+    /// Общий скролл
     private let scrollView = UIScrollView()
+    /// Контент скролла
     private let contentView = UIView()
     
+    /// id ячейки коллекции
     private let collectionCellIdentifier = "stockCell"
     
+    /// Модель данных ресторана
     private var viewModel: RestaurantViewModel?
+    /// Верхний констреинт таблицы общих акций
     private var salesTableTopAnchor: NSLayoutYAxisAnchor?
     
+    /// Перерисовать вью
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.scrollView.contentSize = contentView.bounds.size
     }
     
+    /// Контроллер загрузился
     override func viewDidLoad() {
         view.backgroundColor = .white
         title = "Акции"
@@ -61,6 +78,7 @@ class RestaurantViewController: UIViewController {
         presenter.viewDidLoad()
     }
     
+    /// Конфигурация отображения внутренних вью
     func configureSubviews() {
         header.translatesAutoresizingMaskIntoConstraints = false
         salesTable.translatesAutoresizingMaskIntoConstraints = false
@@ -98,6 +116,7 @@ class RestaurantViewController: UIViewController {
         contentView.layer.masksToBounds = true
     }
     
+    /// Добавить все вью в контроллер
     func addAllSubviews() {
         view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -107,6 +126,7 @@ class RestaurantViewController: UIViewController {
         contentView.addSubview(pageControl)
     }
     
+    /// Активировать констреинты
     func initConstraints() {
         NSLayoutConstraint.activate([
             scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -147,6 +167,8 @@ class RestaurantViewController: UIViewController {
 }
 
 extension RestaurantViewController: RestaurantPresenterOutput {
+    /// Сконфигурировать вью по модели данных кафе
+    /// - Parameter vm: Модель данных кафе
     func configure(with vm: RestaurantViewModel) {
         self.viewModel = vm
         header.configure(with: vm)
@@ -163,6 +185,11 @@ extension RestaurantViewController: RestaurantPresenterOutput {
 }
 
 extension RestaurantViewController: UITableViewDataSource {
+    /// Создание ячейки для таблицы
+    /// - Parameters:
+    ///   - tableView: Таблица, для которой создается ячейка
+    ///   - indexPath: Номер ячейки
+    /// - Returns: Ячейка с данными
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: collectionCellIdentifier) as? SaleCell,
               let viewModel = self.viewModel else {
@@ -173,10 +200,20 @@ extension RestaurantViewController: UITableViewDataSource {
         return cell
     }
     
+    /// Количество ячеек
+    /// - Parameters:
+    ///   - tableView: Таблица, для которой определяется количество ячеек
+    ///   - section: Секция, в которой будут ячейки
+    /// - Returns: Число ячеек
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel?.sales.count ?? 0
     }
     
+    /// Вычисление высоты для ячейки таблицы
+    /// - Parameters:
+    ///   - tableView: Таблица, для которой определяется высота ячейки
+    ///   - indexPath: Индекс ячейки
+    /// - Returns: Высота ячейки
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 90
     }
@@ -185,6 +222,11 @@ extension RestaurantViewController: UITableViewDataSource {
 
 extension RestaurantViewController: UITableViewDelegate {
     
+    /// Создание вью с заголовком для таблицы
+    /// - Parameters:
+    ///   - tableView: Таблица
+    ///   - section: Секция таблицы
+    /// - Returns: Вью с заголовком
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 40))
         
@@ -197,6 +239,11 @@ extension RestaurantViewController: UITableViewDelegate {
         return view
     }
     
+    /// Высота вью с заголовком
+    /// - Parameters:
+    ///   - tableView: Таблица
+    ///   - section: Секция таблицы
+    /// - Returns: Высота
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         40
     }
@@ -204,11 +251,21 @@ extension RestaurantViewController: UITableViewDelegate {
 }
 
 extension RestaurantViewController: UICollectionViewDataSource {
+    /// Вычисление количества ячеек в коллекции
+    /// - Parameters:
+    ///   - collectionView: Коллекция
+    ///   - section: Секция коллекции
+    /// - Returns: Количество ячеек
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         self.pageControl.numberOfPages = viewModel?.specialSales.count ?? 0
         return viewModel?.specialSales.count ?? 0
     }
     
+    /// Конфигурация ячейки для коллекции
+    /// - Parameters:
+    ///   - collectionView: Коллекция
+    ///   - indexPath: Индекс коллекции
+    /// - Returns: Ячейка коллекции
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as? SpecialSaleCollectionViewCell,
               let viewModel = self.viewModel
@@ -226,6 +283,7 @@ extension RestaurantViewController: UICollectionViewDataSource {
 
 extension RestaurantViewController: UIScrollViewDelegate {
     
+    /// Индекс отображаемой ячейки коллекции
     func getCurrentPage() {
         let visibleRect = CGRect(origin: specialSalesCollection.contentOffset, size: specialSalesCollection.bounds.size)
         let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
@@ -234,6 +292,10 @@ extension RestaurantViewController: UIScrollViewDelegate {
         }
     }
     
+    /// Событие завершения скролла
+    /// - Parameters:
+    ///   - scrollView: Скролл
+    ///   - decelerate: Будет ли пролистывание дальше
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         if scrollView == self.scrollView && !isDecelerating {
             if scrollView.contentOffset.y > 20  {
@@ -257,6 +319,8 @@ extension RestaurantViewController: UIScrollViewDelegate {
         }
     }
     
+    /// Скролл завершил пролистывание
+    /// - Parameter scrollView: Скролл
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         if scrollView == self.scrollView && !isDragging {
             if scrollView.contentOffset.y > 20  {
@@ -284,13 +348,20 @@ extension RestaurantViewController: UIScrollViewDelegate {
             getCurrentPage()
         }
     }
-
+    
+    /// Скролл скролится пользователем
+    /// - Parameter scrollView: Скролл
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if scrollView == specialSalesCollection {
             getCurrentPage()
         }
     }
-
+    
+    /// Скролл закончил касание пользователя
+    /// - Parameters:
+    ///   - scrollView: Скролл
+    ///   - velocity: Разница при скроле
+    ///   - targetContentOffset: Текущая точка
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         if scrollView == specialSalesCollection {
             getCurrentPage()
