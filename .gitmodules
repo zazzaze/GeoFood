@@ -1,0 +1,3 @@
+[submodule "GeoFoodIOS"]
+	path = GeoFoodIOS
+	url = https://github.com/zazzaze/GeoFoodIOS.git
