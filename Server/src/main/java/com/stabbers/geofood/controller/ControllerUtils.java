@@ -7,7 +7,7 @@ import com.stabbers.geofood.entity.StockEntity;
 
 import static org.springframework.util.StringUtils.hasText;
 
-public class Utils {
+public class ControllerUtils {
 
     public static String getTokenFromHeader(String bearer) {
         if (hasText(bearer) && bearer.startsWith("Bearer ")) {

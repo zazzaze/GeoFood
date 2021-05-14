@@ -21,13 +21,13 @@ public class TestSecurityController {
 
     @GetMapping("/admin/get")
     public ResponseEntity<UserEntity> getAdmin(@RequestHeader("Authorization") String bearer) {
-        UserEntity admin = userService.findByLogin(jwtProvider.getLoginFromToken(Utils.getTokenFromHeader(bearer)));
+        UserEntity admin = userService.findByLogin(jwtProvider.getLoginFromToken(ControllerUtils.getTokenFromHeader(bearer)));
         return new ResponseEntity<>(admin, HttpStatus.OK);
     }
 
     @GetMapping("/user/get")
     public ResponseEntity<UserEntity> getUser(@RequestHeader("Authorization") String bearer) {
-        UserEntity user = userService.findByLogin(jwtProvider.getLoginFromToken(Utils.getTokenFromHeader(bearer)));
+        UserEntity user = userService.findByLogin(jwtProvider.getLoginFromToken(ControllerUtils.getTokenFromHeader(bearer)));
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 }

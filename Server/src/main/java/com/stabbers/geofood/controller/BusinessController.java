@@ -12,8 +12,6 @@ import com.stabbers.geofood.service.ShopService;
 import com.stabbers.geofood.service.StockService;
 import com.stabbers.geofood.service.UserService;
 import com.stabbers.geofood.service.VisitActionService;
-import lombok.Builder;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,7 +37,7 @@ public class BusinessController {
 
 
     private UserEntity getUserByToken(String bearer ){
-        String token = Utils.getTokenFromHeader(bearer);
+        String token = ControllerUtils.getTokenFromHeader(bearer);
         UserEntity user = null;
         if (token != null && jwtProvider.validateToken(token)) {
             String userLogin = jwtProvider.getLoginFromToken(token);
@@ -51,7 +49,7 @@ public class BusinessController {
     // ADD SHOP.
     @PostMapping("/admin/shop/add")
     public HttpStatus addShops(@RequestHeader("Authorization") String bearer, @RequestBody AddShopRequest request) {
-        String token = Utils.getTokenFromHeader(bearer);
+        String token = ControllerUtils.getTokenFromHeader(bearer);
 
         UserEntity admin = null;
         if (token != null && jwtProvider.validateToken(token)) {
@@ -63,7 +61,7 @@ public class BusinessController {
         if (admin == null)
             return HttpStatus.BAD_REQUEST;
 
-        ShopEntity newShop = Utils.createShop(request);
+        ShopEntity newShop = ControllerUtils.createShop(request);
 
         newShop.setHolder(admin);
         admin.addShop(newShop);
@@ -76,7 +74,7 @@ public class BusinessController {
     // GET SHOPS.
     @GetMapping("/admin/shop/get")
     public ResponseEntity<Iterable<ShopEntity>> getShops(@RequestHeader("Authorization") String bearer) {
-        String token = Utils.getTokenFromHeader(bearer);
+        String token = ControllerUtils.getTokenFromHeader(bearer);
 
         UserEntity user = null;
         if (token != null && jwtProvider.validateToken(token)) {
@@ -94,7 +92,7 @@ public class BusinessController {
     // ADD STOCK.
     @PostMapping("/admin/stock/add")
     public HttpStatus addStock(@RequestHeader("Authorization") String bearer, @RequestBody AddStockRequest request) {
-        String token = Utils.getTokenFromHeader(bearer);
+        String token = ControllerUtils.getTokenFromHeader(bearer);
 
         UserEntity admin = null;
         if (token != null && jwtProvider.validateToken(token)) {
@@ -117,7 +115,7 @@ public class BusinessController {
         if (curShop == null)
             return HttpStatus.BAD_REQUEST;
 
-        StockEntity newStock = Utils.createStock(request);
+        StockEntity newStock = ControllerUtils.createStock(request);
         newStock.setShop(curShop);
         curShop.addStock(newStock);
         stockService.saveStock(newStock);
@@ -128,7 +126,7 @@ public class BusinessController {
     // GET STOCKS.
     @GetMapping("/admin/stock/get")
     public ResponseEntity<Iterable<StockEntity>> getStocks(@RequestHeader("Authorization") String bearer) {
-        String token = Utils.getTokenFromHeader(bearer);
+        String token = ControllerUtils.getTokenFromHeader(bearer);
 
         UserEntity admin = null;
         if (token != null && jwtProvider.validateToken(token)) {
@@ -163,7 +161,7 @@ public class BusinessController {
         ArrayList<ShopEntity> validShops = new ArrayList<>();
 
         for (ShopEntity shop : shops) {
-            if (Utils.shopInAarea(request.getLatitude(), request.getLongitude(), request.getRadius(), shop))
+            if (ControllerUtils.shopInAarea(request.getLatitude(), request.getLongitude(), request.getRadius(), shop))
                 validShops.add(shop);
         }
 
@@ -176,7 +174,7 @@ public class BusinessController {
     public List<StockEntity> getStocks(@RequestHeader("Authorization") String bearer,
                                           @RequestBody GetStocksRequest request) {
 
-        String token = Utils.getTokenFromHeader(bearer);
+        String token = ControllerUtils.getTokenFromHeader(bearer);
 
         UserEntity user = null;
         if (token != null && jwtProvider.validateToken(token)) {
@@ -226,7 +224,7 @@ public class BusinessController {
         ArrayList<ShopEntity> validShops = new ArrayList<>();
 
         for (ShopEntity shop : shops) {
-            if (Utils.shopInAarea(request.getLatitude(), request.getLongitude(), 100, shop))
+            if (ControllerUtils.shopInAarea(request.getLatitude(), request.getLongitude(), 100, shop))
                 validShops.add(shop);
         }
 
