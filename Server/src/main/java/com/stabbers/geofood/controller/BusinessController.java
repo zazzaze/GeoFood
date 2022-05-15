@@ -157,15 +157,7 @@ public class BusinessController {
         if (user == null)
             return null;
 
-        ArrayList<ShopEntity> shops = (ArrayList<ShopEntity>) shopService.getAllShops();
-        ArrayList<ShopEntity> validShops = new ArrayList<>();
-
-        for (ShopEntity shop : shops) {
-            if (ControllerUtils.shopInAarea(request.getLatitude(), request.getLongitude(), request.getRadius(), shop))
-                validShops.add(shop);
-        }
-
-        return validShops;
+        return (ArrayList<ShopEntity>) shopService.getNearShop(request.getLatitude(),  request.getLongitude(), request.getRadius());
     }
 
     // GET ALL SHOP STOCKS

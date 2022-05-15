@@ -28,8 +28,12 @@ public class ShopService {
         return shopRepository.findAll();
     }
 
-    public ShopEntity findById(int id){
-        return  shopRepository.findById(id).orElse(new ShopEntity());
+    public List<ShopEntity> getNearShop(double x, double y, double r) {
+        return shopRepository.findNearShops(x, y, r);
+    }
+
+    public ShopEntity findById(int id) {
+        return shopRepository.findById(id).orElse(new ShopEntity());
     }
 
 }

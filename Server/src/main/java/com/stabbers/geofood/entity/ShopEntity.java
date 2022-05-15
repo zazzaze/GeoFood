@@ -14,7 +14,8 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "shop")
+@Table(name = "shop", indexes = @Index(columnList = "longitude, latitude"))
+//@Table(name = "shop")
 public class ShopEntity {
     @JsonView({Views.forList.class})
     @Id
